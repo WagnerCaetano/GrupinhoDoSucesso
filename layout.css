@@ -1,83 +1,132 @@
-@import "bourbon";
-
-// VARS
-$purple:  #955fad;
-$orange: #da5b45;
-$paper: #f6efe9;
-
-// ANIMS
-@include keyframes(colorSwapper){
+@-webkit-keyframes colorSwapper {
   0% {
-    @include linear-gradient($purple, $orange);
+    background-color: #955fad;
+    background-image: -webkit-linear-gradient(#955fad, #da5b45);
+    background-image: linear-gradient(#955fad, #da5b45);
   }
   50% {
-    @include linear-gradient($orange, $purple);
+    background-color: #da5b45;
+    background-image: -webkit-linear-gradient(#da5b45, #955fad);
+    background-image: linear-gradient(#da5b45, #955fad);
   }
   100% {
-    @include linear-gradient($purple, $orange);
+    background-color: #955fad;
+    background-image: -webkit-linear-gradient(#955fad, #da5b45);
+    background-image: linear-gradient(#955fad, #da5b45);
   }
 }
-
-@include keyframes(solidColor){
+@-moz-keyframes colorSwapper {
   0% {
-    background-color: $purple;
+    background-color: #955fad;
+    background-image: -webkit-linear-gradient(#955fad, #da5b45);
+    background-image: linear-gradient(#955fad, #da5b45);
   }
   50% {
-    background-color: $orange;
+    background-color: #da5b45;
+    background-image: -webkit-linear-gradient(#da5b45, #955fad);
+    background-image: linear-gradient(#da5b45, #955fad);
   }
   100% {
-    background-color: $purple;
+    background-color: #955fad;
+    background-image: -webkit-linear-gradient(#955fad, #da5b45);
+    background-image: linear-gradient(#955fad, #da5b45);
   }
 }
-
-$main-color: #00B285;
-
-//________________________________
-html,body{
-  height:100%;
+@keyframes colorSwapper {
+  0% {
+    background-color: #955fad;
+    background-image: -webkit-linear-gradient(#955fad, #da5b45);
+    background-image: linear-gradient(#955fad, #da5b45);
+  }
+  50% {
+    background-color: #da5b45;
+    background-image: -webkit-linear-gradient(#da5b45, #955fad);
+    background-image: linear-gradient(#da5b45, #955fad);
+  }
+  100% {
+    background-color: #955fad;
+    background-image: -webkit-linear-gradient(#955fad, #da5b45);
+    background-image: linear-gradient(#955fad, #da5b45);
+  }
+}
+@-webkit-keyframes solidColor {
+  0% {
+    background-color: #955fad;
+  }
+  50% {
+    background-color: #da5b45;
+  }
+  100% {
+    background-color: #955fad;
+  }
+}
+@-moz-keyframes solidColor {
+  0% {
+    background-color: #955fad;
+  }
+  50% {
+    background-color: #da5b45;
+  }
+  100% {
+    background-color: #955fad;
+  }
+}
+@keyframes solidColor {
+  0% {
+    background-color: #955fad;
+  }
+  50% {
+    background-color: #da5b45;
+  }
+  100% {
+    background-color: #955fad;
+  }
+}
+html, body {
+  height: 100%;
 }
 
-body{
+body {
   background: #222;
   color: #FFF;
 }
 
-.skewed-bg{
+.skewed-bg {
   background: #00B285;
   padding: 200px 0;
-  @include transform(skew(0deg, -10deg));
-  margin-top: -200px;  
-  
-  .content{
-    @include transform(skew(0deg, 10deg));
-    text-align: center;
-    
-    .title{
-      padding-top: 100px;
-      font-weight: normal;
-    }
-    
-    .text{
-      width:60%;
-      margin: 25px auto;      
-      color: lighten($main-color, 55);
-    }
-    
-  } 
+  -webkit-transform: skew(0deg, -10deg);
+  -moz-transform: skew(0deg, -10deg);
+  -ms-transform: skew(0deg, -10deg);
+  -o-transform: skew(0deg, -10deg);
+  transform: skew(0deg, -10deg);
+  margin-top: -200px;
+}
+.skewed-bg .content {
+  -webkit-transform: skew(0deg, 10deg);
+  -moz-transform: skew(0deg, 10deg);
+  -ms-transform: skew(0deg, 10deg);
+  -o-transform: skew(0deg, 10deg);
+  transform: skew(0deg, 10deg);
+  text-align: center;
+}
+.skewed-bg .content .title {
+  padding-top: 100px;
+  font-weight: normal;
+}
+.skewed-bg .content .text {
+  width: 60%;
+  margin: 25px auto;
+  color: #ccfff2;
 }
 
-.footer{
+.footer {
   padding-top: 300px;
-  
-  .credits{
-    text-align: center;
-    color: #666;
-    
-    .link{
-      color: $main-color;
-      text-decoration: none;
-    }
-    
-  }
-  
+}
+.footer .credits {
+  text-align: center;
+  color: #666;
+}
+.footer .credits .link {
+  color: #00B285;
+  text-decoration: none;
 }
