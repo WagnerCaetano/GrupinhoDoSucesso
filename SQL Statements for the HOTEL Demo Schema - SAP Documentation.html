@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0074)http://maxdb.sap.com/doc/7_7/44/e32f133ee203fce10000000a1553f6/content.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head profile="http://dublincore.org/documents/dcq-html/"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Exported by SAP Html Export Server 7.1.001 at Fri Aug 29 11:01:08 CEST 2008 -->
+<meta http-equiv="Content-Script-Type" content="text/javascript"><meta http-equiv="Content-Style-Type" content="text/css"><meta http-equiv="Content-Language" content="en"><meta name="description" lang="en" xml:lang="en" content="SQL Statements for the HOTEL Demo Schema"><meta name="DC.creator" content="SAP AG"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/creator"><meta name="DC.rights" lang="en" xml:lang="en" content="Copyright by SAP AG - All rights reserved."><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/rights"><meta name="DC.type" scheme="DCTERMS.DCMIType" content="Text"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/type"><meta name="DC.format" scheme="DCTERMS.IMT" content="text/html"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/format"><meta name="DC.language" scheme="DCTERMS.ISO639-1" content="en"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/language"><meta name="DC.title" lang="en" xml:lang="en" content="SQL Statements for the HOTEL Demo Schema"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/title"><meta name="DCTERMS.rightsHolder" content="SAP AG"><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/rightsHolder"><meta name="SAP.KW_LOIO_CLASS" content="BCO_COMMON"><meta name="SAP.KW_LOIO_GUID" content="44E32F133EE203FCE10000000A1553F6"><meta name="SAP.KW_RELEASE" content="730"><meta name="SAP.KW_INDUSTRY" content="[NO DATA AVAILABLE]"><meta name="SAP.KW_LANGUAGE" content="E"><meta name="SAP.KW_COUNTRY" content="[NO DATA AVAILABLE]"><meta content="ICBackground" name="SAP.Rootelement"><meta name="SAP.Generator" content="SAP XDP"><meta name="SAP.Generator.Version" content="2007-12-10 (V7.2)"><meta name="SAP.XSLTProcessor.Vendor" content="SAP AG"><meta name="SAP.XSLTProcessor.XSLTVersion" content="1.3"><meta name="SAP.HTMLType" content="es-pHTML"><link rel="icon" href="http://maxdb.sap.com/doc/7_7/graphics/favicon.ico" type="image/x-icon"><link rel="shortcut icon" href="http://maxdb.sap.com/doc/7_7/graphics/favicon.ico"><script src="./SQL Statements for the HOTEL Demo Schema - SAP Documentation_files/sapdoc.js.download" type="text/javascript"><!-- -->
+</script><script type="text/javascript">Sync("44e32f133ee203fce10000000a1553f6");
+</script><link rel="stylesheet" title="Default" type="text/css" href="./SQL Statements for the HOTEL Demo Schema - SAP Documentation_files/SAPStyleDefault.css" charset="UTF-8"><link rel="stylesheet" title="Default" type="text/css" href="./SQL Statements for the HOTEL Demo Schema - SAP Documentation_files/SAPStyleDefault(1).css" charset="UTF-8"><link rel="stylesheet" title="Default" type="text/css" href="./SQL Statements for the HOTEL Demo Schema - SAP Documentation_files/SAPStyleDefault(2).css" charset="UTF-8"><link rel="stylesheet" title="Default" type="text/css" href="./SQL Statements for the HOTEL Demo Schema - SAP Documentation_files/SAPStyleDefault(2).css" charset="UTF-8"><link rel="stylesheet" title="Default" type="text/css" href="./SQL Statements for the HOTEL Demo Schema - SAP Documentation_files/dummy.css" charset="UTF-8"><title>SQL Statements for the HOTEL Demo Schema - SAP Documentation</title></head><body id="top"><div class="SAPXDPBodyDefault SAPXDPBodyLatinChar SAPXDPLang-en" id="SAPXDPDoc"><div class="SAPXDPICBackground " lang="en" xml:lang="en"><h3 class="sansserif" id="N14452"><span class="SAPXDPMarginalia"><img alt="Background documentation" src="./SQL Statements for the HOTEL Demo Schema - SAP Documentation_files/icbackground.gif" title="Background documentation"></span><span class="SAPXDPTitle ">SQL Statements for the HOTEL Demo Schema</span> <a href="http://maxdb.sap.com/doc/7_7/44/e32f133ee203fce10000000a1553f6/frameset.htm" target="_top"><img alt="Locate this document in the navigation structure" class="SAPXDPIcon" src="./SQL Statements for the HOTEL Demo Schema - SAP Documentation_files/locate.gif" title="Locate this document in the navigation structure"></a></h3>
+
+<div class="SAPXDPKeyblockUse "><p>&nbsp;</p>
+<p class="SAPXDPParagraph ">You can use the following SQL statements to generate a series of
+simply structured tables and their contents in the <tt class="SAPXDPTechnicalName monospace" title="Object name">HOTEL</tt> demo
+schema. You can then use this schema data to work through all the examples
+in this <span class="SAPXDPDocuLink "><a href="http://maxdb.sap.com/doc/7_7/d0/3e345709c044d4a954e3a8d0be0867/content.htm" title="Go to specified document">SQL
+Tutorial</a></span>.</p>
+</div>
+<div class="SAPXDPKeyblockProcessFlow "><h4>Process</h4><p class="SAPXDPParagraph ">Create the database administrator <tt class="SAPXDPTechnicalName monospace" title="Object name">MONA</tt> and
+log on to the <tt class="SAPXDPTechnicalName monospace" title="Object name">DEMODB</tt> database as <tt class="SAPXDPTechnicalName monospace" title="Object name">MONA</tt> with
+a suitable tool (see: <span class="SAPXDPDocuLink "><a href="http://maxdb.sap.com/doc/7_7/8c/28b4ec2db945849b74310a0ba7bc83/content.htm" title="Go to specified document">Demo
+Data for the SQL Tutorial</a></span>). Enter the following SQL statements:</p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">CREATE SCHEMA hotel</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">SET CURRENT_SCHEMA = hotel</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">CREATE TABLE city</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">(zip  CHAR(5)&nbsp;&nbsp;PRIMARY KEY,</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">name               CHAR (30)   NOT NULL,</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">state              CHAR(2)     NOT NULL)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">CREATE TABLE customer</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">(cno    FIXED(4)&nbsp;PRIMARY KEY,</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">title   CHAR(7),</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">firstname          CHAR (20)   ,</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">name               CHAR (40)   NOT NULL,</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">zip   CHAR(5),</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">address CHAR(40)&nbsp;NOT NULL)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">CREATE TABLE hotel</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">(hno   FIXED(4)&nbsp;PRIMARY KEY,</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">name               CHAR (50)   NOT NULL,</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">zip   CHAR(5),</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">address CHAR(40)&nbsp;NOT NULL)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">CREATE TABLE room</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">(hno  FIXED(4),</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">type CHAR(6), PRIMARY KEY (hno,type),</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">free  FIXED(3,0),</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">price FIXED(6,2))</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">CREATE TABLE reservation</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">(rno    FIXED(4) PRIMARY KEY,</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">cno    FIXED(4),</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">hno    FIXED(4),</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">type   CHAR(6),</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">arrival  DATE NOT NULL,</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">departure DATE NOT NULL)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">// TABLE city (25 Rows)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('12203','Albany','NY')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('60601','Chicago','IL')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('60615','Chicago','IL')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('45211','Cincinnati','OH')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('33575','Clearwater','FL')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('75243','Dallas','TX')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('32018','Daytona Beach','FL')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('33441','Deerfield Beach','FL')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('48226','Detroit','MI')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('90029','Hollywood','CA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('92714','Irvine','CA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('90804','Long Beach','CA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('11788','Long Island','NY')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('90018','Los Angeles','CA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('70112','New Orleans','LA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('10580','New York','NY')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('10019','New York','NY')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('92262','Palm Springs','CA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('97213','Portland','OR')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('60018','Rosemont','IL')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('95054','Santa Clara','CA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('20903','Silver Spring','MD')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('20037','Seattle','WA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('20005','Seattle','WA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO city VALUES ('20019','Seattle','WA')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//TABLE customer (15 rows)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3000,'Mrs','Jenny','Porter','10580','1340
+N. Ash Street, #3')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3100,'Mr','Peter','Brown','48226','1001
+34th St., APT.3')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3200,'Company',NULL,'Datasoft','90018','486
+Maple St.')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3300,'Mrs','Rose','Brian','75243','500
+Yellowstone Drive, #2')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3400,'Mrs','Mary','Griffith','20005','3401
+Elder Lane')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3500,'Mr','Martin','Randolph','60615','340
+MAIN STREET, #7')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3600,'Mrs','Sally','Smith','75243','250
+Curtis Street')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3700,'Mr','Mike','Jackson','45211','133
+BROADWAY APT. 1')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3800,'Mrs','Rita','Doe','97213','2000
+Humboldt St., #6')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (3900,'Mr','George','Howe','75243','111
+B Parkway, #23')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (4000,'Mr','Frank','Miller','95054','27
+5th St., 76')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (4100,'Mrs','Susan','Baker','90018','200
+MAIN STREET, #94')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (4200,'Mr','Joseph','Peters','92714','700
+S. Ash St., APT.12')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (4300,'Company',NULL,'TOOLware','20019','410
+Mariposa St., #10')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO customer VALUES (4400,'Mr','Antony','Jenkins','20903','55
+A Parkway, #15')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//TABLE hotel (15 rows)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (10,'Congress','20005','155
+Beechwood St.')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (30,'Regency','20037','477
+17th Avenue')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (20,'Long Island','11788','1499
+Grove Street')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (70,'Empire State','12203','65
+Yellowstone Dr.')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (80,'Midtown','10019','12 Barnard
+St.')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (40,'Eighth Avenue','10019','112
+8th Avenue')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (50,'Lake Michigan','60601','354
+OAK Terrace')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (60,'Airport','60018','650
+C Parkway')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (90,'Sunshine','33575','200
+Yellowstone Dr.')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (100,'Beach','32018','1980
+34th St.')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (110,'Atlantic','33441','111
+78th St.')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (120,'Long Beach','90804','35
+Broadway')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (150,'Indian Horse','92262','16
+MAIN STREET')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (130,'Star','90029','13 Beechwood
+Place')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO hotel VALUES (140,'River Boat','70112','788
+MAIN STREET')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//TABLE room (38 rows)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (10,'single',20,135.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (10,'double',45,200.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (30,'single',12,45.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (30,'double',15,80.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (20,'single',10,70.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (20,'double',13,100.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (70,'single',4,115.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (70,'double',11,180.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (80,'single',15,90.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (80,'double',19,150.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (80,'suite',5,400.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (40,'single',20,85.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (40,'double',35,140.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (50,'single',50,105.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (50,'double',230,180.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (50,'suite',12,500.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (60,'single',10,120.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (60,'double',39,200.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (60,'suite',20,500.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (90,'single',45,90.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (90,'double',145,150.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (90,'suite',60,300.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (100,'single',11,60.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (100,'double',24,100.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (110,'single',2,70.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (110,'double',10,130.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (120,'single',34,80.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (120,'double',78,140.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (120,'suite',55,350.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (150,'single',44,100.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (150,'double',115,190.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (150,'suite',6,450.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (130,'single',89,160.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (130,'double',300,270.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (130,'suite',100,700.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (140,'single',10,125.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (140,'double',9,200.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO room VALUES (140,'suite',78,600.00)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//TABLE reservation (10 rows)</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//----------------------------------------------------------------</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (100,3000,80,'single','2004-11-13','2004-11-15')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (110,3000,100,'double','2004-12-24','2005-01-06')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (120,3200,50,'suite','2004-11-14','2004-11-18')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (130,3900,110,'single','2005-02-01','2005-02-03')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (150,3600,70,'double','2005-03-14','2005-03-24')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (140,4300,80,'double','2004-04-12','2004-04-30')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (160,4100,70,'single','2004-04-12','2004-04-15')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (170,4400,150,'suite','2004-09-01','2004-09-03')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (180,3100,120,'double','2004-12-23','2005-01-08')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">INSERT INTO reservation VALUES (190,4300,140,'double','2004-11-14','2004-11-17')</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">//</tt></p>
+<p class="SAPXDPParagraph "><tt class="SAPXDPUserEntry monospace" title="User entry">// THE END</tt></p>
+<div class="SAPXDPNote SAPXDPSkb"><p class="SAPXDPSkbtitle sansserif"><img alt="Note" class="SAPXDPSkb" src="./SQL Statements for the HOTEL Demo Schema - SAP Documentation_files/note.gif" title="Note">&nbsp;Note</p>
+<p class="SAPXDPParagraph ">If you load the complete set of demo data with the <span class="SAPXDPProductName ">Installation
+Manager</span> or the <span class="SAPXDPProductName ">Database Studio</span>, the
+tables are created with much more extensive definitions and a partly larger
+number of data records and additional objects (e.g. views, indexes, etc.)
+are generated. You can use this demo data as well. However, the result set
+specified for an example statement in this SQL tutorial may differ from the
+result set you receive for the complete set of demo data.</p>
+<div class="SAPXDPA11Y-furtherInfo">End of the note.</div></div>
+</div>
+<div class="SAPXDPKeyblockSeeAlso "><h4>More Information</h4><p class="SAPXDPParagraph "><span class="SAPXDPDocuLink "><a href="http://maxdb.sap.com/doc/7_7/44/e468c966c303fce10000000a1553f6/content.htm" title="Go to specified document">Explanation
+of the Tables in the HOTEL Demo Schema</a></span></p>
+<p class="SAPXDPParagraph "><i class="SAPXDPDocuTextRef ">Concepts of the Database System</i>, <span class="SAPXDPDocuLink "><a href="http://maxdb.sap.com/doc/7_7/44/d8c25164bb38d0e10000000a1553f7/content.htm" title="Go to specified document">Demo
+Database</a></span> and <span class="SAPXDPDocuLink "><a href="http://maxdb.sap.com/doc/7_7/44/d7c5bb2e6338d3e10000000a1553f7/content.htm" title="Go to specified document">Objects
+in the HOTEL Schema</a></span></p>
+</div>
+</div></div></body></html>

@@ -1,0 +1,1469 @@
+/*   $DateTime: 2008/06/20 13:26:37 $ */
+/*   $Revision: #8 $ */
+
+  /*****************************************************************/
+  /*                                                               */
+  /* CUSTOMIZATIONS                                                */
+  /*                                                               */
+  /*   B1 = SAP Business One                                       */
+  /*   Du = Duet for Microsoft Office and SAP                      */
+  /*                                                               */
+  /*****************************************************************/
+
+
+  /*****************************************************************/
+  /*                                                               */
+  /* FONT DEFINITIONS                                              */
+  /*                                                               */
+  /*****************************************************************/
+
+  /*****************************************************************/
+  /* DOC Serif                                                     */
+  /*****************************************************************/
+  .SAPXDPBodyLatinChar,
+  .SAPXDPBodyLatinChar          .serif
+    {
+                font-family: Arial, sans-serif;
+    /*B1*/  -B1-font-family: Georgia, "Times New Roman", Palatino, Times, Utopia, serif;
+    /*Du*/  -Du-font-family: Tahoma, serif;
+    }
+  .SAPXDPBodyGreekChar,
+  .SAPXDPBodyGreekChar          .serif
+    {
+                font-family: Arial, sans-serif;
+    /*B1*/  -B1-font-family: Georgia, "Times New Roman", Palatino, Times, Utopia, serif;
+    }
+  .SAPXDPBodyCyrillicChar,
+  .SAPXDPBodyCyrillicChar       .serif
+    {
+                font-family: Arial, sans-serif;
+    /*B1*/  -B1-font-family: Georgia, "Times New Roman", Palatino, Times, Utopia, serif;
+    }
+  .SAPXDPBodyKoreanChar,
+  .SAPXDPBodyKoreanChar         .serif
+    { font-family: Gulim, sans-serif; }
+  .SAPXDPBodyJapaneseIdeograms,
+  .SAPXDPBodyJapaneseIdeograms  .serif
+    {
+                font-family: "MS PGothic", Osaka, sans-serif; /* 'Osaka' for pre-10.x Macintosh */
+    /*B1*/  -B1-font-family: "MS PMincho", Osaka, serif; /* 'Osaka' for pre-10.x Macintosh */
+    /*Du*/  -Du-font-family: "MS Gothic", sans-serif;
+                letter-spacing: 1px;
+    /*Du*/  -Du-letter-spacing: 0px;
+    }
+  .SAPXDPBodyChineseIdeograms,
+  .SAPXDPBodyChineseIdeograms   .serif
+    {
+                font-family: SimHei, sans-serif;
+    /*B1*/  -B1-font-family: "Simsun (Founder Extended)", SimSun, serif;
+    /*B1*/  -B1-font-size: 1.1em;
+    /*B1*/  -B1-line-height: 1.4em;
+    }
+  .SAPXDPBodyBrowserDefault,
+  .SAPXDPBodyBrowserDefault     .serif
+    { font-family: sans-serif; }
+
+  /*****************************************************************/
+  /* DOC Sans-Serif                                                */
+  /*****************************************************************/
+  .SAPXDPBodyLatinChar          .sansserif
+    {
+                font-family: Arial, sans-serif;
+    /*B1*/  -B1-font-family: Tahoma, Verdana, Charcoal, Helvetica, sans-serif;
+    /*Du*/  -Du-font-family: Tahoma, Verdana, Charcoal, Helvetica, sans-serif;
+    }
+  .SAPXDPBodyGreekChar          .sansserif
+    {
+                font-family: Arial, sans-serif;
+    /*B1*/  -B1-font-family: Tahoma, Verdana, Charcoal, Helvetica, sans-serif;
+    /*Du*/  -Du-font-family: Tahoma, Verdana, Charcoal, Helvetica, sans-serif;
+    }
+  .SAPXDPBodyCyrillicChar       .sansserif
+    {
+                font-family: Arial, sans-serif;
+    /*B1*/  -B1-font-family: Tahoma, Verdana, Charcoal, Helvetica, sans-serif;
+    /*Du*/  -Du-font-family: Tahoma, Verdana, Charcoal, Helvetica, sans-serif;
+    }
+  .SAPXDPBodyKoreanChar         .sansserif
+    { font-family: Gulim, sans-serif; }
+  .SAPXDPBodyJapaneseIdeograms  .sansserif
+    {
+                font-family: "MS PGothic", Osaka, sans-serif;
+    /*Du*/  -Du-font-family: "MS Gothic", sans-serif;
+    }
+  .SAPXDPBodyChineseIdeograms   .sansserif
+    { font-family: SimHei, sans-serif; }
+  .SAPXDPBodyBrowserDefault     .sansserif
+    { font-family: sans-serif; }
+
+  /*****************************************************************/
+  /* DOC Monospace                                                 */
+  /*****************************************************************/
+  .SAPXDPBodyLatinChar          .monospace
+    {
+                font-family: "Courier New", Courier, monospace;
+    /*B1*/  -B1-font-family: "Arial Monospaced for SAP", "Lucida Console", "Courier New", Courier, monospace;
+    /*Du*/  -Du-font-family: "Courier New", Courier, monospace;
+    }
+  .SAPXDPBodyGreekChar          .monospace
+    { font-family: "Courier New", monospace; }
+  .SAPXDPBodyCyrillicChar       .monospace
+    { font-family: "Courier New", monospace; }
+  .SAPXDPBodyKoreanChar         .monospace
+    { font-family: GungsuhChe, monospace; }
+  .SAPXDPBodyJapaneseIdeograms  .monospace
+    {
+                font-family: "MS Gothic", monospace;
+    /*Du*/  -Du-font-family: "Courier New", Courier, monospace;
+    }
+  .SAPXDPBodyChineseIdeograms   .monospace
+    { font-family: SimSun, monospace; }
+  .SAPXDPBodyBrowserDefault     .monospace
+    { font-family: monospace; font-size: inherit; }
+
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC a                                                         */
+  /* :link, :visited, :focus, :hover, :active                      */
+  /* NOTE: :hover, :focus, and :active must be identical           */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault a,
+                     a.SAPXDPGlossarylink
+  {
+              background-color: inherit;
+              color: blue;
+  /*B1*/  -B1-color: #3A6B8E;
+  /*Du*/  -Du-color: blue;
+              text-decoration: underline;
+  /*B1*/  -B1-text-decoration: none;
+  /*Du*/  -Du-text-decoration: underline;
+  }
+
+  .SAPXDPBodyDefault dt a
+  {
+  /*B1*/  -B1-color: #FFFFFF;
+  }
+
+  a.SAPXDPLinkInTitle
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-color: inherit;
+  /*B1*/  -B1-text-decoration: none;
+  }
+
+  a.SAPXDPInactiveURL
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid #AAAAAA;
+  /*B1*/  -B1-color: #333333;
+  /*B1*/  -B1-font-size: 0.9em;
+  /*B1*/  -B1-font-style: normal;
+  /*B1*/  -B1-font-weight: normal;
+  /*B1*/  -B1-padding-bottom: 1px;
+  /*B1*/  -B1-text-decoration: none;
+  }
+
+  .SAPXDPSourceCodeLine a,
+  .SAPXDPTechnicalName  a,
+  .SAPXDPvar            a
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid #3A6B8E;
+  /*B1*/  -B1-color: #3A6B8E;
+  /*B1*/  -B1-padding-bottom: 1px;
+  /*B1*/  -B1-text-decoration: none;
+  }
+
+  /* VISITED +++++++++++++++++++++++++++++++++++++++++ */
+  .SAPXDPBodyDefault a:visited,
+                     a.SAPXDPGlossarylink:visited
+  {
+              background-color: inherit;
+              color: purple;
+  /*B1*/  -B1-color: #777777;
+  /*Du*/  -Du-color: purple;
+  }
+
+  .SAPXDPBodyDefault dt a:visited
+  {
+  /*B1*/  -B1-color: #FFFFFF;
+  }
+
+  a.SAPXDPLinkInTitle:visited
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-color: #003366;
+  }
+
+  a.SAPXDPInactiveURL:visited
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-color: #777777;
+  }
+
+  .SAPXDPSourceCodeLine a:visited,
+  .SAPXDPTechnicalName  a:visited,
+  .SAPXDPvar            a:visited
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid #777777;
+  /*B1*/  -B1-color: #777777;
+  /*B1*/  -B1-text-decoration: none;
+  }
+
+  /* HOVER [ = ACTIVE for IE and FOCUS for FF] +++++++ */
+  .SAPXDPBodyDefault a:hover,
+                     a.SAPXDPGlossarylink:hover
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid;
+  /*Du*/  -Du-border-bottom: none;
+  /*B1*/  -B1-color: #003366;
+  /*Du*/  -Du-color: inherit;
+  /*B1*/  -B1-padding-bottom: 1px;
+  /*Du*/  -Du-padding-bottom: 0px;
+  }
+
+  a.SAPXDPGlossarylink:hover {
+  /*B1*/  -B1-border-bottom: 1px dotted;
+  }
+
+  .SAPXDPBodyDefault dt a:hover
+  {
+  /*B1*/  -B1-color: #FFFFFF;
+  }
+
+  a.SAPXDPLinkInTitle:hover
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid;
+  /*B1*/  -B1-color: inherit;
+  /*B1*/  -B1-padding-bottom: 1px;
+  }
+
+  a.SAPXDPInactiveURL:hover
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid #333333;
+  /*B1*/  -B1-color: #000000;
+  /*B1*/  -B1-padding-bottom: 1px;
+  }
+
+  .SAPXDPSourceCodeLine a:hover,
+  .SAPXDPTechnicalName  a:hover,
+  .SAPXDPvar            a:hover
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid #003366;
+  /*B1*/  -B1-color: #003366;
+  /*B1*/  -B1-text-decoration: none;
+  }
+
+  /* ACTIVE [ = ACTIVE for IE and FOCUS for FF] +++++++ */
+  .SAPXDPBodyDefault a:active,
+                     a.SAPXDPGlossarylink:active
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid;
+  /*Du*/  -Du-border-bottom: none;
+  /*B1*/  -B1-color: #003366;
+  /*Du*/  -Du-color: inherit;
+  /*B1*/  -B1-padding-bottom: 1px;
+  /*Du*/  -Du-padding-bottom: 0px;
+  }
+
+  a.SAPXDPGlossarylink:active {
+  /*B1*/  -B1-border-bottom: 1px dotted;
+  }
+
+  .SAPXDPBodyDefault dt a:active
+  {
+  /*B1*/  -B1-color: #FFFFFF;
+  }
+
+  a.SAPXDPLinkInTitle:active
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid;
+  /*B1*/  -B1-color: inherit;
+  /*B1*/  -B1-padding-bottom: 1px;
+  }
+
+  a.SAPXDPInactiveURL:active
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid #333333;
+  /*B1*/  -B1-color: #000000;
+  /*B1*/  -B1-padding-bottom: 1px;
+  }
+
+  .SAPXDPSourceCodeLine a:active,
+  .SAPXDPTechnicalName  a:active,
+  .SAPXDPvar            a:active
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid #003366;
+  /*B1*/  -B1-color: #003366;
+  /*B1*/  -B1-text-decoration: none;
+  }
+
+  /* FOCUS [ = ACTIVE for IE and FOCUS for FF] +++++++ */
+  .SAPXDPBodyDefault a:focus,
+                     a.SAPXDPGlossarylink:focus
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid;
+  /*Du*/  -Du-border-bottom: none;
+  /*B1*/  -B1-color: #003366;
+  /*Du*/  -Du-color: inherit;
+  /*B1*/  -B1-padding-bottom: 1px;
+  /*Du*/  -Du-padding-bottom: 0px;
+  }
+
+  a.SAPXDPGlossarylink:focus {
+  /*B1*/  -B1-border-bottom: 1px dotted;
+  }
+
+  .SAPXDPBodyDefault dt a:focus
+  {
+  /*B1*/  -B1-color: #FFFFFF;
+  }
+
+  a.SAPXDPLinkInTitle:focus
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid;
+  /*B1*/  -B1-color: inherit;
+  /*B1*/  -B1-padding-bottom: 1px;
+  }
+
+  a.SAPXDPInactiveURL:focus
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid #333333;
+  /*B1*/  -B1-color: #000000;
+  /*B1*/  -B1-padding-bottom: 1px;
+  }
+
+  .SAPXDPSourceCodeLine a:focus,
+  .SAPXDPTechnicalName  a:focus,
+  .SAPXDPvar            a:focus
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-border-bottom: 1px solid #003366;
+  /*B1*/  -B1-color: #003366;
+  /*B1*/  -B1-text-decoration: none;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC body (done via div.SAPXDPBodyDefault)                     */
+  /*                                                               */
+  /*****************************************************************/
+  /* body */
+  body
+  {
+  }
+
+/*P*/     @media print
+/*P*/     {
+/*P*/       body {
+/*P*/         padding: 0;
+/*P*/         width: 100%;
+/*P*/       }
+/*P*/     }
+
+  div.SAPXDPBodyrtl { padding: 0px 55px 0px 30px; /*B1*/  -B1-padding: 13px 18px 13px 18px;}
+
+  div.SAPXDPBodyDefault
+  {
+              background-color: #FFFFFF;
+              background-image: none;
+              color: #000000;
+              font-size: 10.0pt;
+  /*B1*/  -B1-font-size: 0.9em;
+  /*Du*/  -Du-font-size: 8.0pt;
+  /*B1*/  -B1-line-height: 1.5em;
+  /*Du*/  -Du-line-height: 10pt;
+              padding: 11px 20px 0px 0px; /* negative values must be repeated in table.SAPXDPDocumentFrontPage{padding: } for media print */
+  /*B1*/  -B1-padding: 13px 18px 13px 18px;
+  /*Du*/  -Du-padding: 0px;
+  /*B1*/  -B1-word-spacing: 0.1em;
+  }
+
+  div.SAPXDPBodyJapaneseIdeograms
+  {
+  /*Du*/  -Du-font-size: 9pt;
+  }
+
+  div.SAPXDPBodyChineseIdeograms
+  {
+  /*Du*/  -Du-font-size: 9pt;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC caption                                                   */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault caption /* used for table titles */
+  {
+  /*B1*/  -B1-background-color: #D6D7D6;
+  /*B1*/  -B1-background-image: none;
+  /*B1*/  -B1-color: #333333;
+  /*B1*/  -B1-line-height: 1.5em;
+              font-weight: bold;
+              padding: 6pt 0 6pt 0;
+  /*B1*/  -B1-padding: 5px;
+  /*DU*/  -DU-padding: inherit;
+              text-align: left;
+  /*P*/       page-break-inside: avoid;
+  /*P*/       page-break-before: avoid;
+  }
+
+  div.SAPXDPICObject caption
+  {
+   /*B1*/  -B1-background-color: #FFFFFF;
+   /*B1*/  -B1-border-bottom: 3px dotted #5385B1;
+   /*B1*/  -B1-color: #5385B1;
+  }
+
+  .SAPXDPBodyrtl caption { text-align: right; }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC code                                                      */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault code
+  {
+  /*B1*/  -B1-cursor: help;
+  /*B1*/  -B1-font-size: 0.9em;
+  /*B1*/  -B1-word-spacing: 0em;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC dd                                                        */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault dd
+  {
+    margin-left: 0px;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC del                                                       */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault del
+  {
+  /*B1*/  -B1-background-color: #FFBEAD;
+  /*B1*/  -B1-background-image: none;
+  /*B1*/  -B1-color: #CE3000;
+  /*B1*/  -B1-cursor: help;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC div                                                       */
+  /*                                                               */
+  /*****************************************************************/
+  div.SAPXDPA11Y-furtherInfo
+  /* This class is used to add further information in regard of accessibility issues which are not displayed but only read by a screen reader setting display to inline for media speech / aural - NOT SUPPORTED YET */
+  {
+    display: none;
+  }
+
+  div.SAPXDPFAQAnswer
+  {
+  /*B1*/  -B1-border: 1px solid #D6D7D6;
+  /*B1*/  -B1-margin-bottom: 2em;
+  /*B1*/  -B1-padding: 0px 4px 0px 5px;
+  /*P*/       page-break-inside: avoid;
+  }
+
+  div.SAPXDPColltype
+  /* used for the collateral type like "Master Guide" or "White Paper" */
+  {
+  /*B1*/  -B1-font-size: 0.8em;
+              font-weight: bold;
+  /*B1*/  -B1-line-height: 19px;
+              margin-left: 0px;
+  /*B1*/  -B1-text-decoration: none;
+  }
+
+  div.SAPXDPLegalInformation
+  {
+  /*B1*/  -B1-font-size: 0.75em;
+  /*B1*/  -B1-line-height: 1.6em;
+  /*B1*/  -B1-padding-top: 10em;
+  /*P*/       page-break-before: always;
+  }
+
+  div.SAPXDPProfile-end,
+  div.SAPXDPProfile-start
+  /* border color and font color are set by sap-options.xsl */
+  {
+  /*B1*/  -B1-background-color: inherit;
+              border: 1px solid #99BB99 !important;
+              color: #557755 !important;
+  /*B1*/  -B1-font-size: 0.75em;
+  /*B1*/  -B1-line-height: 1.5em;
+  /*B1*/  -B1-padding: 1px 3px 1px 3px;
+  /*P*/       page-break-inside: avoid;
+  }
+
+  div.SAPXDPProfile-end
+  {
+              border-top-style: none !important;
+  /*B1*/  -B1-margin: 0.1em -3px 0.6em -3px;
+  /*P*/       page-break-before: avoid;
+  }
+
+  div.SAPXDPProfile-start
+  {
+              border-bottom-style: none !important;
+  /*B1*/  -B1-margin: 0.6em -3px 0.1em -3px;
+  /*P*/       page-break-after: avoid;
+  }
+
+  div.SAPXDPFAQQuestion
+  {
+  /*B1*/  -B1-background-color: #D6D7D6;
+  /*B1*/  -B1-background-image: none;
+  /*B1*/  -B1-color: #333333;
+  /*B1*/  -B1-margin-top: 1em;
+  /*B1*/  -B1-padding: 1px 4px 1px 5px;
+  /*P*/       page-break-inside: avoid;
+  }
+
+  div.SAPXDPSkb
+  /* skb = subkeyblock like Note, Recommendation, or Caution */
+  {
+  /*B1*/  -B1-background-color: #EEEEFF;
+  /*Du*/  -Du-background-color: inherit;
+  /*B1*/  -B1-background-image: none;
+  /*B1*/  -B1-border: 1px solid #336699;
+  /*Du*/  -Du-border: none;
+  /*B1*/  -B1-color: inherit;
+  /*B1*/  -B1-margin-bottom: 1em;
+  /*Du*/  -Du-margin-bottom: 12pt;
+  /*B1*/  -B1-margin-top: 1em;
+  /*Du*/  -Du-margin-top: 12pt;
+              margin-left: 59.05pt;
+  /*B1*/  -B1-margin-left: 0;
+  /*Du*/  -Du-margin-left: 0;
+  /*B1*/  -B1-padding: 4px 5px 5px 8px;
+  /*Du*/  -Du-padding: 0px;
+  /*P*/       page-break-inside: avoid;
+  }
+
+/*P*/     @media print
+/*P*/     { div.SAPXDPSkb
+/*P*/       {
+/*P*/       /*B1*/  -B1-background-color: #FFFFFF;
+/*P*/       }
+/*P*/     }
+
+  div.SAPXDPGraphicBlock
+  {
+  /*B1*/  -B1-border-bottom: 4px solid #D6D7D6;
+  /*B1*/  -B1-margin-bottom: 3em;
+  }
+
+  div.SAPXDPHeader
+  {
+  /*B1*/  -B1-display: none;
+  /*Du*/  -Du-display: none;
+  /*B1*/  -B1-font-size: 0.8em;
+  /*B1*/  -B1-line-height: 1.4em;
+              margin: 0px 0px 0px 0px;
+              text-align: right;
+  }
+
+  .SAPXDPBodyrtl div.SAPXDPHeader { text-align: left; }
+
+/*P*/     @media print
+/*P*/     { div.SAPXDPHeader
+/*P*/       {
+/*P*/         display: none;
+/*P*/       }
+/*P*/     }
+
+  div.SAPXDPFooter
+  {
+  /*B1*/  -B1-font-size: 0.8em;
+  /*B1*/  -B1-line-height: 1.4em;
+              margin: 120px 0px 0px 0px;
+  }
+
+/*P*/     @media print
+/*P*/     { div.SAPXDPFooter
+/*P*/       {
+/*P*/         display: none;
+/*P*/       }
+/*P*/     }
+
+  div.SAPXDPMatrixTypographicalConventions
+  {
+  /*P*/       page-break-before: always;
+  }
+
+  div.SAPXDPTOC
+  {
+    page-break-before: always;
+  }
+
+  div.SAPXDPGlossaryLinklist
+  {
+  /*B1*/  -B1-border-bottom: 2px solid gray;
+  /*B1*/  -B1-margin: 0em 0em 2em 0em;
+  /*B1*/  -B1-padding: 0em 0em 2em 0em;
+  }
+
+/*P*/     @media print
+/*P*/     {
+/*P*/       div.SAPXDPGlossaryLinklist {
+/*P*/       /*B1*/  -B1-display: none;
+/*P*/       /*B1*/  -B1-margin-bottom: 0em;
+/*P*/       /*B1*/  -B1-padding-bottom: 0em;
+/*P*/       }
+/*P*/     }
+
+  div.table
+  {
+              margin: 1em 0em 1em 0em;
+  /*Du*/  -Du-margin: 0em;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC dt                                                        */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault dt
+  {
+  /*B1*/  -B1-background-color: #5385B1;
+              background-image: none;
+  /*B1*/  -B1-color: #FFFFFF;
+  /*B1*/  -B1-font-weight: bold;
+  /*B1*/  -B1-margin-top: 2em;
+  /*B1*/  -B1-padding: 1px 4px 1px 5px;
+  }
+
+/*P*/     @media print
+/*P*/     {
+/*P*/       .SAPXDPBodyDefault dt {
+/*P*/       /*B1*/  -B1-padding: 0px;
+/*P*/       }
+/*P*/     }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC em                                                        */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault em
+  {
+  /*B1*/  -B1-color: #003366;
+              font-style: normal;
+              font-weight: bold;
+  }
+
+  .SAPXDPBodyJapaneseIdeograms em { font-weight: normal; }
+
+  .SAPXDPBodyChineseIdeograms em { font-weight: normal; }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC h1 h2 h3 h4 h5 h6                                         */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault h1,
+                     h1.SAPXDPSubtitle,
+  .SAPXDPBodyDefault h2,
+  .SAPXDPBodyDefault h3,
+  .SAPXDPBodyDefault h4,
+  .SAPXDPBodyDefault h5,
+                     h5.SAPXDPSecurityLevel,
+                     h5.SAPXDPSubSection,
+  .SAPXDPBodyDefault h6
+  {
+              font-weight: bold;
+  /*P*/       page-break-inside: avoid;
+  /*P*/       page-break-after: avoid;
+  }
+
+  .SAPXDPBodyDefault h1,
+                     h1.SAPXDPSubtitle
+  /* used for the main title of the whole document; rendered in SAP gold */
+  {
+    background-color: inherit;
+    color: #FF9900;
+    font-size: 1.7em;
+    line-height: 1.2em;
+    margin-top: 2em;
+    text-decoration: underline;
+  }
+
+  h1.SAPXDPSubtitle
+  /* used for the subtitle of the whole document */
+  {
+    font-size: 0.9em;
+    text-decoration: none;
+  }
+
+  .SAPXDPBodyDefault h2
+  /* title of division level elements */
+  {
+    background-color: inherit;
+    color: #003366;
+    font-size: 1.5em;
+    line-height: 1.3em;
+  }
+
+  .SAPXDPBodyDefault h3
+  /* title of InfoObject level elements */
+  {
+              background-color: inherit;
+  /*B1*/  -B1-background-color: #5385B1;
+              color: navy;
+  /*B1*/  -B1-color: #FFFFFF;
+  /*Du*/  -Du-color: #000000;
+              font-size: 16.0pt;
+  /*B1*/  -B1-font-size: 1.5em;
+  /*Du*/  -Du-font-size: 12pt;
+  /*B1*/  -B1-line-height: 1.3em;
+  /*Du*/  -Du-line-height: 16pt;
+              margin-top: 12.0pt;
+              margin-bottom: 3.0pt;
+  /*B1*/  -B1-margin: 0;
+  /*Du*/  -Du-margin: 0;
+  /*B1*/  -B1-padding: 0.5em;
+  }
+
+  .SAPXDPBodyDefault h4
+  /* title of keyblock level elements */
+  {
+              background-color: inherit;
+              color: navy;
+  /*B1*/  -B1-color: #AAAAAA;
+              font-size: 14.0pt;
+  /*B1*/  -B1-font-size: 1.3em;
+              margin: 6.0pt 0 3.0pt 0;
+  /*B1*/  -B1-margin: 20px 0em 0em -0.1em;
+  /*Du*/  -Du-display: none;
+  }
+
+  .SAPXDPBodyLatinChar h4,
+  .SAPXDPBodyGreekChar h4,
+  .SAPXDPBodyCyrillicChar h4,
+  .SAPXDPBodyBrowserDefault h4
+  {
+  /*B1*/  -B1-font-style: italic;
+  /*B1*/  -B1-font-weight: normal;
+  }
+
+/*P*/     @media print
+/*P*/     {
+/*P*/       .SAPXDPBodyDefault h4 {
+/*P*/       /*B1*/  -B1-color: #000000;
+/*P*/       }
+/*P*/     }
+
+  .SAPXDPBodyDefault h5
+  /* title of section (= sub keyblock) level elements */
+  {
+              background-color: inherit;
+              color: navy;
+  /*B1*/  -B1-color: #777777;
+  /*Du*/  -Du-color: blue;
+              font-size: 12.0pt;
+  /*B1*/  -B1-font-size: 1.2em;
+  /*Du*/  -Du-font-size: 8pt;
+              margin: 6.0pt 0 3.0pt 0;
+  /*B1*/  -B1-margin: 20px 0em 0em 0em;
+  /*Du*/  -Du-margin: 24pt 0pt 0pt 0pt;
+  }
+
+  .SAPXDPKeyblockSeeAlso h5
+  {
+  /*Du*/  -Du-color: #000000;
+  }
+
+  h5.SAPXDPSecurityLevel
+  {
+    margin-left: 0px;
+  }
+
+  h5.SAPXDPSubSection
+  /* title of sub section level elements */
+  {
+              background-color: inherit;
+              color: navy;
+  /*B1*/  -B1-color: #777777;
+              font-size: 10.0pt;
+  /*B1*/  -B1-font-size: 1em;
+              margin: 6.0pt 0 3.0pt 0;
+  /*B1*/  -B1-margin: 20px 0em 0em 0em;
+  }
+
+  .SAPXDPBodyJapaneseIdeograms h5.SAPXDPSubSection
+  {
+  /*B1*/  -B1-font-size: 0.9em;
+  }
+
+  .SAPXDPBodyChineseIdeograms h5.SAPXDPSubSection
+  {
+  /*B1*/  -B1-font-size: 1.0em;
+  }
+
+  .SAPXDPBodyDefault h6
+  /* title of block level elements (e.g. bulleted lists) */
+  {
+              background-color: inherit;
+              color: navy;
+  /*B1*/  -B1-color: #999999;
+              font-size: 10.0pt;
+  /*B1*/  -B1-font-size: 0.85em;
+  /*B1*/  -B1-line-height: 1.5em;
+              margin: 3.0pt 0 0 0;
+  /*B1*/  -B1-margin: 20px 0em 0em 0em;
+  }
+
+  .SAPXDPBodyJapaneseIdeograms h6
+  {
+  /*B1*/  -B1-font-size: 0.9em;
+  }
+
+  .SAPXDPBodyChineseIdeograms h6
+  {
+  /*B1*/  -B1-font-size: 1.0em;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC i                                                         */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyChineseIdeograms  i,
+  .SAPXDPBodyJapaneseIdeograms i,
+  .SAPXDPBodyKoreanChar        i
+  {
+    font-style: normal;
+  }
+
+  i.SAPXDPQuickInfo,
+  i.SAPXDPScreenElement
+  {
+  /*B1*/  -B1-cursor: help;
+  /*DU*/  -DU-cursor: help;
+  /*Du*/  -Du-font-weight: bold;
+  /*Du*/  -Du-font-style: normal;
+  }
+
+  .SAPXDPBodyJapaneseIdeograms i.SAPXDPScreenElement { /*Du*/  -Du-font-weight: normal; }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC img                                                       */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault img,
+  img.SAPXDPSkb,
+  img.SAPXDPIcon
+  {
+    border: none;
+  }
+
+  img.SAPXDPIcon
+  {
+  /*B1*/  -B1-left: 0px;
+  /*B1*/  -B1-top: 2px;
+  /*B1*/  -B1-position: relative;
+  }
+
+  .SAPXDPHeader img
+  {
+    margin: 0px 5px 0px 30px;
+  }
+
+  .SAPXDPBodyrtl .SAPXDPHeader img { margin: 0px 30px 0px 5px; }
+
+  .SAPXDPBodyDefault a img
+  {
+    background-color: inherit;
+    color: white; /* hide  border in Netscape 4 */
+  }
+
+  @media all /* hide the next rule from Netscape 4 */
+  { .SAPXDPBodyDefault a img
+    {color: inherit;} /* undo the color change above */
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC ins                                                       */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault ins
+  {
+  /*B1*/  -B1-background-color: #B5DBB5;
+  /*B1*/  -B1-background-image: none;
+  /*B1*/  -B1-color: #316531;
+  /*B1*/  -B1-cursor: help;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC kbd                                                       */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault kbd
+  {
+  /*B1*/  -B1-background-color: #999999;
+              background-image: none;
+  /*B1*/  -B1-border-top: 1px solid #EEEEEE;
+  /*B1*/  -B1-border-left: 1px solid #EEEEEE;
+  /*B1*/  -B1-border-bottom: 1px solid #000000;
+  /*B1*/  -B1-border-right: 1px solid #000000;
+  /*B1*/  -B1-color: #FFFFFF;
+  /*B1*/  -B1-cursor: help;
+              font-weight: bold;
+  /*B1*/  -B1-letter-spacing: 0.1em;
+  /*B1*/  -B1-padding: 0px 2px 0px 3px;
+              white-space: nowrap;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC li                                                        */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault ul li
+  {
+  /*B1*/  -B1-margin: 0em 0em 0em 1.2em;
+  /*Du*/  -Du-margin: 0em 0em 0em 10pt;
+  }
+
+  .SAPXDPBodyrtl ul li { /*B1*/  -B1-margin: 0em 0.4em 0em 0em; }
+
+  .SAPXDPBodyDefault ol li
+  {
+  /*B1*/  -B1-margin: 0em 0em 0em 2em;
+  /*Du*/  -Du-margin: 0em 0em 0em 10pt;
+  }
+
+  .SAPXDPBodyrtl ol li { /*B1*/  -B1-margin: 0em 0.8em 0em 0em; }
+
+  li.SAPXDPSourceCodeLine
+  {
+  /*B1*/  -B1-background-color: #FAFAFA;
+  /*B1*/  -B1-color: #333333;
+    font-size: inherit; /* Needed in context div.SAPXDPBodyBrowserDefault  */
+    padding: 0;
+  }
+
+  .SAPXDPBodyrtl li.SAPXDPSourceCodeLine { padding: 0em -2em 0em 1em; } /* "-2em" necessary for rtl-languages */
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC ol ul                                                     */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault ol,
+  .SAPXDPBodyDefault ul
+  {
+  /*B1*/  -B1-list-style-position: outside;
+  /*DU*/  -DU-list-style-position: outside;
+              margin-left: 2em;
+              margin-top: 3pt;
+              margin-bottom: 3pt;
+  /*B1*/  -B1-margin: 0em;
+  /*DU*/  -DU-margin: 0em;
+  /*Du*/  -Du-margin-left: 15pt;
+              padding: 0em;
+  }
+
+  .SAPXDPBodyrtl ol { /*B1*/  -B1-margin: 0em 1.3em 0em 0em; }
+
+  .SAPXDPBodyrtl ul { /*B1*/  -B1-margin: 0em 1.0em 0em 0em; }
+
+  .SAPXDPBodyDefault ol,
+  .SAPXDPBodyDefault ul
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-color: #003366;
+  /*Du*/  -Du-color: #000000;
+  }
+
+  .SAPXDPBodyDefault ol
+  {
+    list-style-type: decimal;
+  }
+
+  .SAPXDPBodyDefault li ol
+  {
+  /*Du*/  -Du-list-style-type: lower-alpha;
+  }
+
+  .SAPXDPBodyDefault ul
+  {
+              list-style-type: square;
+  /*Du*/  -Du-list-style-type: disc;
+  }
+
+  .SAPXDPBodyDefault li ul
+  {
+  /*Du*/  -Du-list-style-type: circle;
+  }
+
+  ol.SAPXDPSourceCodeBlock
+  {
+  /*B1*/  -B1-background-color: #FAFAFA;
+  /*B1*/  -B1-color: inherit;
+              list-style-position: outside;
+              list-style-type: none;
+              margin: 0.5em 0em 0em 0em;
+              padding: 0em 0em 0em 0em;
+  }
+
+  .SAPXDPBodyrtl ol.SAPXDPSourceCodeBlock { margin: 0.5em 0em 0em 0em; padding: 0em 0em 0em 2em; }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC p                                                         */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault p
+  {
+              color: #000000;
+              margin: 3.0pt 0 3.0pt 0;
+  /*B1*/  -B1-margin: 7px 0em;
+  /*Du*/  -Du-margin: 3pt 0;
+  /*P*/       orphans: 2;
+  /*P*/       widows: 2;
+  }
+
+/*P*/     @media print
+/*P*/     {
+/*P*/       .SAPXDPBodyDefault p {
+/*P*/         /*B1*/  -B1-color: #000000;
+/*P*/       }
+/*P*/     }
+
+  .SAPXDPBodyDefault th p
+  {
+              background-color: inherit;
+              color: #000000;
+  /*B1*/  -B1-color: #FFFFFF;
+              font-weight: bold;
+  }
+
+  .SAPXDPBodyDefault div.SAPXDPLegalInformation p
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-color: #555555;
+  }
+
+  p.SAPXDPCaption /* used for graphic titles */
+  {
+  /*B1*/  -B1-background-color: #D6D7D6;
+  /*B1*/  -B1-background-image: none;
+  /*B1*/  -B1-color: #333333;
+  /*B1*/  -B1-font-size: 0.8em;
+              font-weight: bold;
+  /*B1*/  -B1-margin: 2em 0em 0.2em 0em;
+  /*B1*/  -B1-padding: 1px 4px 1px 5px;
+  /*P*/       page-break-after: avoid;
+  /*P*/       page-break-inside: avoid;
+  }
+
+  p.SAPXDPSkbtitle
+  {
+              color: #000000;
+  /*B1*/  -B1-font-size: 0.8em;
+  /*B1*/  -B1-font-weight: bold;
+  /*B1*/  -B1-letter-spacing: 0.2em;
+  /*B1*/  -B1-margin: 0.5em 2em 0em 0em;
+              text-transform: uppercase;
+  /*Du*/  -Du-display: none;
+  }
+
+  .SAPXDPBodyrtl p.SAPXDPSkbtitle { /*B1*/  -B1-margin: 0.5em 0em 0em 2em; }
+
+  .SAPXDPLang-el p.SAPXDPSkbtitle
+  {
+    text-transform: none;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC pre                                                       */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault pre
+  {
+  /*B1*/  -B1-cursor: help;
+  /*B1*/  -B1-font-size: 0.9em;
+              margin: 0;
+  /*B1*/  -B1-word-spacing: 0em;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC span                                                      */
+  /*                                                               */
+  /*****************************************************************/
+  span.SAPXDPA11Y-furtherInfo
+  /* This class is used to add further information in regard of accessibility issues which are not displayed but only read by a screen reader setting display to inline for media speech / aural - NOT SUPPORTED YET */
+  {
+    display: none;
+  }
+
+  span.SAPXDPMarginalia
+  {
+              float: left;
+              margin: -10px 0px 0px 0px;
+              padding: 0px 5px 0px 0px;
+              text-align: right;
+  /*B1*/  -B1-display: none;
+  /*Du*/  -Du-display: none;
+  }
+
+  .SAPXDPBodyrtl span.SAPXDPMarginalia { float: right; padding: 0px 0px 0px 5px; text-align: left;}
+
+  span.SAPXDPCodeComment
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #999999;
+  }
+
+  span.SAPXDPCodeBracket
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #CC3300;
+  }
+
+  span.SAPXDPCodeString
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #336666;
+  }
+
+  span.SAPXDPCodeIdentifier
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #333300;
+  }
+
+  span.SAPXDPCodeConstant
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #669966;
+  }
+
+  span.SAPXDPCodeSymbol
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #003333
+  }
+
+  span.SAPXDPCodeKeyword1
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #336699;
+  /*B1*/  -B1-font-weight: bold;
+  }
+
+  span.SAPXDPCodeKeyword2
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #993333;
+  /*B1*/  -B1-font-weight: bold;
+  }
+
+  span.SAPXDPCodeKeyword3
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #003333;
+  /*B1*/  -B1-font-weight: bold;
+  }
+
+  span.SAPXDPCodeKeyword4
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #333366;
+  /*B1*/  -B1-font-weight: bold;
+  }
+
+  span.SAPXDPCodeKeyword5
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #996699;
+  /*B1*/  -B1-font-weight: bold;
+  }
+
+  span.SAPXDPCodeKeyword6
+  {
+  /*B1*/  -B1-background-color: transparent;
+  /*B1*/  -B1-color: #663366;
+  /*B1*/  -B1-font-weight: bold;
+  }
+
+  span.SAPXDPNavigationPath
+  {
+  /*B1*/  -B1-cursor: help;
+  }
+
+  span.SAPXDPZeroSpace:before
+  {
+    content: "\200B "; /* U+200B : ZERO WIDTH SPACE | NOTE: Space after hexadecimal char is always ignored! */
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC sub sup                                                   */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault sub,
+  .SAPXDPBodyDefault sup
+  {
+  /*B1*/  -B1-font-size: 0.75em;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC table                                                     */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault table,
+                     table.SAPXDPDocumentFrontPage
+  {
+  /*B1*/  -B1-background-color: #FAFAFA;
+              border-collapse: collapse;
+              border-spacing: 0px; /* Netscape 6.0 only */
+  /*B1*/  -B1-color: inherit;
+  /*B1*/  -B1-font-size: 1em;
+  /*B1*/  -B1-line-height: 1.5em;
+  }
+
+  .SAPXDPBodyDefault table
+  {
+  /*B1*/  -B1-margin: 18px 0em 0em 0em;
+              width: 100%;
+  }
+
+  table.SAPXDPDocumentFrontPage
+  {
+    margin: 0px 0px 250px 0px;
+    padding: 0px;
+    width: 606px;
+  }
+
+/*P*/     @media print
+/*P*/     {
+/*P*/       table.SAPXDPDocumentFrontPage {
+/*P*/         margin: 0px -50px -50px -130px;
+/*P*/         /* = negative value of div.SAPXDPBodyDefault{padding:...} */
+/*P*/         max-width: 606px;
+/*P*/         width: 100%;
+/*P*/       }
+/*P*/     }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC td                                                        */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault td
+  {
+              border: 1px solid #000000;
+  /*B1*/  -B1-border: 1px solid #D6D7D6;
+              font-size: 10.0pt;
+  /*B1*/  -B1-font-size: 0.9em;
+  /*Du*/  -Du-font-size: 8.0pt;
+  /*B1*/  -B1-line-height: 1.5em;
+              padding: 3pt;
+  /*B1*/  -B1-padding: 1px 4px 1px 5px;
+              vertical-align: top;
+  }
+
+/*P*/     @media print
+/*P*/     {
+/*P*/       .SAPXDPBodyDefault td {
+/*P*/       /*B1*/  -B1-background-color: #FFFFFF;
+/*P*/       /*B1*/  -B1-color: inherit;
+/*P*/       }
+/*P*/     }
+
+  div.SAPXDPICObject td
+  {
+  /*B1*/  -B1-border: none;
+  /*B1*/  -B1-background-color: #FFFFFF;
+  }
+
+  table.SAPXDPDocumentFrontPage td
+  {
+    border: none;
+    padding: 0px;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC th                                                        */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault th
+  {
+  /*B1*/  -B1-background-color: #5385B1;
+              background-image: none;
+              border: 1px solid #000000;
+  /*B1*/  -B1-border: 1px solid #CCCCCC;
+  /*B1*/  -B1-color: inherit;
+              font-weight: bold;
+              font-size: 10.0pt;
+  /*B1*/  -B1-font-size: 0.8em;
+  /*Du*/  -Du-font-size: 8.0pt;
+  /*B1*/  -B1-line-height: 1.5em;
+              padding: 3pt;
+  /*B1*/  -B1-padding: 1px 4px 1px 5px;
+              text-align: left;
+              vertical-align: top;
+  /*B1*/  -B1-vertical-align: bottom;
+  /*P*/       page-break-after: avoid;
+  }
+
+  .SAPXDPBodyrtl th { text-align: right; }
+
+  th.SAPXDPRowHeader
+  {
+  /*B1*/  -B1-vertical-align: top;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC tr                                                        */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault tr
+  {
+  /*B1*/  -B1-background-color: #FAFAFA; /* for Opera */
+  /*B1*/  -B1-color: inherit;
+  /*P*/       page-break-inside: avoid;
+  }
+
+  .SAPXDPBodyDefault tr:hover
+  {
+  /*B1*/  -B1-background-color: #F5F5F5;
+  /*B1*/  -B1-color: inherit;
+  }
+
+  .SAPXDPDocumentFrontPage tr:hover
+  {
+  /*B1*/  -B1-background-color: inherit;
+  /*B1*/  -B1-color: inherit;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC tt                                                        */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault tt,
+                     tt.SAPXDPAlias
+  {
+  /*B1*/  -B1-cursor: help;
+  /*B1*/  -B1-font-size: 0.9em;
+  /*B1*/  -B1-font-style: normal;
+  /*B1*/  -B1-font-weight: normal;
+  }
+
+  tt.SAPXDPAlias
+  {
+  /*B1*/  -B1-text-transform: lowercase;
+  }
+
+  tt.SAPXDPUserEntry
+  {
+              background-color: transparent;
+              color: #000000;
+  /*B1*/  -B1-color: #0000CC;
+              font-weight: bold;
+  }
+
+  /*****************************************************************/
+  /*                                                               */
+  /* DOC var                                                       */
+  /*                                                               */
+  /*****************************************************************/
+  .SAPXDPBodyDefault var
+  {
+  /*B1*/  -B1-cursor: help;
+              font-style: normal;
+  }
+
+  .SAPXDPBodyLatinChar          i var,
+  .SAPXDPBodyGreekChar          i var,
+  .SAPXDPBodyCyrillicChar       i var,
+  .SAPXDPBodyBrowserDefaultChar i var
+  {
+  /*B1*/  -B1-font-style: italic;
+  }
+
+
+/*******************************************************************/
+/*                                                                 */
+/* DOC STYLESHEET FOR AURAL / SPEECH OUTPUT                        */
+/*                                                                 */
+/*******************************************************************/
+
+@media aural, speech {
+  .SAPXDPBodyDefault h1,
+  .SAPXDPBodyDefault h2,
+  .SAPXDPBodyDefault h3,
+  .SAPXDPBodyDefault h4,
+  .SAPXDPBodyDefault h5,
+  .SAPXDPBodyDefault h6,
+  .SAPXDPBodyDefault caption,
+                     p.SAPXDPCaption
+  {
+        pause: 20% 20%;
+        richness: 90;
+        speech-rate: slower;
+        stress: 20;
+        volume: loud;
+    -xv-voice-volume: loud;
+  }
+
+  .SAPXDPBodyDefault code,
+  .SAPXDPBodyDefault kbd,
+  .SAPXDPBodyDefault pre,
+  .SAPXDPBodyDefault tt
+  {
+    speak-numeral: digits;
+    speak-punctuation: code;
+  }
+
+  .SAPXDPBodyDefault em
+  {
+    stress: 20;
+  }
+
+  .SAPXDPBodyDefault p
+  {
+    pause: 10%;
+  }
+
+  span.SAPXDPA11Y-furtherInfo
+  /* This class is used to add further information in regard of accessibility issues which are not displayed but only read by a screen reader (e.g.: quick infos can be repeated in this element because they are suppressed by some screen readers) */
+  {
+    display: inline;
+    speak: normal;
+  }
+
+} /* END MEDIA = AURAL / SPEECH */
