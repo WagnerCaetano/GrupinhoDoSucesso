@@ -1,3 +1,39 @@
+#menu {
+    padding: 5px 10px;
+}
+
+#menu ul li { 
+    display: inline; 
+}
+#menu ul {
+	padding:0px;
+	margin:0px;
+	list-style:none;
+    
+}
+
+#menu ul li a {
+	padding: 5px 10px;
+	display: inline-block;
+    border: ridge 2px black;
+    border-radius: 7px;
+    margin: 5px;
+    font-family: cursive;
+    font-size: 15px;
+    color: #1E90FF;
+    background-color: rgb(255, 255, 255,0.5);
+    box-shadow: 0px 0px 2px black;
+    text-shadow: 0px 0px 2px #1E90FF;
+	text-decoration: none;
+}
+
+#menu ul li a:hover {
+	background-color:#FFD700;
+	color: #6D6D6D;
+	border:2px ridge #ffa500;
+}
+
+/* PARTE DO SITE TEMPLATE*/
 @-webkit-keyframes colorSwapper {
   0% {
     background-color: #955fad;
@@ -130,3 +166,7 @@ body {
   color: #00B285;
   text-decoration: none;
 }
+
+
+/* PARTE DO CODIGO TEMPLATE*/
+
