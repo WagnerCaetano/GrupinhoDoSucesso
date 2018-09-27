@@ -68,7 +68,7 @@
     position: relative;
     height: 40px;
     width: 80px;
-    top: 0px;
+    top: -7px;
     color:#1E90FF;
     background-color: WHITE;
     border: solid 1px black;
@@ -89,19 +89,6 @@ html, body {
 body {
   background: #FFF;
   color: #222;
-}
-
-.skewed-bg {
-  
-}
-.skewed-bg .content {
-  
-}
-.skewed-bg .content .title {
-  
-}
-.skewed-bg .content .text {
-  
 }
 
 .footer {
