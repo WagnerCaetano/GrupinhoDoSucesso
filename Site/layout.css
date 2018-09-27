@@ -19,9 +19,9 @@
     margin: 5px;
     font-family: cursive;
     font-size: 20px;
-    color: #1E90FF;
+    color: #003f7c;
     background-color: rgb(255, 255, 255,0.5);
-    text-shadow: 0px 0px 2px #1E90FF;
+    text-shadow: 0px 0px 2px #168cfd;
 	text-decoration: none;
 }
 
@@ -146,6 +146,7 @@ body {
 
 .skewed-bg {
   background: #00B285;
+  background-image:  url(../Fotos/hotelcapa3.jpg);
   box-shadow: 0px 0px 25px black;
   padding: 200px 0;
   -webkit-transform: skew(0deg, -10deg);
@@ -179,7 +180,7 @@ body {
 }
 .footer .credits {
   text-align: center;
-  color: #666;
+  color: #3c3c3c;
 }
 .footer .credits .link {
   color: #00B285;
