@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:layout.css
 @-webkit-keyframes colorSwapper {
   0% {
@@ -138,31 +139,40 @@ body {
   background: #008664;
 }
 =======
+=======
+/*- NOSSA EDIÇÃO -*/
+
+>>>>>>> master
 #menu {
     padding: 5px 10px;
+    position: relative;
+    left:0px;
+    background: #1E90FF;
+    box-shadow: 0px 0px 25px black;
+    padding: 100px 0;
 }
 
 #menu ul li { 
     display: inline; 
+    position: relative;
+    top:-90px;
 }
 #menu ul {
 	padding:0px;
 	margin:0px;
 	list-style:none;
-    
 }
 
 #menu ul li a {
 	padding: 5px 10px;
 	display: inline-block;
-    border: ridge 2px black;
+    border: solid 1px black;
     border-radius: 7px;
     margin: 5px;
     font-family: cursive;
-    font-size: 15px;
+    font-size: 20px;
     color: #1E90FF;
     background-color: rgb(255, 255, 255,0.5);
-    box-shadow: 0px 0px 2px black;
     text-shadow: 0px 0px 2px #1E90FF;
 	text-decoration: none;
 }
@@ -170,129 +180,60 @@ body {
 #menu ul li a:hover {
 	background-color:#FFD700;
 	color: #6D6D6D;
-	border:2px ridge #ffa500;
+	border:1px ridge #ffa500;
 }
 
+.logo{
+    width: 20%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+    .search-box{
+    
+    position:relative;
+    left:30%;
+    top:-480px;
+        width: 600px;
+    height: 50px;
+}
+.search-text{
+    
+    font-family:sans-serif;
+    font-size: 40px;
+    width: 600px;
+    height: 50px;
+}
+.bookmark{
+    position: absolute;
+    left: 80%;
+    top: -55px;
+}
+.b-searcho{
+    position: relative;
+    height: 40px;
+    width: 80px;
+    top: -7px;
+    color:#1E90FF;
+    background-color: WHITE;
+    border: solid 1px black;
+    font-weight: 100;
+}
+.b-searcho:hover {
+	background-color:#FFD700;
+	color: #6D6D6D;
+	border:1px ridge #ffa500;
+}
+/*-----------------------*/
 /* PARTE DO SITE TEMPLATE*/
-@-webkit-keyframes colorSwapper {
-  0% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-  50% {
-    background-color: #da5b45;
-    background-image: -webkit-linear-gradient(#da5b45, #955fad);
-    background-image: linear-gradient(#da5b45, #955fad);
-  }
-  100% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-}
-@-moz-keyframes colorSwapper {
-  0% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-  50% {
-    background-color: #da5b45;
-    background-image: -webkit-linear-gradient(#da5b45, #955fad);
-    background-image: linear-gradient(#da5b45, #955fad);
-  }
-  100% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-}
-@keyframes colorSwapper {
-  0% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-  50% {
-    background-color: #da5b45;
-    background-image: -webkit-linear-gradient(#da5b45, #955fad);
-    background-image: linear-gradient(#da5b45, #955fad);
-  }
-  100% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-}
-@-webkit-keyframes solidColor {
-  0% {
-    background-color: #955fad;
-  }
-  50% {
-    background-color: #da5b45;
-  }
-  100% {
-    background-color: #955fad;
-  }
-}
-@-moz-keyframes solidColor {
-  0% {
-    background-color: #955fad;
-  }
-  50% {
-    background-color: #da5b45;
-  }
-  100% {
-    background-color: #955fad;
-  }
-}
-@keyframes solidColor {
-  0% {
-    background-color: #955fad;
-  }
-  50% {
-    background-color: #da5b45;
-  }
-  100% {
-    background-color: #955fad;
-  }
-}
+
 html, body {
   height: 100%;
 }
 
 body {
-  background: #222;
-  color: #FFF;
-}
-
-.skewed-bg {
-  background: #00B285;
-  padding: 200px 0;
-  -webkit-transform: skew(0deg, -10deg);
-  -moz-transform: skew(0deg, -10deg);
-  -ms-transform: skew(0deg, -10deg);
-  -o-transform: skew(0deg, -10deg);
-  transform: skew(0deg, -10deg);
-  margin-top: -200px;
-}
-.skewed-bg .content {
-  -webkit-transform: skew(0deg, 10deg);
-  -moz-transform: skew(0deg, 10deg);
-  -ms-transform: skew(0deg, 10deg);
-  -o-transform: skew(0deg, 10deg);
-  transform: skew(0deg, 10deg);
-  text-align: center;
-}
-.skewed-bg .content .title {
-  padding-top: 100px;
-  font-weight: normal;
-}
-.skewed-bg .content .text {
-  width: 60%;
-  margin: 25px auto;
-  color: #ccfff2;
+  background: #FFF;
+  color: #222;
 }
 
 .footer {
@@ -308,6 +249,6 @@ body {
 }
 
 
-/* PARTE DO CODIGO TEMPLATE*/
+/* ---------------------*/
 
 >>>>>>> master:Site/layout.css
