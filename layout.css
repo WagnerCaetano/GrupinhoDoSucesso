@@ -99,7 +99,7 @@ body {
   -ms-transform: skew(0deg, -10deg);
   -o-transform: skew(0deg, -10deg);
   transform: skew(0deg, -10deg);
-  margin-top: -200px;
+  margin-top: -330px;
 }
 .skewed-bg .content {
   -webkit-transform: skew(0deg, 10deg);
@@ -129,4 +129,10 @@ body {
 .footer .credits .link {
   color: #00B285;
   text-decoration: none;
+}
+.logo{
+  width:15%;
+}
+.barra{
+  background: #008664;
 }
