@@ -1,5 +1,6 @@
-/*- NOSSA EDIÇÃO -*/
+/*MENU TRANSPARENTE*/
 
+<<<<<<< HEAD
 #menu {
     padding: 5px 10px;
     position: relative;
@@ -7,48 +8,34 @@
     background: #1E90FF;
     box-shadow: 0px 0px 25px black;
     padding: 100px 0;
+=======
+body{
+    background: url(../fotos/pontadosganchos-2.png) no-repeat;
+    background-size:cover;
+    font-family: Arial;
+>>>>>>> Wagner-Branch
 }
-
-#menu ul li { 
-    display: inline; 
+input#login,input#cads{
+    top:10px;
     position: relative;
-    top:-90px;
+    left:80%;
+    width:110px;
+    color:white;
+    background-color: #5f5f5f;
+    border:none;
+    box-shadow: 0px 1px 3px black;
+    font-family:cursive;
+    font-size: 16px;
 }
-#menu ul {
-	padding:0px;
-	margin:0px;
-	list-style:none;
-}
-
-#menu ul li a {
-	padding: 5px 10px;
-	display: inline-block;
-    border: solid 1px black;
-    border-radius: 7px;
-    margin: 5px;
-    font-family: cursive;
-    font-size: 20px;
-    color: #1E90FF;
-    background-color: rgb(255, 255, 255,0.5);
-    text-shadow: 0px 0px 2px #1E90FF;
-	text-decoration: none;
-}
-
-#menu ul li a:hover {
-	background-color:#FFD700;
-	color: #6D6D6D;
-	border:1px ridge #ffa500;
-}
-
 .logo{
-    width: 20%;
     position: absolute;
-    left: 0px;
-    top: 0px;
+    width: 30%;
+    left:0px;
+    top:-px;
 }
-    .search-box{
-    
+input#login{
     position:relative;
+<<<<<<< HEAD
     left:30%;
     top:-480px;
         width: 600px;
@@ -60,51 +47,76 @@
     font-size: 40px;
     width: 600px;
     height: 50px;
+=======
+    left:input#cads.left +100px;
+    top:input#cads.top;
+>>>>>>> Wagner-Branch
 }
-.bookmark{
-    position: absolute;
-    left: 80%;
-    top: -55px;
+nav{
+    position:relative;
+    top:-9px;
+    left:-9px;
+    width:1920px;
+    height: 100px;
+    background-color:#ffc300;
+    box-shadow: 1px 0px 12px black;
 }
-.b-searcho{
+div#menu{
     position: relative;
-    height: 40px;
-    width: 80px;
-    top: -7px;
-    color:#1E90FF;
-    background-color: WHITE;
-    border: solid 1px black;
+    width:1200px;
+    top:10px;
+    left:25%;
+}
+ul{
+    margin:0px;
+    padding:0px;
+    list-style:none;
+    background-color:
+}
+ul li{
+    position: relative;
+    float: left;
+    width:200px;
+    height:40px;
+    background-color:black;
+    color:white;
+    opacity:0.8;
+    line-height:40px;
+    text-align: center;
+    font-size: 20px;
+    margin:3px;
+    font-family: TheLightFont;
+    font-weight: 700;
+}
+ul li a {
+    text-decoration: none;
+    padding: 0px 10px;
+    color:white;
+    display:block;
+}
+ul li a:hover{
+    background-color:#FF5733;
+    -moz-box-shadow:0 3px 10px 0 #CCC; 
+    -webkit-box-shadow:0 3px 10px 0 #ccc; 
+    text-shadow:0px 0px 5px #fff;
+}
+ul li ul{
+    position: absolute;;
+    width:200px;
+    display:none;
+    background-color:#ffe488;
+}
+ul li:hover ul, ul li.over ul {display:block;}
+
+ul li ul li {
+    border:1px solid #c0c0c0;
+    display:block;
+    width:192px;
+    font-family: TheLightFont;
     font-weight: 100;
 }
-.b-searcho:hover {
-	background-color:#FFD700;
-	color: #6D6D6D;
-	border:1px ridge #ffa500;
-}
-/*-----------------------*/
-/* PARTE DO SITE TEMPLATE*/
 
-html, body {
-  height: 100%;
+@font-face{
+    font-family:"TheLightFont";
+    src:url(../fontes/TheLightFont.otf);
 }
-
-body {
-  background: #FFF;
-  color: #222;
-}
-
-.footer {
-  padding-top: 300px;
-}
-.footer .credits {
-  text-align: center;
-  color: #666;
-}
-.footer .credits .link {
-  color: #00B285;
-  text-decoration: none;
-}
-
-
-/* ---------------------*/
-
