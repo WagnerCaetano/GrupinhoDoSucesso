@@ -1,10 +1,7 @@
 create table Hotel (
 	HotelId int primary key identity,
-	Rate float ,
 	Category varchar(50) not null,
-	Description varchar(60) not null,
 	HotelName varchar(50) not null,
-	ParkingIncluded bit ,
 	Rating int ,
 	Street varchar(100) not null,
 	Cityid int not null,
