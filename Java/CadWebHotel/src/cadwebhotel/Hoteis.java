@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 package cadwebhotel;
-import java.sql.*;
 
 /**
  *
- * @author 00
+ * @author u18300
  */
-public class CRUDTodos {
-    
+public class Hoteis {
     
 }
