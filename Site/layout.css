@@ -19,14 +19,13 @@ input#login,input#cads{
 }
 input#login{
     position:relative;
-    left:input#cads.left +100px;
+    left:input#cads.left +50px;
     top:input#cads.top;
 }
 nav{
     position:relative;
-    top:-9px;
-    left:-9px;
-    width:1920px;
+    top:-9px; 
+    width:100%;
     height: 100px;
     background-color:#ffc300;
     box-shadow: 1px 0px 12px black;
