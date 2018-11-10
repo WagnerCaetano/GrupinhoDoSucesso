@@ -18,8 +18,7 @@ public class CadWebHotel {
         try{
             Connection c = null;
             c = minhaConexao.criaConexao();
-            
-            
+                
             c.close();
         }
             catch(SQLException e){
@@ -32,7 +31,10 @@ public class CadWebHotel {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        try{
+        new CadWebHotel();
+        }
+        catch(Exception e){}
     }
     
 }

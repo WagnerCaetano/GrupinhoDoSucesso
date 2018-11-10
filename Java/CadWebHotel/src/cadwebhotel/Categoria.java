@@ -13,8 +13,7 @@ public class Categoria {
     private String NomeC;
     private String Descricao;
     
-    public Categoria(String Nome){ setNomeC(Nome);}
-    public Categoria(){this("");}
+    public Categoria(String Nome,String Descricao){ setNomeC(Nome); setDescricao(Descricao);}
     
     public void setDescricao(String Descricao){this.Descricao = Descricao;}
     public String getDescricao(){return this.Descricao;}

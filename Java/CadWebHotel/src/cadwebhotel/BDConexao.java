@@ -25,7 +25,7 @@ public class BDConexao {
     public String getBanco(){return this.banco;}
     public void setBanco(String B){this.banco = B;}
     
-    public BDConexao(){this("localhost","WebSiteHoteis","00-PC","00");}
+    public BDConexao(){this("localhost","WebSiteHoteis","Admin","20092001");}
     public BDConexao(String Server,String Banco,String Usuario,String Senha){
         setServer(Server);
         setUsr(Usuario);
