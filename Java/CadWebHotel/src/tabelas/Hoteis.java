@@ -10,28 +10,40 @@ package tabelas;
  * @author u18300
  */
 public class Hoteis {
-    int Categoria_id;
+    int Hotelid;
+    String Categoria;
     String nome_hotel;
     int rate;
     String address;
-    int Cidade_id;
+    String Cidade;
 
-    public Hoteis(int Categoria_id, String nome_hotel, int rate, String address, int Cidade_id) {
-        this.Categoria_id = Categoria_id;
+    public int getHotelid() {
+        return Hotelid;
+    }
+
+    public void setHotelid(int Hotelid) {
+        this.Hotelid = Hotelid;
+    }
+    public boolean isUsed(){
+        return (Categoria.length() > 0 && nome_hotel.length() > 0 && address.length() > 0 && Cidade.length() >0);
+    }
+
+    public Hoteis(String Categoria, String nome_hotel, int rate, String address, String Cidade) {
+        this.Categoria = Categoria;
         this.nome_hotel = nome_hotel;
         this.rate = rate;
         this.address = address;
-        this.Cidade_id = Cidade_id;
+        this.Cidade= Cidade;
     }
 
-    public Hoteis(){this(0,"",0,"",0);}
+    public Hoteis(){this("","",0,"","");}
     
-    public int getCategoria_id() {
-        return Categoria_id;
+    public String getCategoria() {
+        return Categoria;
     }
 
-    public void setCategoria_id(int Categoria_id) {
-        this.Categoria_id = Categoria_id;
+    public void setCategoria(String Categoria_id) {
+        this.Categoria = Categoria_id;
     }
 
     public String getNome_hotel() {
@@ -58,12 +70,12 @@ public class Hoteis {
         this.address = address;
     }
 
-    public int getCidade_id() {
-        return Cidade_id;
+    public String getCidade() {
+        return Cidade;
     }
 
-    public void setCidade_id(int Cidade_id) {
-        this.Cidade_id = Cidade_id;
+    public void setCidade(String Cidade) {
+        this.Cidade = Cidade;
     }
     
     

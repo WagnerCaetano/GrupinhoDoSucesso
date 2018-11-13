@@ -11,19 +11,19 @@ package tabelas;
  */
 public class Quartos {
 
-    private int hotelId ,numeroQuarto,id_Cliente,preto,ocupado;
+    private int hotelId ,numeroQuarto,id_Cliente,preco,ocupado;
 
-    public Quartos(int hotelId, int numeroQuarto, int preto) {
+    public Quartos(int hotelId, int numeroQuarto, int preco) {
         this.hotelId = hotelId;
         this.numeroQuarto = numeroQuarto;
-        this.preto = preto;
+        this.preco = preco;
     }
 
-    public Quartos(int hotelId, int numeroQuarto, int id_Cliente, int preto, int ocupado) {
+    public Quartos(int hotelId, int numeroQuarto, int id_Cliente, int preco, int ocupado) {
         this.hotelId = hotelId;
         this.numeroQuarto = numeroQuarto;
         this.id_Cliente = id_Cliente;
-        this.preto = preto;
+        this.preco = preco;
         this.ocupado = ocupado;
     }
 
@@ -53,12 +53,12 @@ public class Quartos {
         this.id_Cliente = id_Cliente;
     }
 
-    public int getPreto() {
-        return preto;
+    public int getPreco() {
+        return preco;
     }
 
-    public void setPreto(int preto) {
-        this.preto = preto;
+    public void setPreco(int preco) {
+        this.preco = preco;
     }
 
     public int getOcupado() {

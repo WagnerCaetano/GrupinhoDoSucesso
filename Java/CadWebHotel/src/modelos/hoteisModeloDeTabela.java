@@ -24,36 +24,52 @@ public class hoteisModeloDeTabela extends AbstractTableModel{
      public String getColumnName(int column) {
        switch (column) {
        case 0:
-         return "Nome da Categoria";
+            return "Hotel Id";
        case 1:
-         return "Descricao";
+            return "Categoria";
+       case 2:
+            return "Nome do Hotel";
+       case 3:
+            return "Nota";
+       case 4:
+            return "Rua";
+       case 5:
+            return "Cidade";
        }
        return "";
      }
      
     @Override
     public int getColumnCount() {
-        return 2;
+        return 6;
     }
 
     // devolve a quantidade de linhas
     @Override
     public int getRowCount() {
-        return cat.size();
+        return hoteis.size();
     }
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-         Categoria categoria = cat.get(rowIndex);
+         Hoteis categoria = hoteis.get(rowIndex);
          switch (columnIndex) {
          case 0:
-           return categoria.getNomeC();
+           return categoria.getHotelid();
          case 1:
-           return categoria.getDescricao();
+           return categoria.getCategoria();
+         case 2:
+           return categoria.getNome_hotel();
+         case 3:
+           return categoria.getRate();
+         case 4:
+           return categoria.getAddress();
+         case 5:
+           return categoria.getCidade();
          }
         return null;
     }
-    public void addRow(Categoria e){
-        cat.add(e);
+    public void addRow(Hoteis e){
+        hoteis.add(e);
     }
     
 }

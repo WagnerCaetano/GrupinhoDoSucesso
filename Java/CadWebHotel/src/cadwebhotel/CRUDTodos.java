@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package cadwebhotel;
-import tabelas.Categoria;
+import tabelas.*;
 import java.sql.*;
 
 /**
@@ -55,35 +55,96 @@ public class CRUDTodos {
     /**
      * Hoteis
      */
-    /*
-    public static void InserirHoteis(Hoteis H,Connection C){
     
-    }
-    public static void AlterarHoteis(Hoteis H,Connection C){
+    public static void InserirHoteis(Hoteis H,Connection C) throws SQLException{
+    if (H.isUsed()){
+        String StrSQL = "INSERT INTO WHotel(Category,HotelName,Rating,Street,City) VALUES(?,?,?,?,?)";
         
-    }
-    public static void DeletarHoteis(String Nome,Connection C){
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setString(1, H.getCategoria());
+        ps.setString(2, H.getNome_hotel());
+        ps.setInt(3, H.getRate());
+        ps.setString(4, H.getAddress());
+        ps.setString(5, H.getCidade());
         
+        ps.execute();}
     }
-    public static ResultSet PesquisarHoteis(Connection C){
+    public static void AlterarHoteis(Hoteis H,Connection C) throws SQLException{
         
+        String StrSQL = "UPDATE WHotel set Category=?,HotelName=?,Rating=?,Street=?,City=? where HotelName=?";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setString(1, H.getCategoria());
+        ps.setString(2, H.getNome_hotel());
+        ps.setInt(3, H.getRate());
+        ps.setString(4, H.getAddress());
+        ps.setString(5, H.getCidade());
+        ps.setString(6, H.getNome_hotel());
+        
+        ps.execute();
+
+       }
+    public static void DeletarHoteis(String Nome,Connection C) throws SQLException{
+        String StrSQL = "DELETE FROM WHotel WHERE HotelName=?";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setString(1, Nome);
+
+        ps.execute();
     }
-    */
+    public static ResultSet PesquisarHoteis(Connection C) throws SQLException{
+        String StrSQL = "SELECT * FROM WHotel";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        return ps.executeQuery();   
+    }
+     public static ResultSet PesquisarHoteisNome(String Nome,Connection C) throws SQLException{
+        String StrSQL = "SELECT * FROM WHotel WHERE HotelName like '%?%'";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setString(1, Nome);
+
+        return ps.executeQuery();   
+    }
+    public static ResultSet PesquisarHoteisCategoria(String Categoria,Connection C) throws SQLException{
+        String StrSQL = "SELECT * FROM WHotel WHERE Category like '%?%'";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setString(1, Categoria);
+
+        return ps.executeQuery();   
+    }
+    public static ResultSet PesquisarHoteisCidade(String Cidade,Connection C) throws SQLException{
+        String StrSQL = "SELECT * FROM WHotel WHERE City like '%?%'";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setString(1, Cidade);
+
+        return ps.executeQuery();   
+    }
+    public static ResultSet PesquisarHoteisNota(int NotaMin,int NotaMax,Connection C) throws SQLException{
+        String StrSQL = "SELECT * FROM WHotel WHERE Rating between ? and ?";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setInt(1, NotaMin);
+        ps.setInt(2, NotaMax);
+
+        return ps.executeQuery();   
+    }
+    
     /**
      * Quartos
      */
-    /*
-    public static void InserirQuartos(Quartos H,Connection C){
-    
+    public static void InserirQuartos(Quartos Q,Connection C){
+        
     }
-    public static void AlterarQuartos(Quartos H,Connection C){
+    public static void AlterarQuartos(Quartos Q,Connection C){
         
     }
     public static void DeletarQuartos(int Id,Connection C){
         
     }
-    public static ResultSet PesquisarQuartos(Connection C){
+    public static ResultSet PesquisarQuartos(Connection Q){
         
-    }
-    */
+    }   
 }
