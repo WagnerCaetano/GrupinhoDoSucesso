@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cadwebhotel;
+import tabelas.Categoria;
 import java.sql.*;
 
 /**

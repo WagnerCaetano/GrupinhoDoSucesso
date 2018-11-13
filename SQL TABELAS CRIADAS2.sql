@@ -15,6 +15,7 @@ create table WCategoriais(
 insert into WCategoriais values ('Principal','Os quartos de hóteis mais requisitados.'),('Litoraneo','Os quartos de hóteis próximos ao mar'),('Barato','Os quartos de hóteis mais
 baratos')
 select * from WCategoriais
+drop table WCategoriais
 
 create table WHotel (
 	HotelId int primary key identity,
@@ -37,8 +38,9 @@ SELECT * FROM WHotel
 
 create table WClienteHoteis(
 id_Cliente int PRIMARY KEY identity,
-firstname VARCHAR (20) not null,
 name VARCHAR (40) NOT NULL,
+pw VARCHAR(12) not null,
+email varchar(70) not null,
 cpf varchar(9) not null,
 zip VARCHAR(5) not null,
 address CHAR(40) NOT NULL,
