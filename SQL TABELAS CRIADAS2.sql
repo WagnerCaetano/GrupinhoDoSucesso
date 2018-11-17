@@ -77,3 +77,5 @@ tpreco money,
 
 
 SELECT * FROM WHotel WHERE HotelName like '%Vip%'
+
+SELECT * FROM WHotel WHERE Rating between 4 and 5
