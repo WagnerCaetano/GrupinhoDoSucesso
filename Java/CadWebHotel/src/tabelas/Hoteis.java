@@ -13,7 +13,7 @@ public class Hoteis {
     int Hotelid;
     String Categoria;
     String nome_hotel;
-    int rate;
+    double rate;
     String address;
     String Cidade;
 
@@ -28,12 +28,21 @@ public class Hoteis {
         return (Categoria.length() > 0 && nome_hotel.length() > 0 && address.length() > 0 && Cidade.length() >0);
     }
 
-    public Hoteis(String Categoria, String nome_hotel, int rate, String address, String Cidade) {
+    public Hoteis(String Categoria, String nome_hotel, double rate, String address, String Cidade) {
         this.Categoria = Categoria;
         this.nome_hotel = nome_hotel;
         this.rate = rate;
         this.address = address;
         this.Cidade= Cidade;
+    }
+
+    public Hoteis(int Hotelid, String Categoria, String nome_hotel, double rate, String address, String Cidade) {
+        this.Hotelid = Hotelid;
+        this.Categoria = Categoria;
+        this.nome_hotel = nome_hotel;
+        this.rate = rate;
+        this.address = address;
+        this.Cidade = Cidade;
     }
 
     public Hoteis(){this("","",0,"","");}
@@ -54,11 +63,11 @@ public class Hoteis {
         this.nome_hotel = nome_hotel;
     }
 
-    public int getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 

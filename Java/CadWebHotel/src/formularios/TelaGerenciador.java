@@ -5,21 +5,110 @@
  */
 package formularios;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import tabelas.*;
+import cadwebhotel.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelos.*;
+
 /**
  *
  * @author 00
  */
 public class TelaGerenciador extends javax.swing.JFrame {
-
+    hoteisModeloDeTabela eModel;
+    BDConexao myc = new BDConexao();
+    int HotelIdselected = 0;
     /**
      * Creates new form TelaGerenciador
      */
     public TelaGerenciador() {
+        super("Tela de Gerenciamento do banco de dados");
         initComponents();
         jPanel1.setVisible(true);
         TabelaQuartos.removeAll();
         TabelaHoteis.removeAll();
         TabelaCat.removeAll();
+        populaTabelaHotel();
+        this.setLocationRelativeTo(null);
+    }
+    public void populaTabelaHotel(){
+        TabelaHoteis.removeAll();
+        List<Hoteis> hoteis = new ArrayList<Hoteis>();
+        Hoteis e = null;
+        
+        // Pega os dados do Banco de Dados
+        try{
+             Connection c = myc.criaConexao();
+             ResultSet dados =  CRUDTodos.PesquisarHoteis(c);
+             while (dados.next()){
+                 e = new Hoteis(dados.getInt("HotelId"),
+                                dados.getString("Category"),
+                                dados.getString("HotelName"),
+                                dados.getDouble("Rating"),
+                                dados.getString("Street"),
+                                dados.getString("City"));
+                 hoteis.add(e);
+             }
+             
+             c.close();
+             
+         } catch (ClassNotFoundException | SQLException er)       {
+         }
+    
+       // Cria o modelo e associa com o List
+       eModel = new hoteisModeloDeTabela(hoteis);
+       
+       // Associa o modelo à tabela
+       TabelaHoteis.setModel(eModel);
+    
+    }
+    public void populaSelecionado(ResultSet dados) throws SQLException
+    {
+        dados.next();
+        HotelIdselected = dados.getInt("HotelId");
+        txtHotelNome.setText(dados.getString("HotelName"));
+        txtCategoriaH.setText(dados.getString("Category"));
+        txtRating.setText(dados.getString("Rating"));
+        txtRua.setText(dados.getString("Street"));
+        txtCidade.setText(dados.getString("City"));
+    }
+    
+     public void populaTabelaHotel(ResultSet dados){
+        TabelaHoteis.removeAll();
+        List<Hoteis> hoteis = new ArrayList<Hoteis>();
+        Hoteis e = null;
+        
+        // Pega os dados do Banco de Dados
+        try{
+             Connection c = myc.criaConexao();
+             while (dados.next()){
+                 e = new Hoteis(dados.getInt("HotelId"),
+                                dados.getString("Category"),
+                                dados.getString("HotelName"),
+                                dados.getDouble("Rating"),
+                                dados.getString("Street"),
+                                dados.getString("City"));
+                 hoteis.add(e);
+             }
+             
+             c.close();
+             
+         } catch (ClassNotFoundException | SQLException er)       {
+         }
+    
+       // Cria o modelo e associa com o List
+       eModel = new hoteisModeloDeTabela(hoteis);
+       
+       // Associa o modelo à tabela
+       TabelaHoteis.setModel(eModel);
+    
     }
 
     /**
@@ -34,6 +123,35 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jFrame1 = new javax.swing.JFrame();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        txtHotelNome = new javax.swing.JTextField();
+        txtRating = new javax.swing.JTextField();
+        txtCategoriaH = new javax.swing.JTextField();
+        txtRua = new javax.swing.JTextField();
+        txtCidade = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        btnInserirHotel = new javax.swing.JButton();
+        btnAlterarHotel = new javax.swing.JButton();
+        btnApagarHotel = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        txtNomeBuscaH = new javax.swing.JTextField();
+        jButton14 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        txtCategoriaBuscaHotel = new javax.swing.JTextField();
+        txtCidadeBuscaHotel = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtRatingBusca1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TabelaHoteis = new javax.swing.JTable();
+        txtRatingBusca2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -59,35 +177,6 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jTextField14 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaQuartos = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
-        jTextField10 = new javax.swing.JTextField();
-        jButton14 = new javax.swing.JButton();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TabelaHoteis = new javax.swing.JTable();
-        jTextField26 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jTextField23 = new javax.swing.JTextField();
@@ -121,6 +210,215 @@ public class TelaGerenciador extends javax.swing.JFrame {
 
         jTabbedPane1.setForeground(new java.awt.Color(51, 51, 51));
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel14.setText("Categoria");
+
+        jLabel15.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel15.setText("Rating");
+
+        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel16.setText("Nome do Hotel");
+
+        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel17.setText("Cidade");
+
+        jLabel18.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel18.setText("Rua");
+
+        txtHotelNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        txtRating.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        txtCategoriaH.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        txtRua.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        txtCidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        btnInserirHotel.setText("INSERIR");
+
+        btnAlterarHotel.setText("ALTERAR");
+        btnAlterarHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarHotelActionPerformed(evt);
+            }
+        });
+
+        btnApagarHotel.setText("APAGAR");
+        btnApagarHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagarHotelActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnApagarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInserirHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlterarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addComponent(btnInserirHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAlterarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnApagarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jButton14.setText("BUSCAR");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel4.setText("Categoria");
+
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel5.setText("Cidade");
+
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel6.setText("Rating");
+
+        TabelaHoteis.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        TabelaHoteis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TabelaHoteisMousePressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TabelaHoteis);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Até");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel14))
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRating, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtHotelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCategoriaH, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(43, 43, 43)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator5)
+                            .addComponent(jSeparator4)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtNomeBuscaH, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                                .addGap(68, 68, 68)
+                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCategoriaBuscaHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCidadeBuscaHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtRatingBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1)
+                                .addGap(25, 25, 25)
+                                .addComponent(txtRatingBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
+                        .addContainerGap())))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtHotelNome)
+                            .addComponent(jLabel16))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCategoriaH, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtRating, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomeBuscaH, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(txtCategoriaBuscaHotel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(txtCidadeBuscaHotel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtRatingBusca2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtRatingBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Hóteis", jPanel4);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -165,13 +463,13 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jLabel8.setText("Preço Máx");
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
-        jLabel9.setText("Hotel");
+        jLabel9.setText("Hotel Id");
 
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
         jLabel10.setText("Numero do Quarto");
 
         jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
-        jLabel11.setText("Cliente Nome");
+        jLabel11.setText("Cliente_Id");
 
         jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
         jLabel12.setText("Preço");
@@ -297,195 +595,6 @@ public class TelaGerenciador extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Quartos", jPanel1);
-
-        jLabel14.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel14.setText("Categoria");
-
-        jLabel15.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel15.setText("Rating");
-
-        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel16.setText("Nome do Hotel");
-
-        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel17.setText("Cidade");
-
-        jLabel18.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel18.setText("Rua");
-
-        jTextField15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jTextField16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jTextField17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jTextField18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jTextField19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jButton11.setText("INSERIR");
-
-        jButton12.setText("ALTERAR");
-
-        jButton13.setText("APAGAR");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 11, Short.MAX_VALUE)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jButton14.setText("BUSCAR");
-
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel4.setText("Categoria");
-
-        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel5.setText("Cidade");
-
-        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel6.setText("Rating");
-
-        TabelaHoteis.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(TabelaHoteis);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Até");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel18)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel14))
-                                .addGap(35, 35, 35)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(43, 43, 43)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator5)
-                            .addComponent(jSeparator4)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
-                                .addGap(68, 68, 68)
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1)
-                                .addGap(25, 25, 25)
-                                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
-                        .addContainerGap())))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField15)
-                            .addComponent(jLabel16))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                    .addComponent(jTextField21, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField26, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Hóteis", jPanel4);
 
         jLabel19.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
         jLabel19.setText("Categoria");
@@ -625,6 +734,62 @@ public class TelaGerenciador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        try {
+            // TODO add your handling code here:
+            ResultSet Resultado;
+            Connection c = myc.criaConexao();
+            if(txtCategoriaBuscaHotel.getText().length() >0){
+                Resultado = CRUDTodos.PesquisarHoteisCategoria(txtCategoriaBuscaHotel.getText(), c);
+            }
+            else if (txtCidadeBuscaHotel.getText().length() > 0){
+                Resultado = CRUDTodos.PesquisarHoteisCidade(txtCidadeBuscaHotel.getText(), c);
+            }
+            else if(txtRatingBusca1.getText().length()>0 && txtRatingBusca2.getText().length()>0)
+            {
+                Resultado = CRUDTodos.PesquisarHoteisNota(Integer.parseInt(txtRatingBusca1.getText()), Integer.parseInt(txtRatingBusca2.getText()), c);
+            }
+            else if(txtNomeBuscaH.getText().length()>0)
+            {
+                Resultado = CRUDTodos.PesquisarHoteisNome(txtNomeBuscaH.getText(),c);
+            }
+            else{
+                Resultado = CRUDTodos.PesquisarHoteis(c);
+            }
+            populaTabelaHotel(Resultado);
+            c.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void TabelaHoteisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaHoteisMousePressed
+      // TODO add your handling code here:
+      if (TabelaHoteis.getSelectedRow() != -1 && TabelaHoteis.getSelectedColumn() != -1 ){
+        String id = TabelaHoteis.getModel().getValueAt(TabelaHoteis.getSelectedRow(),0) + "";
+        try {
+        Connection c = myc.criaConexao();
+            populaSelecionado(CRUDTodos.PesquisarHoteisId(Integer.parseInt(id),c));
+        c.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+    }//GEN-LAST:event_TabelaHoteisMousePressed
+
+    private void btnAlterarHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarHotelActionPerformed
+        // TODO add your handling code here:
+        FormularioAlteracaoHotel teste = new FormularioAlteracaoHotel(txtHotelNome.getText());
+        
+    }//GEN-LAST:event_btnAlterarHotelActionPerformed
+
+    private void btnApagarHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarHotelActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnApagarHotelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -664,10 +829,10 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JTable TabelaCat;
     private javax.swing.JTable TabelaHoteis;
     private javax.swing.JTable TabelaQuartos;
+    private javax.swing.JButton btnAlterarHotel;
+    private javax.swing.JButton btnApagarHotel;
+    private javax.swing.JButton btnInserirHotel;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
@@ -712,26 +877,26 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtCategoriaBuscaHotel;
+    private javax.swing.JTextField txtCategoriaH;
+    private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtCidadeBuscaHotel;
+    private javax.swing.JTextField txtHotelNome;
+    private javax.swing.JTextField txtNomeBuscaH;
+    private javax.swing.JTextField txtRating;
+    private javax.swing.JTextField txtRatingBusca1;
+    private javax.swing.JTextField txtRatingBusca2;
+    private javax.swing.JTextField txtRua;
     // End of variables declaration//GEN-END:variables
 }

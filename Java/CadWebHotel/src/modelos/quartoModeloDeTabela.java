@@ -7,34 +7,34 @@ package modelos;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import tabelas.Hoteis;
+import tabelas.Quartos;
 /**
  *
  * @author u18300
  */
-public class hoteisModeloDeTabela extends AbstractTableModel{
+public class quartoModeloDeTabela extends AbstractTableModel{
     private static final long serialVersionUID = 1L;
-    private List<Hoteis> hoteis;
+    private List<Quartos> quartos;
     
-    public hoteisModeloDeTabela(List<Hoteis> h) {
-       this.hoteis = h;
+    public quartoModeloDeTabela(List<Quartos> h) {
+       this.quartos = h;
     }
     
     @Override
      public String getColumnName(int column) {
        switch (column) {
        case 0:
-            return "Hotel Id";
+            return "Id Quarto";
        case 1:
-            return "Categoria";
+            return "Id Hotel";
        case 2:
-            return "Nome do Hotel";
+            return "Número do Quarto";
        case 3:
-            return "Nota";
+            return "Id Cliente";
        case 4:
-            return "Rua";
+            return "Está ocupado?";
        case 5:
-            return "Cidade";
+            return "preco";
        }
        return "";
      }
@@ -47,29 +47,29 @@ public class hoteisModeloDeTabela extends AbstractTableModel{
     // devolve a quantidade de linhas
     @Override
     public int getRowCount() {
-        return hoteis.size();
+        return quartos.size();
     }
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-         Hoteis hotel = hoteis.get(rowIndex);
+         Quartos quarto = quartos.get(rowIndex);
          switch (columnIndex) {
          case 0:
-           return hotel.getHotelid();
+           return quarto.getQuartoID();
          case 1:
-           return hotel.getCategoria();
+           return quarto.getHotelId();
          case 2:
-           return hotel.getNome_hotel();
+           return quarto.getNumeroQuarto();
          case 3:
-           return hotel.getRate();
+           return quarto.getId_Cliente();
          case 4:
-           return hotel.getAddress();
+           return quarto.getOcupado();
          case 5:
-           return hotel.getCidade();
+           return quarto.getPreco();
          }
         return null;
     }
-    public void addRow(Hoteis e){
-        hoteis.add(e);
+    public void addRow(Quartos e){
+        quartos.add(e);
     }
     
 }

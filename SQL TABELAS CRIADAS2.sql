@@ -72,5 +72,8 @@ create table WCarrinho(
 id_Cliente int primary key,
 id_quarto int ,
 tpreco money,
-
 )
+
+
+
+SELECT * FROM WHotel WHERE HotelName like '%Vip%'

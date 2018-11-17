@@ -43,8 +43,16 @@ public class CRUDTodos {
 
         ps.execute();
     }
-    public static ResultSet PesquisarCat(String descricao,Connection C) throws SQLException{
+    public static ResultSet PesquisarCatDescricao(String descricao,Connection C) throws SQLException{
      String StrSQL = "SELECT * FROM WCategoriais WHERE descricao like '%?%'";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setString(1, descricao);
+
+        return ps.executeQuery();   
+    }
+    public static ResultSet PesquisarCatNome(String descricao,Connection C) throws SQLException{
+     String StrSQL = "SELECT * FROM WCategoriais WHERE CatNome like '%?%'";
         
         PreparedStatement ps = C.prepareStatement(StrSQL);
         ps.setString(1, descricao);
@@ -63,23 +71,23 @@ public class CRUDTodos {
         PreparedStatement ps = C.prepareStatement(StrSQL);
         ps.setString(1, H.getCategoria());
         ps.setString(2, H.getNome_hotel());
-        ps.setInt(3, H.getRate());
+        ps.setDouble(3, H.getRate());
         ps.setString(4, H.getAddress());
         ps.setString(5, H.getCidade());
         
         ps.execute();}
     }
-    public static void AlterarHoteis(Hoteis H,Connection C) throws SQLException{
+    public static void AlterarHoteis(Hoteis H,String Hlocal,Connection C) throws SQLException{
         
         String StrSQL = "UPDATE WHotel set Category=?,HotelName=?,Rating=?,Street=?,City=? where HotelName=?";
         
         PreparedStatement ps = C.prepareStatement(StrSQL);
         ps.setString(1, H.getCategoria());
         ps.setString(2, H.getNome_hotel());
-        ps.setInt(3, H.getRate());
+        ps.setDouble(3, H.getRate());
         ps.setString(4, H.getAddress());
         ps.setString(5, H.getCidade());
-        ps.setString(6, H.getNome_hotel());
+        ps.setString(6, Hlocal);
         
         ps.execute();
 
@@ -103,7 +111,15 @@ public class CRUDTodos {
         
         PreparedStatement ps = C.prepareStatement(StrSQL);
         ps.setString(1, Nome);
-
+        
+        return ps.executeQuery();   
+    }
+     public static ResultSet PesquisarHoteisId(int id,Connection C) throws SQLException{
+        String StrSQL = "SELECT * FROM WHotel WHERE HotelId = ?";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setInt(1, id);
+        
         return ps.executeQuery();   
     }
     public static ResultSet PesquisarHoteisCategoria(String Categoria,Connection C) throws SQLException{
@@ -131,13 +147,35 @@ public class CRUDTodos {
 
         return ps.executeQuery();   
     }
-    
     /**
      * Quartos
      */
-    public static void InserirQuartos(Quartos Q,Connection C){
+    /*
+    public static void InserirQuartos(Quartos Q,Connection C) throws SQLException{
+        if (Q.isUsed()){
+            String StrSQL = "INSERT INTO WQuarto(HotelId,NumeroQuarto,preco) VALUES(?,?,?)";
         
-    }
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setInt(1, Q.getHotelId());
+        ps.setInt(2, Q.getNumeroQuarto());
+        ps.setInt(3, Q.getPreco());
+        
+        ps.execute();}
+        }
+
+    public static void InserirQuartosHospedado(Quartos Q,Connection C) throws SQLException{
+        if (Q.isUsed()){
+            String StrSQL = "INSERT INTO WQuarto(HotelId,NumeroQuarto,id_Cliente,isOcupado,preco) VALUES(?,?,?,?,?)";
+        
+        PreparedStatement ps = C.prepareStatement(StrSQL);
+        ps.setInt(1, Q.getHotelId());
+        ps.setInt(2, Q.getNumeroQuarto());
+        ps.setInt(3, Q.getId_Cliente());
+        ps.setInt(4, Q.getOcupado());
+        ps.setInt(5, Q.getPreco());
+        
+        ps.execute();}
+        }
     public static void AlterarQuartos(Quartos Q,Connection C){
         
     }
@@ -146,5 +184,5 @@ public class CRUDTodos {
     }
     public static ResultSet PesquisarQuartos(Connection Q){
         
-    }   
+    }   */
 }
