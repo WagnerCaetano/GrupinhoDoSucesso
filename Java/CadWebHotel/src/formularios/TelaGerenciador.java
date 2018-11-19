@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import tabelas.*;
 import cadwebhotel.*;
 import java.util.logging.Level;
@@ -22,9 +21,11 @@ import modelos.*;
  * @author 00
  */
 public class TelaGerenciador extends javax.swing.JFrame {
-    hoteisModeloDeTabela eModel;
+    hoteisModeloDeTabela eModelHoteis;
+    quartoModeloDeTabela eModelQuartos;
     BDConexao myc = new BDConexao();
     int HotelIdselected = 0;
+    int QuartoIdselected = 0;
     /**
      * Creates new form TelaGerenciador
      */
@@ -32,84 +33,11 @@ public class TelaGerenciador extends javax.swing.JFrame {
         super("Tela de Gerenciamento do banco de dados");
         initComponents();
         jPanel1.setVisible(true);
-        TabelaQuartos.removeAll();
-        TabelaHoteis.removeAll();
-        TabelaCat.removeAll();
         populaTabelaHotel();
+        populaTabelaQuartos();
         this.setLocationRelativeTo(null);
     }
-    public void populaTabelaHotel(){
-        TabelaHoteis.removeAll();
-        List<Hoteis> hoteis = new ArrayList<Hoteis>();
-        Hoteis e = null;
-        
-        // Pega os dados do Banco de Dados
-        try{
-             Connection c = myc.criaConexao();
-             ResultSet dados =  CRUDTodos.PesquisarHoteis(c);
-             while (dados.next()){
-                 e = new Hoteis(dados.getInt("HotelId"),
-                                dados.getString("Category"),
-                                dados.getString("HotelName"),
-                                dados.getDouble("Rating"),
-                                dados.getString("Street"),
-                                dados.getString("City"));
-                 hoteis.add(e);
-             }
-             
-             c.close();
-             
-         } catch (ClassNotFoundException | SQLException er)       {
-         }
     
-       // Cria o modelo e associa com o List
-       eModel = new hoteisModeloDeTabela(hoteis);
-       
-       // Associa o modelo à tabela
-       TabelaHoteis.setModel(eModel);
-    
-    }
-    public void populaSelecionado(ResultSet dados) throws SQLException
-    {
-        dados.next();
-        HotelIdselected = dados.getInt("HotelId");
-        txtHotelNome.setText(dados.getString("HotelName"));
-        txtCategoriaH.setText(dados.getString("Category"));
-        txtRating.setText(dados.getString("Rating"));
-        txtRua.setText(dados.getString("Street"));
-        txtCidade.setText(dados.getString("City"));
-    }
-    
-     public void populaTabelaHotel(ResultSet dados){
-        TabelaHoteis.removeAll();
-        List<Hoteis> hoteis = new ArrayList<Hoteis>();
-        Hoteis e = null;
-        
-        // Pega os dados do Banco de Dados
-        try{
-             Connection c = myc.criaConexao();
-             while (dados.next()){
-                 e = new Hoteis(dados.getInt("HotelId"),
-                                dados.getString("Category"),
-                                dados.getString("HotelName"),
-                                dados.getDouble("Rating"),
-                                dados.getString("Street"),
-                                dados.getString("City"));
-                 hoteis.add(e);
-             }
-             
-             c.close();
-             
-         } catch (ClassNotFoundException | SQLException er)       {
-         }
-    
-       // Cria o modelo e associa com o List
-       eModel = new hoteisModeloDeTabela(hoteis);
-       
-       // Associa o modelo à tabela
-       TabelaHoteis.setModel(eModel);
-    
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,28 +83,29 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnInserirQuartos = new javax.swing.JButton();
+        btnAlterarQuartos = new javax.swing.JButton();
+        btnApagarQuartos = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        jTextField6 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
+        txtQuartosHotelBusca = new javax.swing.JTextField();
+        btnPesquisarQuartos = new javax.swing.JButton();
+        txtBuscaCategoriaQuarto = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        txtPrecoMaxQuartos = new javax.swing.JTextField();
+        txtPrecoMinQuartos = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        txtHotelIdQuartos = new javax.swing.JTextField();
+        txtNumeroQuartos = new javax.swing.JTextField();
+        txtClienteIdQuartos = new javax.swing.JTextField();
+        txtPrecoQuartos = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaQuartos = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jTextField23 = new javax.swing.JTextField();
@@ -237,6 +166,11 @@ public class TelaGerenciador extends javax.swing.JFrame {
         txtCidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         btnInserirHotel.setText("INSERIR");
+        btnInserirHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirHotelActionPerformed(evt);
+            }
+        });
 
         btnAlterarHotel.setText("ALTERAR");
         btnAlterarHotel.addActionListener(new java.awt.event.ActionListener() {
@@ -423,13 +357,23 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel3.setText("Categoria");
+        jLabel3.setText("HotelName");
 
-        jButton10.setText("INSERIR");
+        btnInserirQuartos.setText("INSERIR");
 
-        jButton8.setText("ALTERAR");
+        btnAlterarQuartos.setText("ALTERAR");
+        btnAlterarQuartos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarQuartosActionPerformed(evt);
+            }
+        });
 
-        jButton9.setText("APAGAR");
+        btnApagarQuartos.setText("APAGAR");
+        btnApagarQuartos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagarQuartosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -438,23 +382,28 @@ public class TelaGerenciador extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnApagarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInserirQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlterarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 11, Short.MAX_VALUE)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInserirQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAlterarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnApagarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton7.setText("BUSCAR");
+        btnPesquisarQuartos.setText("BUSCAR");
+        btnPesquisarQuartos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarQuartosActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel7.setText("Preço Min");
@@ -474,13 +423,13 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
         jLabel12.setText("Preço");
 
-        jTextField11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtHotelIdQuartos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextField12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNumeroQuartos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextField13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtClienteIdQuartos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextField14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPrecoQuartos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         TabelaQuartos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -493,7 +442,15 @@ public class TelaGerenciador extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TabelaQuartos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TabelaQuartosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(TabelaQuartos);
+
+        jLabel21.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel21.setText("Categoria");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -502,29 +459,27 @@ public class TelaGerenciador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel3)
+                        .addGap(119, 119, 119)
+                        .addComponent(txtQuartosHotelBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPesquisarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(132, 132, 132)
+                                .addComponent(txtBuscaCategoriaQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPrecoMaxQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField6)
-                                .addGap(68, 68, 68)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtPrecoMinQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(115, 115, 115)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,17 +491,22 @@ public class TelaGerenciador extends javax.swing.JFrame {
                                             .addComponent(jLabel10))
                                         .addGap(35, 35, 35)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField11)
-                                            .addComponent(jTextField12)
-                                            .addComponent(jTextField13)
-                                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(txtHotelIdQuartos)
+                                            .addComponent(txtNumeroQuartos)
+                                            .addComponent(txtClienteIdQuartos)
+                                            .addComponent(txtPrecoQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 963, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(19, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addComponent(jLabel21)
+                    .addContainerGap(860, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,20 +515,20 @@ public class TelaGerenciador extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField11)
+                            .addComponent(txtHotelIdQuartos)
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumeroQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtClienteIdQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPrecoQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -576,22 +536,28 @@ public class TelaGerenciador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtQuartosHotelBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPesquisarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField9))
+                    .addComponent(txtBuscaCategoriaQuarto, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtPrecoMaxQuartos, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtPrecoMinQuartos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(354, 354, 354)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addGap(266, 266, 266)))
         );
 
         jTabbedPane1.addTab("Quartos", jPanel1);
@@ -734,6 +700,9 @@ public class TelaGerenciador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /***
+     *  PARTE DE HOTEIS
+     */
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         try {
             // TODO add your handling code here:
@@ -781,15 +750,258 @@ public class TelaGerenciador extends javax.swing.JFrame {
 
     private void btnAlterarHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarHotelActionPerformed
         // TODO add your handling code here:
-        FormularioAlteracaoHotel teste = new FormularioAlteracaoHotel(txtHotelNome.getText());
+        FormularioAlteracaoHotel teste = new FormularioAlteracaoHotel(HotelIdselected);
+        populaTabelaQuartos();
         
     }//GEN-LAST:event_btnAlterarHotelActionPerformed
 
     private void btnApagarHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarHotelActionPerformed
         // TODO add your handling code here:
-        
+        if (HotelIdselected >0)
+            try{
+                Connection c = myc.criaConexao();
+                CRUDTodos.DeletarHoteis(HotelIdselected, c);
+                populaTabelaHotel();
+            } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnApagarHotelActionPerformed
 
+    private void btnInserirHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirHotelActionPerformed
+        // TODO add your handling code here:
+        Hoteis e = new Hoteis(txtCategoriaH.getText(), txtHotelNome.getText(), Integer.parseInt(txtRating.getText()), txtRua.getText(), txtCidade.getText());
+        if (e.isUsed())
+        {
+            try{
+                Connection c = myc.criaConexao();
+                CRUDTodos.InserirHoteis(e, c);
+                populaTabelaHotel();
+            } 
+            catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnInserirHotelActionPerformed
+
+    public void populaTabelaHotel(){
+        TabelaHoteis.removeAll();
+        List<Hoteis> hoteis = new ArrayList<Hoteis>();
+        Hoteis e = null;
+        
+        // Pega os dados do Banco de Dados
+        try{
+             Connection c = myc.criaConexao();
+             ResultSet dados =  CRUDTodos.PesquisarHoteis(c);
+             while (dados.next()){
+                 e = new Hoteis(dados.getInt("HotelId"),
+                                dados.getString("Category"),
+                                dados.getString("HotelName"),
+                                dados.getDouble("Rating"),
+                                dados.getString("Street"),
+                                dados.getString("City"));
+                 hoteis.add(e);
+             }
+             
+             c.close();
+             
+         } catch (ClassNotFoundException | SQLException er)       {
+         }
+    
+       // Cria o modelo e associa com o List
+       eModelHoteis = new hoteisModeloDeTabela(hoteis);
+       
+       // Associa o modelo à tabela
+       TabelaHoteis.setModel(eModelHoteis);
+    
+    }
+    
+    public void populaSelecionado(ResultSet dados) throws SQLException
+    {
+        dados.next();
+        HotelIdselected = dados.getInt("HotelId");
+        txtHotelNome.setText(dados.getString("HotelName"));
+        txtCategoriaH.setText(dados.getString("Category"));
+        txtRating.setText(dados.getString("Rating"));
+        txtRua.setText(dados.getString("Street"));
+        txtCidade.setText(dados.getString("City"));
+    }
+    
+     public void populaTabelaHotel(ResultSet dados){
+        TabelaHoteis.removeAll();
+        List<Hoteis> hoteis = new ArrayList<Hoteis>();
+        Hoteis e = null;
+        
+        // Pega os dados do Banco de Dados
+        try{
+             Connection c = myc.criaConexao();
+             while (dados.next()){
+                 e = new Hoteis(dados.getInt("HotelId"),
+                                dados.getString("Category"),
+                                dados.getString("HotelName"),
+                                dados.getDouble("Rating"),
+                                dados.getString("Street"),
+                                dados.getString("City"));
+                 hoteis.add(e);
+             }
+             
+             c.close();
+             
+         } catch (ClassNotFoundException | SQLException er)       {
+         }
+    
+       // Cria o modelo e associa com o List
+       eModelHoteis = new hoteisModeloDeTabela(hoteis);
+       
+       // Associa o modelo à tabela
+       TabelaHoteis.setModel(eModelHoteis);
+    
+    }
+    /* FIM DOS HOTEIS*/
+    
+    
+     /**
+      * 
+      * PARTE DOS QUARTOS
+      */
+     
+     
+    private void btnPesquisarQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarQuartosActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            ResultSet Resultado;
+            Connection c = myc.criaConexao();
+            if(txtBuscaCategoriaQuarto.getText().length() >0){
+                Resultado = CRUDTodos.PesquisarQuartosCategoria(txtBuscaCategoriaQuarto.getText(), c);
+            }
+            else if (txtQuartosHotelBusca.getText().length() > 0){
+                Resultado = CRUDTodos.PesquisarQuartosHotelNome(Integer.parseInt(txtQuartosHotelBusca.getText()), c);
+            }
+            else if(txtPrecoMinQuartos.getText().length()>0 && txtPrecoMaxQuartos.getText().length()>0)
+            {
+                Resultado = CRUDTodos.PesquisarQuartosPreco(Integer.parseInt(txtPrecoMinQuartos.getText()), Integer.parseInt(txtPrecoMaxQuartos.getText()), c);
+            }
+            else{
+                Resultado = CRUDTodos.PesquisarQuartos(c);
+            }
+            populaTabelaQuartos(Resultado);
+            c.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnPesquisarQuartosActionPerformed
+
+    private void btnAlterarQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarQuartosActionPerformed
+        // TODO add your handling code here:
+        FormularioAlteracaoQuarto teste = new FormularioAlteracaoQuarto(QuartoIdselected);
+        populaTabelaQuartos();
+    }//GEN-LAST:event_btnAlterarQuartosActionPerformed
+
+    private void btnApagarQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarQuartosActionPerformed
+        // TODO add your handling code here:
+        if (QuartoIdselected >0)
+            try{
+                Connection c = myc.criaConexao();
+                CRUDTodos.DeletarQuartos(QuartoIdselected, c);
+                populaTabelaQuartos();
+            } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnApagarQuartosActionPerformed
+
+    private void TabelaQuartosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaQuartosMousePressed
+        // TODO add your handling code here:
+        if (TabelaQuartos.getSelectedRow() != -1 && TabelaQuartos.getSelectedColumn() != -1 ){
+        String id = TabelaQuartos.getModel().getValueAt(TabelaQuartos.getSelectedRow(),0) + "";
+        try {
+        Connection c = myc.criaConexao();
+            populaSelecionadoQuartos(CRUDTodos.PesquisarQuartosId(Integer.parseInt(id),c));
+        c.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+        
+    }//GEN-LAST:event_TabelaQuartosMousePressed
+    
+    public void populaTabelaQuartos(){
+        TabelaQuartos.removeAll();
+        List<Quartos> quartos = new ArrayList<Quartos>();
+        Quartos q = null;
+        
+        // Pega os dados do Banco de Dados
+        try{
+             Connection c = myc.criaConexao();
+             ResultSet dados =  CRUDTodos.PesquisarHoteis(c);
+             while (dados.next()){
+                 q = new Quartos(
+                                dados.getInt("HotelId"),
+                                dados.getInt("numeroQuarto"),
+                                dados.getInt("id_Cliente"),
+                                dados.getDouble("preco"));
+                 q.setQuartoID(dados.getInt("id_quarto"));
+                 quartos.add(q);
+             }
+             
+             c.close();
+             
+         } catch (ClassNotFoundException | SQLException er)       {
+         }
+    
+       // Cria o modelo e associa com o List
+       eModelQuartos = new quartoModeloDeTabela(quartos);
+       
+       // Associa o modelo à tabela
+       TabelaQuartos.setModel(eModelQuartos);
+    
+    }
+    
+    public void populaSelecionadoQuartos(ResultSet dados) throws SQLException
+    {
+        dados.next();
+        QuartoIdselected = dados.getInt("id_quarto");
+        txtHotelIdQuartos.setText(dados.getInt("hotelid")+"");
+        txtNumeroQuartos.setText(dados.getInt("numeroQuarto")+"");
+        txtClienteIdQuartos.setText(dados.getInt("id_Cliente")+"");
+        txtPrecoQuartos.setText(dados.getInt("preco")+"");
+    }
+    
+    public void populaTabelaQuartos(ResultSet dados){
+        TabelaQuartos.removeAll();
+        List<Quartos> quartos = new ArrayList<Quartos>();
+        Quartos q = null;
+        
+        // Pega os dados do Banco de Dados
+        try{
+             Connection c = myc.criaConexao();
+             while (dados.next()){
+                 q = new Quartos(dados.getInt("HotelId"),
+                                dados.getInt("numeroQuarto"),
+                                dados.getInt("id_Cliente"),
+                                dados.getDouble("preco"));
+                 q.setQuartoID(dados.getInt("id_quarto"));
+                 quartos.add(q);
+             }
+             
+             c.close();
+             
+         } catch (ClassNotFoundException | SQLException er)       {
+         }
+    
+       // Cria o modelo e associa com o List
+       eModelQuartos = new quartoModeloDeTabela(quartos);
+       
+       // Associa o modelo à tabela
+       TabelaQuartos.setModel(eModelQuartos);
+    
+    }
+    /**
+     * 
+     *  FIM DOS QUARTOS
+     */
+    
     /**
      * @param args the command line arguments
      */
@@ -830,17 +1042,17 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JTable TabelaHoteis;
     private javax.swing.JTable TabelaQuartos;
     private javax.swing.JButton btnAlterarHotel;
+    private javax.swing.JButton btnAlterarQuartos;
     private javax.swing.JButton btnApagarHotel;
+    private javax.swing.JButton btnApagarQuartos;
     private javax.swing.JButton btnInserirHotel;
-    private javax.swing.JButton jButton10;
+    private javax.swing.JButton btnInserirQuartos;
+    private javax.swing.JButton btnPesquisarQuartos;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -854,6 +1066,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -877,23 +1090,23 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtBuscaCategoriaQuarto;
     private javax.swing.JTextField txtCategoriaBuscaHotel;
     private javax.swing.JTextField txtCategoriaH;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtCidadeBuscaHotel;
+    private javax.swing.JTextField txtClienteIdQuartos;
+    private javax.swing.JTextField txtHotelIdQuartos;
     private javax.swing.JTextField txtHotelNome;
     private javax.swing.JTextField txtNomeBuscaH;
+    private javax.swing.JTextField txtNumeroQuartos;
+    private javax.swing.JTextField txtPrecoMaxQuartos;
+    private javax.swing.JTextField txtPrecoMinQuartos;
+    private javax.swing.JTextField txtPrecoQuartos;
+    private javax.swing.JTextField txtQuartosHotelBusca;
     private javax.swing.JTextField txtRating;
     private javax.swing.JTextField txtRatingBusca1;
     private javax.swing.JTextField txtRatingBusca2;
