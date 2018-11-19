@@ -1,149 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD:layout.css
-@-webkit-keyframes colorSwapper {
-  0% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-  50% {
-    background-color: #da5b45;
-    background-image: -webkit-linear-gradient(#da5b45, #955fad);
-    background-image: linear-gradient(#da5b45, #955fad);
-  }
-  100% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-}
-@-moz-keyframes colorSwapper {
-  0% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-  50% {
-    background-color: #da5b45;
-    background-image: -webkit-linear-gradient(#da5b45, #955fad);
-    background-image: linear-gradient(#da5b45, #955fad);
-  }
-  100% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-}
-@keyframes colorSwapper {
-  0% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-  50% {
-    background-color: #da5b45;
-    background-image: -webkit-linear-gradient(#da5b45, #955fad);
-    background-image: linear-gradient(#da5b45, #955fad);
-  }
-  100% {
-    background-color: #955fad;
-    background-image: -webkit-linear-gradient(#955fad, #da5b45);
-    background-image: linear-gradient(#955fad, #da5b45);
-  }
-}
-@-webkit-keyframes solidColor {
-  0% {
-    background-color: #955fad;
-  }
-  50% {
-    background-color: #da5b45;
-  }
-  100% {
-    background-color: #955fad;
-  }
-}
-@-moz-keyframes solidColor {
-  0% {
-    background-color: #955fad;
-  }
-  50% {
-    background-color: #da5b45;
-  }
-  100% {
-    background-color: #955fad;
-  }
-}
-@keyframes solidColor {
-  0% {
-    background-color: #955fad;
-  }
-  50% {
-    background-color: #da5b45;
-  }
-  100% {
-    background-color: #955fad;
-  }
-}
-html, body {
-  height: 100%;
-}
 
-body {
-  background: #222;
-  color: #FFF;
-}
-
-.skewed-bg {
-  background: #00B285;
-  padding: 200px 0;
-  -webkit-transform: skew(0deg, -10deg);
-  -moz-transform: skew(0deg, -10deg);
-  -ms-transform: skew(0deg, -10deg);
-  -o-transform: skew(0deg, -10deg);
-  transform: skew(0deg, -10deg);
-  margin-top: -330px;
-}
-.skewed-bg .content {
-  -webkit-transform: skew(0deg, 10deg);
-  -moz-transform: skew(0deg, 10deg);
-  -ms-transform: skew(0deg, 10deg);
-  -o-transform: skew(0deg, 10deg);
-  transform: skew(0deg, 10deg);
-  text-align: center;
-}
-.skewed-bg .content .title {
-  padding-top: 100px;
-  font-weight: normal;
-}
-.skewed-bg .content .text {
-  width: 60%;
-  margin: 25px auto;
-  color: #ccfff2;
-}
-
-.footer {
-  padding-top: 300px;
-}
-.footer .credits {
-  text-align: center;
-  color: #666;
-}
-.footer .credits .link {
-  color: #00B285;
-  text-decoration: none;
-}
-.logo{
-  width:15%;
-}
-.barra{
-  background: #008664;
-}
-=======
-=======
 /*- NOSSA EDIÇÃO -*/
 
->>>>>>> master
 #menu {
     padding: 5px 10px;
     position: relative;
@@ -151,20 +8,24 @@ body {
     background: #1E90FF;
     box-shadow: 0px 0px 25px black;
     padding: 100px 0;
-=======
+}
 /*MENU TRANSPARENTE*/
 
 body{
     background: url(../fotos/pontadosganchos-2.png) no-repeat;
     background-size:cover;
     font-family: Arial;
->>>>>>> master
+    width: 99.38%;
 }
+/*.tudo{
+    width: 100%;
+    height: 567px;
+}*/
 input#login,input#cads{
     top:10px;
     position: relative;
-    left:80%;
-    width:110px;
+    left:77%;
+    width:10%;
     color:white;
     background-color: #5f5f5f;
     border:none;
@@ -181,27 +42,26 @@ nav{
     position:relative;
     top:-9px;
     left:-9px;
-    width:1920px;
+    width:100.7%;
     height: 100px;
     background-color:#ffc300;
     box-shadow: 1px 0px 12px black;
 }
 div#menu{
     position: relative;
-    width:1200px;
+    width:60%;
     top:10px;
-    left:25%;
+    left:20%;
 }
 ul{
-    margin:0px;
-    padding:0px;
-    list-style:none;
-    background-color:
+    list-style: none;
+    padding: 0px;    
+    
 }
 ul li{
     position: relative;
     float: left;
-    width:200px;
+    width:20%;
     height:40px;
     background-color:black;
     color:white;
@@ -226,8 +86,8 @@ ul li a:hover{
     text-shadow:0px 0px 5px #fff;
 }
 ul li ul{
-    position: absolute;;
-    width:200px;
+    position: relative;
+    width:100%;
     display:none;
     background-color:#ffe488;
 }
@@ -236,19 +96,22 @@ ul li:hover ul, ul li.over ul {display:block;}
 ul li ul li {
     border:1px solid #c0c0c0;
     display:block;
-    width:192px;
+    width:95.9%;
     font-family: TheLightFont;
-    font-weight: 100;
+    font-weight: 100;    
 }
-
-<<<<<<< HEAD
 
 /* ---------------------*/
 
->>>>>>> master:Site/layout.css
-=======
+
+
 @font-face{
     font-family:"TheLightFont";
     src:url(../fontes/TheLightFont.otf);
 }
->>>>>>> master
+
+
+@font-face{
+    font-family:"TheLightFont";
+    src:url(../fontes/TheLightFont.otf);
+}
