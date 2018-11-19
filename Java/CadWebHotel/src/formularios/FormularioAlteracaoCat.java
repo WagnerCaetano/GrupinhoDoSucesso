@@ -20,62 +20,47 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
-import tabelas.Quartos;
+import tabelas.Categoria;
 
 /**
  *
  * @author 00
  */
-public class FormularioAlteracaoQuarto extends JFrame{
-    private JLabel HotelId;
-    private JLabel numeroQuarto;
-    private JLabel id_cliente;
-    private JLabel preco;
+public class FormularioAlteracaoCat extends JFrame{
+    private JLabel Catnome;
+    private JLabel descricao;
     
-    private JTextField HotelIdT;
-    private JTextField numeroQuartoT;
-    private JTextField id_clienteT;
-    private JTextField precoT;
+    private JTextField CatnomeT;
+    private JTextField descricaoT;
     
     private JButton btnConfirmar;
     private JButton btnCancelar;
     
-    public FormularioAlteracaoQuarto(int IdQuarto){
-        super("Formulário de Alteração de Quarto");
+    public FormularioAlteracaoCat(String Cat){
+        super("Formulário de Alteração de Categoria");
         setLayout(new GridLayout(6, 2, 5, 5));
         setLocation(500, 480);
         
-        HotelId = new JLabel("Hotel id");
-        numeroQuarto = new JLabel("Número do quarto");
-        id_cliente = new JLabel("Id do cliente /r/n(caso tenha)");
-        preco = new JLabel("Cidade do Hotel");
+        Catnome = new JLabel("Categoria");
+        descricao = new JLabel("Descricao");
         
-        HotelId.setFont(new Font("SANS_SERIF", Font.CENTER_BASELINE, 36));
-        numeroQuarto.setFont(new Font("SANS_SERIF", Font.CENTER_BASELINE, 36));
-        id_cliente.setFont(new Font("SANS_SERIF", Font.CENTER_BASELINE, 36));
-        preco.setFont(new Font("SANS_SERIF", Font.CENTER_BASELINE, 36));
+        Catnome.setFont(new Font("SANS_SERIF", Font.CENTER_BASELINE, 36));
+        descricao.setFont(new Font("SANS_SERIF", Font.CENTER_BASELINE, 36));
         
-        HotelIdT = new JTextField();
-        numeroQuartoT = new JTextField();
-        id_clienteT = new JTextField();
-        precoT = new JTextField();
+        CatnomeT = new JTextField();
+        descricaoT = new JTextField();
         
-        HotelIdT.setFont(new Font("Sans_Serif",Font.ITALIC,18));
-        numeroQuartoT.setFont(new Font("Sans_Serif",Font.ITALIC,18));
-        id_clienteT.setFont(new Font("Sans_Serif",Font.ITALIC,18));
-        precoT.setFont(new Font("Sans_Serif",Font.ITALIC,18));
-        
+        CatnomeT.setFont(new Font("Sans_Serif",Font.ITALIC,18));
+        descricaoT.setFont(new Font("Sans_Serif",Font.ITALIC,18));
         
         btnConfirmar = new JButton("Confirmar");
         btnConfirmar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    int ocupado = 0; 
                     BDConexao b = new BDConexao();
                     Connection c = b.criaConexao();
-                    if(id_cliente.getText().length() > 0 ){ocupado =1;}
-                    CRUDTodos.AlterarQuartos(new Quartos(Integer.parseInt(HotelId.getText()),Integer.parseInt(numeroQuarto.getText()),Integer.parseInt(id_cliente.getText()),Float.parseFloat(preco.getText())),IdQuarto, c);
+                    CRUDTodos.AlterarCat(new Categoria(CatnomeT.getText(),descricaoT.getText()), c);
                 }
                 catch(SQLException | ClassNotFoundException ex){
                     Logger.getLogger(FormularioAlteracaoHotel.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,17 +79,11 @@ public class FormularioAlteracaoQuarto extends JFrame{
         btnConfirmar.setFont(new Font("SANS_SERIF", Font.BOLD, 36));
         btnCancelar.setFont(new Font("SANS_SERIF", Font.BOLD, 36));
         
-        add(HotelId);
-        add(HotelIdT);
+        add(Catnome);
+        add(CatnomeT);
         
-        add(numeroQuarto);
-        add(numeroQuartoT);
-        
-        add(id_cliente);
-        add(id_clienteT);
-        
-        add(preco);
-        add(precoT);
+        add(descricao);
+        add(descricaoT);
         
         add(btnConfirmar);
         add(btnCancelar);

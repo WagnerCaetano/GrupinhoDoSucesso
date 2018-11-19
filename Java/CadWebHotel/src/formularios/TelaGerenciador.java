@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import tabelas.*;
 import cadwebhotel.*;
 import java.util.logging.Level;
@@ -23,6 +25,7 @@ import modelos.*;
 public class TelaGerenciador extends javax.swing.JFrame {
     hoteisModeloDeTabela eModelHoteis;
     quartoModeloDeTabela eModelQuartos;
+    catModeloDeTabela eModelCategoria;
     BDConexao myc = new BDConexao();
     int HotelIdselected = 0;
     int QuartoIdselected = 0;
@@ -35,7 +38,29 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jPanel1.setVisible(true);
         populaTabelaHotel();
         populaTabelaQuartos();
+        populaTabelaCat();
+        AdicionarCListener();
         this.setLocationRelativeTo(null);
+    }
+    /**
+     * OBJETIVO : Adicionando ChangeListener no JTabbedPane para 
+     * identificar quando se muda de guia.
+     */
+    public void AdicionarCListener()
+    {
+        ChangeListener changeListener = new ChangeListener() {
+        public void stateChanged(ChangeEvent changeEvent) {
+            int index = jTabbedPane1.getSelectedIndex();
+            switch(jTabbedPane1.getTitleAt(index)+"")
+                {
+                    case "Hóteis" : populaTabelaHotel();break;
+                    case "Quartos": populaTabelaQuartos();break;
+                    case "Categorias": populaTabelaCat();break;
+                    default : populaTabelaHotel();break;
+                }
+            }
+        };
+        jTabbedPane1.addChangeListener(changeListener);
     }
     
 
@@ -108,18 +133,21 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
+        txtCategoria = new javax.swing.JTextField();
+        txtDescricao = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        btnInserirCat = new javax.swing.JButton();
+        btnAlterarCat = new javax.swing.JButton();
+        btnExcluirCat = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
-        jTextField25 = new javax.swing.JTextField();
-        jButton18 = new javax.swing.JButton();
+        txtDescricaoBuscar = new javax.swing.JTextField();
+        btnPesquisarCat = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TabelaCat = new javax.swing.JTable();
+        txtCategoriaBuscar = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
@@ -360,6 +388,11 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jLabel3.setText("HotelName");
 
         btnInserirQuartos.setText("INSERIR");
+        btnInserirQuartos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirQuartosActionPerformed(evt);
+            }
+        });
 
         btnAlterarQuartos.setText("ALTERAR");
         btnAlterarQuartos.addActionListener(new java.awt.event.ActionListener() {
@@ -565,18 +598,33 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
         jLabel19.setText("Categoria");
 
-        jTextField23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextField24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtDescricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
         jLabel20.setText("Descrição");
 
-        jButton15.setText("INSERIR");
+        btnInserirCat.setText("INSERIR");
+        btnInserirCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirCatActionPerformed(evt);
+            }
+        });
 
-        jButton16.setText("ALTERAR");
+        btnAlterarCat.setText("ALTERAR");
+        btnAlterarCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarCatActionPerformed(evt);
+            }
+        });
 
-        jButton17.setText("APAGAR");
+        btnExcluirCat.setText("APAGAR");
+        btnExcluirCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirCatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -585,23 +633,28 @@ public class TelaGerenciador extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExcluirCat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInserirCat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlterarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(0, 11, Short.MAX_VALUE)
-                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInserirCat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAlterarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnExcluirCat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton18.setText("BUSCAR");
+        btnPesquisarCat.setText("BUSCAR");
+        btnPesquisarCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarCatActionPerformed(evt);
+            }
+        });
 
         TabelaCat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -614,7 +667,18 @@ public class TelaGerenciador extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TabelaCat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TabelaCatMousePressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(TabelaCat);
+
+        jLabel22.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
+        jLabel22.setText("Descrição");
+
+        jLabel23.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
+        jLabel23.setText("Categoria");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -627,8 +691,8 @@ public class TelaGerenciador extends javax.swing.JFrame {
                     .addComponent(jLabel20))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField23)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCategoria)
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -636,11 +700,21 @@ public class TelaGerenciador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField25, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtDescricaoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCategoriaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)
+                        .addComponent(btnPesquisarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -650,24 +724,34 @@ public class TelaGerenciador extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField23)
+                            .addComponent(txtCategoria)
                             .addComponent(jLabel19))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(103, 103, 103))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel23)
+                            .addComponent(txtCategoriaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtDescricaoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Categorias", jPanel3);
@@ -783,7 +867,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnInserirHotelActionPerformed
 
-    public void populaTabelaHotel(){
+    private void populaTabelaHotel(){
         TabelaHoteis.removeAll();
         List<Hoteis> hoteis = new ArrayList<Hoteis>();
         Hoteis e = null;
@@ -815,7 +899,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
     
     }
     
-    public void populaSelecionado(ResultSet dados) throws SQLException
+    private void populaSelecionado(ResultSet dados) throws SQLException
     {
         dados.next();
         HotelIdselected = dados.getInt("HotelId");
@@ -826,7 +910,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
         txtCidade.setText(dados.getString("City"));
     }
     
-     public void populaTabelaHotel(ResultSet dados){
+    private void populaTabelaHotel(ResultSet dados){
         TabelaHoteis.removeAll();
         List<Hoteis> hoteis = new ArrayList<Hoteis>();
         Hoteis e = null;
@@ -860,7 +944,6 @@ public class TelaGerenciador extends javax.swing.JFrame {
     
     
      /**
-      * 
       * PARTE DOS QUARTOS
       */
      
@@ -875,7 +958,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
                 Resultado = CRUDTodos.PesquisarQuartosCategoria(txtBuscaCategoriaQuarto.getText(), c);
             }
             else if (txtQuartosHotelBusca.getText().length() > 0){
-                Resultado = CRUDTodos.PesquisarQuartosHotelNome(Integer.parseInt(txtQuartosHotelBusca.getText()), c);
+                Resultado = CRUDTodos.PesquisarQuartosHotelNome(txtQuartosHotelBusca.getText(), c);
             }
             else if(txtPrecoMinQuartos.getText().length()>0 && txtPrecoMaxQuartos.getText().length()>0)
             {
@@ -916,7 +999,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
         String id = TabelaQuartos.getModel().getValueAt(TabelaQuartos.getSelectedRow(),0) + "";
         try {
         Connection c = myc.criaConexao();
-            populaSelecionadoQuartos(CRUDTodos.PesquisarQuartosId(Integer.parseInt(id),c));
+        populaSelecionadoQuartos(CRUDTodos.PesquisarQuartosId(Integer.parseInt(id),c));
         c.close();
         }
         catch (SQLException | ClassNotFoundException ex) {
@@ -925,8 +1008,12 @@ public class TelaGerenciador extends javax.swing.JFrame {
     }
         
     }//GEN-LAST:event_TabelaQuartosMousePressed
-    
-    public void populaTabelaQuartos(){
+
+    private void btnInserirQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirQuartosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInserirQuartosActionPerformed
+
+    private void populaTabelaQuartos(){
         TabelaQuartos.removeAll();
         List<Quartos> quartos = new ArrayList<Quartos>();
         Quartos q = null;
@@ -934,13 +1021,13 @@ public class TelaGerenciador extends javax.swing.JFrame {
         // Pega os dados do Banco de Dados
         try{
              Connection c = myc.criaConexao();
-             ResultSet dados =  CRUDTodos.PesquisarHoteis(c);
+             ResultSet dados =  CRUDTodos.PesquisarQuartos(c);
              while (dados.next()){
                  q = new Quartos(
                                 dados.getInt("HotelId"),
                                 dados.getInt("numeroQuarto"),
                                 dados.getInt("id_Cliente"),
-                                dados.getDouble("preco"));
+                                dados.getFloat("preco"));
                  q.setQuartoID(dados.getInt("id_quarto"));
                  quartos.add(q);
              }
@@ -958,17 +1045,17 @@ public class TelaGerenciador extends javax.swing.JFrame {
     
     }
     
-    public void populaSelecionadoQuartos(ResultSet dados) throws SQLException
+    private void populaSelecionadoQuartos(ResultSet dados) throws SQLException
     {
         dados.next();
         QuartoIdselected = dados.getInt("id_quarto");
         txtHotelIdQuartos.setText(dados.getInt("hotelid")+"");
         txtNumeroQuartos.setText(dados.getInt("numeroQuarto")+"");
         txtClienteIdQuartos.setText(dados.getInt("id_Cliente")+"");
-        txtPrecoQuartos.setText(dados.getInt("preco")+"");
+        txtPrecoQuartos.setText(dados.getFloat("preco")+"");
     }
     
-    public void populaTabelaQuartos(ResultSet dados){
+    private void populaTabelaQuartos(ResultSet dados){
         TabelaQuartos.removeAll();
         List<Quartos> quartos = new ArrayList<Quartos>();
         Quartos q = null;
@@ -980,7 +1067,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
                  q = new Quartos(dados.getInt("HotelId"),
                                 dados.getInt("numeroQuarto"),
                                 dados.getInt("id_Cliente"),
-                                dados.getDouble("preco"));
+                                dados.getFloat("preco"));
                  q.setQuartoID(dados.getInt("id_quarto"));
                  quartos.add(q);
              }
@@ -997,10 +1084,147 @@ public class TelaGerenciador extends javax.swing.JFrame {
        TabelaQuartos.setModel(eModelQuartos);
     
     }
-    /**
-     * 
-     *  FIM DOS QUARTOS
+    
+    
+    /***
+     * FIM DOS QUARTOS
      */
+    
+    
+    /**
+     * PARTE DAS CATEGORIAS
+     */
+    
+    private void btnInserirCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirCatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInserirCatActionPerformed
+
+    private void btnAlterarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarCatActionPerformed
+        // TODO add your handling code here:
+        FormularioAlteracaoCat teste = new FormularioAlteracaoCat(txtCategoria.getText());
+        populaTabelaCat();
+    }//GEN-LAST:event_btnAlterarCatActionPerformed
+
+    private void btnExcluirCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCatActionPerformed
+        // TODO add your handling code here:
+        if (txtCategoria.getText().length() >0)
+            try{
+                Connection c = myc.criaConexao();
+                CRUDTodos.DeletarCat(txtCategoria.getText(), c);
+                populaTabelaCat();
+            } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnExcluirCatActionPerformed
+
+    private void btnPesquisarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarCatActionPerformed
+        // TODO add your handling code here:
+        try{
+            Connection C = myc.criaConexao();
+            ResultSet resultado;
+            if (txtCategoria.getText().length() > 0)
+            {
+                resultado = CRUDTodos.PesquisarCatNome(txtCategoria.getText(), C);
+            }
+            else if(txtDescricao.getText().length() > 0)
+            {
+                resultado = CRUDTodos.PesquisarCatDescricao(txtDescricao.getText(), C);
+            }
+            else
+            {
+                resultado = CRUDTodos.PesquisarCat(C);
+            }
+            populaTabelaCat(resultado);
+            C.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }//GEN-LAST:event_btnPesquisarCatActionPerformed
+
+    private void TabelaCatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaCatMousePressed
+        // TODO add your handling code here:
+        if (TabelaCat.getSelectedRow() != -1 && TabelaCat.getSelectedColumn() != -1 ){
+        String categoria = TabelaCat.getModel().getValueAt(TabelaCat.getSelectedRow(),0) + "";
+        try {
+        Connection c = myc.criaConexao();
+        populaSelecionadoCat(CRUDTodos.PesquisarCatNome(categoria,c));
+        c.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+        
+    }//GEN-LAST:event_TabelaCatMousePressed
+
+    private void populaTabelaCat()
+    {
+        TabelaCat.removeAll();
+        List<Categoria> cats = new ArrayList<Categoria>();
+        Categoria cat = null;
+        
+        // Pega os dados do Banco de Dados
+        try{
+             Connection c = myc.criaConexao();
+             ResultSet dados =  CRUDTodos.PesquisarCat(c);
+             while (dados.next()){
+                 cat = new Categoria(
+                                dados.getString("CatNome"),
+                                dados.getString("Descricao"));
+                 cats.add(cat);
+             }
+             
+             c.close();
+             
+         } catch (ClassNotFoundException | SQLException er)       {
+         }
+    
+       // Cria o modelo e associa com o List
+       eModelCategoria = new catModeloDeTabela(cats);
+       
+       // Associa o modelo à tabela
+       TabelaCat.setModel(eModelCategoria);
+    }
+    private void populaSelecionadoCat(ResultSet dados) throws SQLException
+    {
+        dados.next();
+        txtCategoria.setText(dados.getString("CatNome"));
+        txtDescricao.setText(dados.getString("Descricao"));
+    }
+    private void populaTabelaCat(ResultSet dados) throws SQLException
+    {
+        TabelaCat.removeAll();
+        List<Categoria> cats = new ArrayList<Categoria>();
+        Categoria cat = null;
+        
+        // Pega os dados do Banco de Dados
+        try{
+             Connection c = myc.criaConexao();
+             while (dados.next()){
+                 cat = new Categoria(dados.getString("CatNome"),
+                                dados.getString("Descricao"));
+                 cats.add(cat);
+             }
+             
+             c.close();
+             
+         } catch (ClassNotFoundException | SQLException er)       {
+         }
+    
+       // Cria o modelo e associa com o List
+       eModelCategoria = new catModeloDeTabela(cats);
+       
+       // Associa o modelo à tabela
+       TabelaCat.setModel(eModelCategoria);
+    
+    }
+    
+    /***
+     * FIM DAS CATEGORIAS
+     */
+    
     
     /**
      * @param args the command line arguments
@@ -1041,18 +1265,18 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JTable TabelaCat;
     private javax.swing.JTable TabelaHoteis;
     private javax.swing.JTable TabelaQuartos;
+    private javax.swing.JButton btnAlterarCat;
     private javax.swing.JButton btnAlterarHotel;
     private javax.swing.JButton btnAlterarQuartos;
     private javax.swing.JButton btnApagarHotel;
     private javax.swing.JButton btnApagarQuartos;
+    private javax.swing.JButton btnExcluirCat;
+    private javax.swing.JButton btnInserirCat;
     private javax.swing.JButton btnInserirHotel;
     private javax.swing.JButton btnInserirQuartos;
+    private javax.swing.JButton btnPesquisarCat;
     private javax.swing.JButton btnPesquisarQuartos;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1067,6 +1291,8 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1090,15 +1316,16 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField txtBuscaCategoriaQuarto;
+    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtCategoriaBuscaHotel;
+    private javax.swing.JTextField txtCategoriaBuscar;
     private javax.swing.JTextField txtCategoriaH;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtCidadeBuscaHotel;
     private javax.swing.JTextField txtClienteIdQuartos;
+    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JTextField txtDescricaoBuscar;
     private javax.swing.JTextField txtHotelIdQuartos;
     private javax.swing.JTextField txtHotelNome;
     private javax.swing.JTextField txtNomeBuscaH;

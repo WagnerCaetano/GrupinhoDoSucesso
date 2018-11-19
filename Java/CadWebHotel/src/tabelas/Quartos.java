@@ -12,7 +12,7 @@ package tabelas;
 public class Quartos {
 
     private int QuartoID, hotelId ,numeroQuarto,id_Cliente,ocupado;
-    private double preco;
+    private float preco;
 
     public int getQuartoID() {
         return QuartoID;
@@ -25,13 +25,13 @@ public class Quartos {
         this.QuartoID = QuartoID;
     }
 
-    public Quartos(int hotelId, int numeroQuarto, double preco) {
+    public Quartos(int hotelId, int numeroQuarto, float preco) {
         this.hotelId = hotelId;
         this.numeroQuarto = numeroQuarto;
         this.preco = preco;
     }
 
-    public Quartos(int hotelId, int numeroQuarto, int id_Cliente, double preco) {
+    public Quartos(int hotelId, int numeroQuarto, int id_Cliente, float preco) {
         this.hotelId = hotelId;
         this.numeroQuarto = numeroQuarto;
         this.id_Cliente = id_Cliente;
@@ -64,11 +64,11 @@ public class Quartos {
         this.id_Cliente = id_Cliente;
     }
 
-    public double getPreco() {
+    public float getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 
