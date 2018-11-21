@@ -29,7 +29,7 @@ create table WHotel (
 	HotelId int primary key identity,
 	Category varchar(30) not null,
 	HotelName varchar(50) not null,
-	Rating float ,
+	Rating float default(1),
 	Street varchar(100) not null,
 	City varchar(50) not null,
 	fotoH image ,
@@ -44,7 +44,7 @@ drop table WHotel
 
 insert into WHotel(Category,HotelName,Rating,Street,City) values ('Principal','Mc Camly Plaza Hotel',5.0,'Rua João Felipe Xavier da Silva','Campinas'),('Principal','Cushing Manor Bed & Breakfast',4.8,'Rua General Andrade Neves','Porto Alegre'),('Principal','Vip Hotel',4.2,'Rua 1º de Março','Rio de Janeiro'),
 ('Litoraneo','Long Island Hotels',4.5,'Rua Tomás Gonzaga','São Paulo'),('Litoraneo','Siouxland Resort',4.7,'Rua Luiz João Batista','Osório'),('Litoraneo','Golden Eagle Resort',4.0,'Rua Olavo de Paula','Niteroi'),
-('Barato','Sunapee Harbor Cottages',3.2,'Rua Professor Walter Carretero','Sorocaba'),('Barato','Rebecca Sharrow',2.8,'Rua Madre Verônica','Gramado'),('Barato','Home Ridge Inn & Suites',3.8,'Rua Monerat','Nova Friburgo')
+('Barato','Sunapee Harbor Cottages',3.2,'Rua Profes4sor Walter Carretero','Sorocaba'),('Barato','Rebecca Sharrow',2.8,'Rua Madre Verônica','Gramado'),('Barato','Home Ridge Inn & Suites',3.8,'Rua Monerat','Nova Friburgo')
 
 SELECT * FROM WHotel
 
@@ -55,15 +55,16 @@ SELECT * FROM WHotel
 
 create table WClienteHoteis(
 id_Cliente int PRIMARY KEY identity,
-name VARCHAR (40) NOT NULL,
+firstname VARCHAR (40) NOT NULL,
+lastname varchar(40) not null,
 pw VARCHAR(12) not null,
 email varchar(70) not null,
 cpf varchar(9) not null,
-zip VARCHAR(5) not null,
+cep VARCHAR(5) not null,
 address CHAR(40) NOT NULL,
 clicity varchar(50) not null,
 )
-
+/* regra para a senha e nome */
 drop table WClienteHoteis
 
 
@@ -78,7 +79,7 @@ hotelId int not null,
 numeroQuarto int not null,
 id_Cliente int,
 isOcupado bit not null default(0),
-preco money not null,
+preco money not null default (10),
 fotoQ image ,
 constraint fk_hotelId foreign key (hotelid) references WHotel(Hotelid),
 constraint fk_clienteid foreign key(id_cliente) references WClienteHoteis(id_Cliente)
@@ -102,7 +103,7 @@ drop table WQuarto
 create table WCarrinho(
 id_Cliente int primary key,
 id_quarto int ,
-tpreco money,
+preco money,
 constraint fk_id_clienteidC foreign key (id_Cliente) references WClienteHoteis(id_Cliente),
 constraint fk_id_quartoid foreign key (id_quarto) references WQuarto(id_quarto)
 )
@@ -116,7 +117,7 @@ idTrans int primary key identity,
 id_quarto int not null,
 precoAntes money not null,
 precoDepois money not null,
-data datetime not null
+data datetime not null default(getDATE())
 )
 drop table precoQuartoChange
 
@@ -130,7 +131,7 @@ idTrans int primary key identity,
 categoria varchar(30) not null,
 descAnterior varchar(60) not null,
 descNov varchar(60) not null,
-data datetime not null
+data datetime not null default (getDATE())
 )
 select * from descCategoriaChange
 
@@ -180,3 +181,69 @@ end
 drop trigger sp_altercat
 update WCategoriais set descricao='Os quartos de hóteis maisbaratos' where CatNome='Barato'
 update WCategoriais set descricao='Os quartos de hóteis mais baratos' where CatNome='Barato'
+
+
+
+/* stored procedure */
+
+
+create proc	sp_catalogo @cidade varchar(50),@hotel varchar(50)
+as
+begin
+	if (@cidade != null)
+	begin
+	select * from WQuarto , WHotel , WCidadeHoteis,WCategoriais where 
+	WQuarto.hotelId = WHotel.HotelId and WCidadeHoteis.City_Name = WHotel.city and WHotel.Category = WCategoriais.CatNome and WHotel.City = @cidade
+	end
+
+	else if (@hotel != null)
+	begin
+	select * from WQuarto , WHotel , WCidadeHoteis,WCategoriais where 
+	WQuarto.hotelId = WHotel.HotelId and WCidadeHoteis.City_Name = WHotel.city and WHotel.Category = WCategoriais.CatNome and WHotel.HotelName = @hotel
+	end
+	
+	else 
+	begin
+	select * from WQuarto , WHotel , WCidadeHoteis,WCategoriais where 
+	WQuarto.hotelId = WHotel.HotelId and WCidadeHoteis.City_Name = WHotel.city and WHotel.Category = WCategoriais.CatNome
+	end
+end
+
+drop proc sp_catalogo
+
+create proc sp_buscarlog @tabela_log varchar(20),@idTrans int
+as
+begin
+		if(isnull(@idTrans,0) = 0)
+		begin
+
+			if (@tabela_log = 'categoria')
+			begin
+				select * from descCategoriaChange
+			end
+			else if (@tabela_log ='preco')
+			begin
+				select * from precoQuartoChange
+			end
+		
+		end
+		
+		else
+		begin
+			if (@tabela_log = 'categoria')
+			begin
+				select * from descCategoriaChange where idTrans = @idTrans
+			end
+			else if (@tabela_log ='preco')
+			begin
+				select * from precoQuartoChange where idTrans = @idTrans
+			end
+		end
+end
+
+exec sp_catalogo null,null
+
+exec sp_buscarlog 'categoria',null
+
+
+/* https://social.msdn.microsoft.com/Forums/pt-BR/1d8584bb-62a4-47fb-b71f-d5ef19965d69/trigger-quotfor-each-rowquot-em-sql-server?forum=transactsqlpt */
