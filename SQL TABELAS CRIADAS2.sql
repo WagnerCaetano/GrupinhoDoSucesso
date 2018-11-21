@@ -155,10 +155,11 @@ insert into precoQuartoChange (id_quarto,precoAntes,precoDepois,data) values (@i
 
 end
 
+
+
 drop trigger sp_alterpreco
 update WQuarto set preco=55.90 where id_quarto=1
 update WQuarto set preco=289.99 where id_quarto=1
-
 
 
 
@@ -176,8 +177,6 @@ insert into descCategoriaChange(categoria,descAnterior,descNov,data) VALUES (@ca
 end
 
 
-
+drop trigger sp_altercat
 update WCategoriais set descricao='Os quartos de hóteis maisbaratos' where CatNome='Barato'
 update WCategoriais set descricao='Os quartos de hóteis mais baratos' where CatNome='Barato'
-
-select * from WCATEGORIAIS
