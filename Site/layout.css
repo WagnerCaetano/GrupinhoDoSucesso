@@ -4,7 +4,7 @@ body{
     background: url(../fotos/pontadosganchos-2.png) no-repeat;
     background-size:cover;
     font-family: Arial;
-    width: 100%
+    width: 99.38%
 }
 /*.tudo{
     width: 100%;
@@ -31,29 +31,26 @@ nav{
     position:relative;
     top:-9px;
     left:-9px;
-    width:100%;
+    width:100.7%;
     height: 100px;
     background-color:#ffc300;
     box-shadow: 1px 0px 12px black;
 }
 div#menu{
     position: relative;
-    width:100%;
+    width:60%;
     top:10px;
-    left:15%;
+    left:24%;
 }
 ul{
     /*Essa ul está fazendo a pagina ficar maior do que deveria*/
-    width: 10%
-    margin:0px;
     padding:0px;
     list-style:none;
-    background-color:
 }
 ul li{
     position: relative;
     float: left;
-    width:15%;
+    width:20%;
     height:40px;
     background-color:black;
     color:white;
@@ -78,8 +75,8 @@ ul li a:hover{
     text-shadow:0px 0px 5px #fff;
 }
 ul li ul{
-    position: absolute;;
-    width:200px;
+    position: relative;
+    widows: 100%;
     display:none;
     background-color:#ffe488;
 }
@@ -88,7 +85,7 @@ ul li:hover ul, ul li.over ul {display:block;}
 ul li ul li {
     border:1px solid #c0c0c0;
     display:block;
-    width:100%;
+    width:95.9%;
     font-family: TheLightFont;
     font-weight: 100;
 }
@@ -96,4 +93,71 @@ ul li ul li {
 @font-face{
     font-family:"TheLightFont";
     src:url(../fontes/TheLightFont.otf);
+}
+div#pesquisa{
+    position: relative;
+    float: left;
+    width: 50%;
+    height: auto;
+    top:40px;
+    left:22%;
+    padding: 20px;
+    background-color: rgba(255, 195, 0, 0.62);
+    border-radius: 10px;
+}
+input#pesquisa{
+    position: relative;
+    width: 80%;
+    left: -5%;
+    margin-bottom: 10px;
+}
+div table#categorias{
+    position: relative;
+    float: left;
+    width: auto;
+    margin-right: 30px;
+    left: 50px;
+}
+div table#categoria{
+     position: relative;
+    float: left;
+    width: auto;
+    margin-right: 30px;
+    left: 50px;
+    top: 30px;
+}
+/*div#opcoes{
+    position: relative;
+    top: 100px;
+    width: 90%;
+    height: 200px;
+    background-color: aqua;
+}*/
+div#hotel1{
+    position: relative;
+    float: left;
+    width: 17%;
+    text-align: center;
+    top: 250px;
+    left: -45%;
+    margin-right: 55px;
+    background-color: aliceblue;
+}
+div#hotel3{
+    position: relative;
+    float: left;
+    width: 17%;
+    text-align: center;
+    top: 46px;
+    left: 50.5%;
+    background-color: aliceblue;
+}
+div#hotel4{
+    position: relative;
+    float: left;
+    width: 17%;
+    text-align: center;
+    top: 46px;
+    left: 55%;
+    background-color: aliceblue;
 }
