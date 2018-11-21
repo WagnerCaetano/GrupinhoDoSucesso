@@ -1,10 +1,25 @@
+
+/*- NOSSA EDIÇÃO -*/
+
+#menu {
+    padding: 5px 10px;
+    position: relative;
+    left:0px;
+    background: #1E90FF;
+    box-shadow: 0px 0px 25px black;
+    padding: 100px 0;
+}
 /*MENU TRANSPARENTE*/
 
 body{
     background: url(../fotos/pontadosganchos-2.png) no-repeat;
     background-size:cover;
     font-family: Arial;
+<<<<<<< HEAD
     width: 99.38%
+=======
+    width: 99.38%;
+>>>>>>> eca8459f9ccbfb69967e1081b55e9bf8f1660a8b
 }
 /*.tudo{
     width: 100%;
@@ -40,12 +55,21 @@ div#menu{
     position: relative;
     width:60%;
     top:10px;
+<<<<<<< HEAD
     left:24%;
 }
 ul{
     /*Essa ul está fazendo a pagina ficar maior do que deveria*/
     padding:0px;
     list-style:none;
+=======
+    left:20%;
+}
+ul{
+    list-style: none;
+    padding: 0px;    
+    
+>>>>>>> eca8459f9ccbfb69967e1081b55e9bf8f1660a8b
 }
 ul li{
     position: relative;
@@ -76,7 +100,11 @@ ul li a:hover{
 }
 ul li ul{
     position: relative;
+<<<<<<< HEAD
     widows: 100%;
+=======
+    width:100%;
+>>>>>>> eca8459f9ccbfb69967e1081b55e9bf8f1660a8b
     display:none;
     background-color:#ffe488;
 }
@@ -87,13 +115,18 @@ ul li ul li {
     display:block;
     width:95.9%;
     font-family: TheLightFont;
-    font-weight: 100;
+    font-weight: 100;    
 }
+
+/* ---------------------*/
+
+
 
 @font-face{
     font-family:"TheLightFont";
     src:url(../fontes/TheLightFont.otf);
 }
+<<<<<<< HEAD
 div#pesquisa{
     position: relative;
     float: left;
@@ -161,3 +194,11 @@ div#hotel4{
     left: 55%;
     background-color: aliceblue;
 }
+=======
+
+
+@font-face{
+    font-family:"TheLightFont";
+    src:url(../fontes/TheLightFont.otf);
+}
+>>>>>>> eca8459f9ccbfb69967e1081b55e9bf8f1660a8b
