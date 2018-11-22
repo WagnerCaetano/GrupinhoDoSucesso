@@ -2,26 +2,22 @@ create table WCidadeHoteis(
 	City_Name varchar(50) primary key not null,
 	State_Name char(2) not null
 )
-
-drop table WCidadeHoteis
+go
 
 insert into WCidadeHoteis(City_Name,State_Name) values ('Campinas','SP'),('São Paulo','SP'),('Sorocaba','SP'),
 ('Porto Alegre','RS'),('Osório','RS'),('Gramado','RS'),('Rio de Janeiro','RJ'),('Niteroi','RJ'),('Nova Friburgo','RJ')
 
-select * from WCidadeHoteis
+go
 
 /*------------------------------------------------------*/
 create table WCategoriais(
 	CatNome varchar(30) primary key not null,
 	Descricao varchar(60) not null
 )
-
+go
 insert into WCategoriais values ('Principal','Os quartos de hóteis mais requisitados.'),('Litoraneo','Os quartos de hóteis próximos ao mar'),('Barato','Os quartos de hóteis mais
 baratos')
-
-select * from WCategoriais
-
-drop table WCategoriais
+go
 
 /*------------------------------------------------------*/
 
@@ -36,18 +32,21 @@ create table WHotel (
 	constraint fk_cidade foreign key (City) references WCidadeHoteis(City_Name),
 	constraint fk_categorias foreign key(Category) references WCategoriais(CatNome)
 )
-
-create rule r_rating as @rating >=1 and @rating <=5 
+go
+/*create rule r_rating as @rating >=1 and @rating <=5 */
 exec sp_bindrule r_rating,'WHotel.Rating'
+/*select * from WHOTEL*/
+/*
+update WHotel set fotoH=
+(select BulkColumn from Openrowset (Bulk 'E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\09.jpg ',Single_Blob) as img) where HotelId =9 
 
-drop table WHotel
-
+select * from WHotel
+*/
+go
 insert into WHotel(Category,HotelName,Rating,Street,City) values ('Principal','Mc Camly Plaza Hotel',5.0,'Rua João Felipe Xavier da Silva','Campinas'),('Principal','Cushing Manor Bed & Breakfast',4.8,'Rua General Andrade Neves','Porto Alegre'),('Principal','Vip Hotel',4.2,'Rua 1º de Março','Rio de Janeiro'),
 ('Litoraneo','Long Island Hotels',4.5,'Rua Tomás Gonzaga','São Paulo'),('Litoraneo','Siouxland Resort',4.7,'Rua Luiz João Batista','Osório'),('Litoraneo','Golden Eagle Resort',4.0,'Rua Olavo de Paula','Niteroi'),
 ('Barato','Sunapee Harbor Cottages',3.2,'Rua Profes4sor Walter Carretero','Sorocaba'),('Barato','Rebecca Sharrow',2.8,'Rua Madre Verônica','Gramado'),('Barato','Home Ridge Inn & Suites',3.8,'Rua Monerat','Nova Friburgo')
-
-SELECT * FROM WHotel
-
+go
 
 
 /*------------------------------------------------------*/
@@ -64,8 +63,8 @@ cep VARCHAR(5) not null,
 address CHAR(40) NOT NULL,
 clicity varchar(50) not null,
 )
+go
 /* regra para a senha e nome */
-drop table WClienteHoteis
 
 
 
@@ -84,18 +83,19 @@ fotoQ image ,
 constraint fk_hotelId foreign key (hotelid) references WHotel(Hotelid),
 constraint fk_clienteid foreign key(id_cliente) references WClienteHoteis(id_Cliente)
 )
+go
 
-select * from WQuarto
 insert into WQuarto (hotelId,numeroQuarto,preco) values (1,7,289.99),(1,14,253.59),(2,3,220.00),(2,8,279.99),(3,21,239.99),(3,15,260.60),
 (4,18,450.0),(4,30,360.00),(5,5,399.99),(5,2,300.00),(6,9,320.30),(6,7,349.99),
 (7,9,198.99),(7,16,139.99),(8,22,164.99),(8,11,184.40),(9,12,127.90),(9,13,150.90)
 
-select * from WQuarto , WHotel , WCidadeHoteis,WCategoriais where WQuarto.hotelId = WHotel.HotelId and WCidadeHoteis.City_Name = WHotel.city and WHotel.Category = WCategoriais.CatNome
+go
 
-drop table WQuarto
-
-
-
+select * from WQuarto
+/*
+update WQuarto set fotoQ=
+(select BulkColumn from Openrowset (Bulk 'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\18.jpg ',Single_Blob) as img) where id_quarto =18
+*/
 /*------------------------------------------------------*/
 
 
@@ -107,7 +107,7 @@ preco money,
 constraint fk_id_clienteidC foreign key (id_Cliente) references WClienteHoteis(id_Cliente),
 constraint fk_id_quartoid foreign key (id_quarto) references WQuarto(id_quarto)
 )
-drop table wcarrinho
+go
 
 /*------------------------------------------------------*/
 
@@ -119,12 +119,7 @@ precoAntes money not null,
 precoDepois money not null,
 data datetime not null default(getDATE())
 )
-drop table precoQuartoChange
-
-select * from precoQuartoChange
-delete from precoquartochange where 1=1
-
-
+go
 
 create table descCategoriaChange(
 idTrans int primary key identity,
@@ -133,9 +128,7 @@ descAnterior varchar(60) not null,
 descNov varchar(60) not null,
 data datetime not null default (getDATE())
 )
-select * from descCategoriaChange
-
-DELETE FROM descCategoriaChange WHERE 1=1
+go
 
 
 /*---------------Criando trigger de mudança-----------------*/
@@ -211,6 +204,8 @@ end
 
 drop proc sp_catalogo
 
+
+
 create proc sp_buscarlog @tabela_log varchar(20),@idTrans int
 as
 begin
@@ -247,3 +242,14 @@ exec sp_buscarlog 'categoria',null
 
 
 /* https://social.msdn.microsoft.com/Forums/pt-BR/1d8584bb-62a4-47fb-b71f-d5ef19965d69/trigger-quotfor-each-rowquot-em-sql-server?forum=transactsqlpt */
+
+
+drop table WCarrinho
+go
+drop table WClienteHoteis
+go
+drop table WQuarto
+go
+drop table WHotel
+go
+drop table WCarrinho
