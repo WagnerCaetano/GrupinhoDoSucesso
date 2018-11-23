@@ -72,7 +72,7 @@ public class CRUDTodos {
     
     public static void InserirHoteis(Hoteis H,Connection C) throws SQLException{
     if (H.isUsed()){
-        String StrSQL = "INSERT INTO WHotel(Category,HotelName,Rating,Street,City) VALUES(?,?,?,?,?)";
+        String StrSQL = "INSERT INTO WHotel(Category,HotelName,Rating,Street,City,fotoH) VALUES(?,?,?,?,?)";
         
         PreparedStatement ps = C.prepareStatement(StrSQL);
         ps.setString(1, H.getCategoria());
