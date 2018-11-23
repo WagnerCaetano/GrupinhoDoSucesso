@@ -80,7 +80,9 @@ ul li ul{
     display:none;
     background-color:#ffe488;
 }
-ul li:hover ul, ul li.over ul {display:block;}
+ul li:hover ul, ul li.hover ul {display:block;
+background: #000000;
+}
 
 ul li ul li {
     border:1px solid #c0c0c0;
