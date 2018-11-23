@@ -28,7 +28,7 @@ create table WHotel (
 	Rating float default(1),
 	Street varchar(100) not null,
 	City varchar(50) not null,
-	fotoH image ,
+	fotoH image,
 	constraint fk_cidade foreign key (City) references WCidadeHoteis(City_Name),
 	constraint fk_categorias foreign key(Category) references WCategoriais(CatNome)
 )
@@ -36,12 +36,15 @@ go
 /*create rule r_rating as @rating >=1 and @rating <=5 */
 exec sp_bindrule r_rating,'WHotel.Rating'
 /*select * from WHOTEL*/
-/*
-update WHotel set fotoH=
-(select BulkColumn from Openrowset (Bulk 'E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\09.jpg ',Single_Blob) as img) where HotelId =9 
+
+update WHotel set fotoH=(select BulkColumn from Openrowset (Bulk 'E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\01.jpg ',Single_Blob) as img) where HotelId = 1
 
 select * from WHotel
-*/
+
+drop table WHotel
+
+
+select DATALENGTH(fotoH) from Whotel where Hotelid=1
 go
 insert into WHotel(Category,HotelName,Rating,Street,City) values ('Principal','Mc Camly Plaza Hotel',5.0,'Rua João Felipe Xavier da Silva','Campinas'),('Principal','Cushing Manor Bed & Breakfast',4.8,'Rua General Andrade Neves','Porto Alegre'),('Principal','Vip Hotel',4.2,'Rua 1º de Março','Rio de Janeiro'),
 ('Litoraneo','Long Island Hotels',4.5,'Rua Tomás Gonzaga','São Paulo'),('Litoraneo','Siouxland Resort',4.7,'Rua Luiz João Batista','Osório'),('Litoraneo','Golden Eagle Resort',4.0,'Rua Olavo de Paula','Niteroi'),
@@ -252,4 +255,6 @@ drop table WQuarto
 go
 drop table WHotel
 go
-drop table WCarrinho
+drop table WCategoriais
+go
+drop table WCidadeHoteis

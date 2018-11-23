@@ -14,9 +14,15 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import tabelas.*;
 import cadwebhotel.*;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
 import modelos.*;
+import utils.fotoBase64;
+import java.awt.*;
 
 /**
  *
@@ -26,6 +32,8 @@ public class TelaGerenciador extends javax.swing.JFrame {
     hoteisModeloDeTabela eModelHoteis;
     quartoModeloDeTabela eModelQuartos;
     catModeloDeTabela eModelCategoria;
+    String fotoHotel="";
+    String fotoQuarto="";
     BDConexao myc = new BDConexao();
     int HotelIdselected = 0;
     int QuartoIdselected = 0;
@@ -91,6 +99,8 @@ public class TelaGerenciador extends javax.swing.JFrame {
         btnInserirHotel = new javax.swing.JButton();
         btnAlterarHotel = new javax.swing.JButton();
         btnApagarHotel = new javax.swing.JButton();
+        btnVisualizarFotoHotel = new javax.swing.JButton();
+        btnHotelEscolherFoto = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         txtNomeBuscaH = new javax.swing.JTextField();
         jButton14 = new javax.swing.JButton();
@@ -149,6 +159,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        btnInserirHotel3 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -214,6 +225,20 @@ public class TelaGerenciador extends javax.swing.JFrame {
             }
         });
 
+        btnVisualizarFotoHotel.setText("Visualizar Foto");
+        btnVisualizarFotoHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarFotoHotelActionPerformed(evt);
+            }
+        });
+
+        btnHotelEscolherFoto.setText("Escolher Foto");
+        btnHotelEscolherFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHotelEscolherFotoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -224,17 +249,25 @@ public class TelaGerenciador extends javax.swing.JFrame {
                     .addComponent(btnApagarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInserirHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAlterarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVisualizarFotoHotel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHotelEscolherFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 11, Short.MAX_VALUE)
-                .addComponent(btnInserirHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInserirHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHotelEscolherFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAlterarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnApagarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnApagarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisualizarFotoHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jButton14.setText("BUSCAR");
@@ -299,35 +332,34 @@ public class TelaGerenciador extends javax.swing.JFrame {
                                     .addComponent(txtCategoriaH, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(43, 43, 43)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator5)
-                            .addComponent(jSeparator4)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(txtNomeBuscaH, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
-                                .addGap(68, 68, 68)
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCategoriaBuscaHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCidadeBuscaHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtRatingBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1)
-                                .addGap(25, 25, 25)
-                                .addComponent(txtRatingBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator5)
+                    .addComponent(jSeparator4)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(txtNomeBuscaH, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCategoriaBuscaHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCidadeBuscaHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtRatingBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(25, 25, 25)
+                        .addComponent(txtRatingBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -759,6 +791,13 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel13.setText("PAINEL ADMINISTRATIVO DO BANCO DE DADOS");
 
+        btnInserirHotel3.setText("Escolher foto");
+        btnInserirHotel3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirHotel3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -771,6 +810,11 @@ public class TelaGerenciador extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(459, 459, 459)
+                    .addComponent(btnInserirHotel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(460, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -779,6 +823,11 @@ public class TelaGerenciador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(363, 363, 363)
+                    .addComponent(btnInserirHotel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(363, Short.MAX_VALUE)))
         );
 
         pack();
@@ -853,7 +902,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
 
     private void btnInserirHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirHotelActionPerformed
         // TODO add your handling code here:
-        Hoteis e = new Hoteis(txtCategoriaH.getText(), txtHotelNome.getText(), Integer.parseInt(txtRating.getText()), txtRua.getText(), txtCidade.getText());
+        Hoteis e = new Hoteis(txtCategoriaH.getText(), txtHotelNome.getText(), Integer.parseInt(txtRating.getText()), txtRua.getText(), txtCidade.getText(),fotoHotel);
         if (e.isUsed())
         {
             try{
@@ -908,6 +957,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
         txtRating.setText(dados.getString("Rating"));
         txtRua.setText(dados.getString("Street"));
         txtCidade.setText(dados.getString("City"));
+        fotoHotel = dados.getString("fotoH");
     }
     
     private void populaTabelaHotel(ResultSet dados){
@@ -1220,10 +1270,44 @@ public class TelaGerenciador extends javax.swing.JFrame {
        TabelaCat.setModel(eModelCategoria);
     
     }
-    
-    /***
+     /***
      * FIM DAS CATEGORIAS
      */
+    
+    
+    private void btnInserirHotel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirHotel3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInserirHotel3ActionPerformed
+
+    private void btnHotelEscolherFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHotelEscolherFotoActionPerformed
+        // TODO add your handling code here:
+        JPanel painel = new JPanel();
+        JFileChooser escolher = new JFileChooser();
+        painel.add(escolher);
+        escolher.showOpenDialog(painel);
+        if(escolher.getSelectedFile() != null){
+            String path = escolher.getSelectedFile().getPath();
+            fotoHotel = fotoBase64.encoder(path);
+        }
+        
+    }//GEN-LAST:event_btnHotelEscolherFotoActionPerformed
+
+    private void btnVisualizarFotoHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarFotoHotelActionPerformed
+        // TODO add your handling code here:
+        JPanel foto = new JPanel(){
+        @Override
+        protected void paintComponent(Graphics g) {
+            BufferedImage image = fotoBase64.decoder(fotoHotel); // get your buffered image.
+            Graphics2D graphics2d = (Graphics2D) g;
+            graphics2d.drawImage(image, 0, 0, null);
+            super.paintComponents(g);
+            }
+        };
+    }//GEN-LAST:event_btnVisualizarFotoHotelActionPerformed
+
+    
+    
+   
     
     
     /**
@@ -1271,11 +1355,14 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JButton btnApagarHotel;
     private javax.swing.JButton btnApagarQuartos;
     private javax.swing.JButton btnExcluirCat;
+    private javax.swing.JButton btnHotelEscolherFoto;
     private javax.swing.JButton btnInserirCat;
     private javax.swing.JButton btnInserirHotel;
+    private javax.swing.JButton btnInserirHotel3;
     private javax.swing.JButton btnInserirQuartos;
     private javax.swing.JButton btnPesquisarCat;
     private javax.swing.JButton btnPesquisarQuartos;
+    private javax.swing.JButton btnVisualizarFotoHotel;
     private javax.swing.JButton jButton14;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;

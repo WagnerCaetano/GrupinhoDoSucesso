@@ -16,9 +16,18 @@ public class Hoteis {
     double rate;
     String address;
     String Cidade;
+    String foto;
 
     public int getHotelid() {
         return Hotelid;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public void setHotelid(int Hotelid) {
@@ -28,7 +37,7 @@ public class Hoteis {
         return (Categoria.length() > 0 && nome_hotel.length() > 0 && address.length() > 0 && Cidade.length() >0);
     }
 
-    public Hoteis(String Categoria, String nome_hotel, double rate, String address, String Cidade) {
+    public Hoteis(String Categoria, String nome_hotel, double rate, String address, String Cidade,String FotoH) {
         this.Categoria = Categoria;
         this.nome_hotel = nome_hotel;
         this.rate = rate;
@@ -36,7 +45,24 @@ public class Hoteis {
         this.Cidade= Cidade;
     }
 
+    public Hoteis(String Categoria, String nome_hotel, double rate, String address, String Cidade) {
+        this.Categoria = Categoria;
+        this.nome_hotel = nome_hotel;
+        this.rate = rate;
+        this.address = address;
+        this.Cidade = Cidade;
+    }
+
     public Hoteis(int Hotelid, String Categoria, String nome_hotel, double rate, String address, String Cidade) {
+        this.Hotelid = Hotelid;
+        this.Categoria = Categoria;
+        this.nome_hotel = nome_hotel;
+        this.rate = rate;
+        this.address = address;
+        this.Cidade = Cidade;
+    }
+
+    public Hoteis(int Hotelid, String Categoria, String nome_hotel, double rate, String address, String Cidade,String FotoH) {
         this.Hotelid = Hotelid;
         this.Categoria = Categoria;
         this.nome_hotel = nome_hotel;
