@@ -1,25 +1,59 @@
+/*CRIANDO TABELAS*/
+
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type = 'U' AND name = 'descCategoriaChange')
+drop table descCategoriaChange
+go
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type = 'U' AND name = 'precoQuartoChange')
+drop table precoQuartoChange
+go
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type = 'U' AND name = 'WCarrinho')
+drop table WCarrinho
+go
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type = 'U' AND name = 'WQuarto')
+drop table WQuarto
+go
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type = 'U' AND name = 'WClienteHoteis')
+drop table WClienteHoteis
+go
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type = 'U' AND name = 'Whotel')
+drop table Whotel
+go
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type = 'U' AND name = 'WCategoriais')
+drop table WCategoriais
+go
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type = 'U' AND name = 'WCidadeHoteis')
+drop table WCidadeHoteis
+go
+
+/*--------------------------------------*/
+
 create table WCidadeHoteis(
 	City_Name varchar(50) primary key not null,
 	State_Name char(2) not null
 )
 go
 
-insert into WCidadeHoteis(City_Name,State_Name) values ('Campinas','SP'),('São Paulo','SP'),('Sorocaba','SP'),
-('Porto Alegre','RS'),('Osório','RS'),('Gramado','RS'),('Rio de Janeiro','RJ'),('Niteroi','RJ'),('Nova Friburgo','RJ')
-
-go
-
-/*------------------------------------------------------*/
 create table WCategoriais(
 	CatNome varchar(30) primary key not null,
 	Descricao varchar(60) not null
 )
 go
-insert into WCategoriais values ('Principal','Os quartos de hóteis mais requisitados.'),('Litoraneo','Os quartos de hóteis próximos ao mar'),('Barato','Os quartos de hóteis mais
-baratos')
-go
-
-/*------------------------------------------------------*/
 
 create table WHotel (
 	HotelId int primary key identity,
@@ -28,33 +62,11 @@ create table WHotel (
 	Rating float default(1),
 	Street varchar(100) not null,
 	City varchar(50) not null,
-	fotoH image,
+	fotoH varchar(100) not null,
 	constraint fk_cidade foreign key (City) references WCidadeHoteis(City_Name),
 	constraint fk_categorias foreign key(Category) references WCategoriais(CatNome)
 )
 go
-/*create rule r_rating as @rating >=1 and @rating <=5 */
-exec sp_bindrule r_rating,'WHotel.Rating'
-/*select * from WHOTEL*/
-
-update WHotel set fotoH=(select BulkColumn from Openrowset (Bulk 'E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\01.jpg ',Single_Blob) as img) where HotelId = 1
-
-select * from WHotel
-
-drop table WHotel
-
-
-select DATALENGTH(fotoH) from Whotel where Hotelid=1
-go
-insert into WHotel(Category,HotelName,Rating,Street,City) values ('Principal','Mc Camly Plaza Hotel',5.0,'Rua João Felipe Xavier da Silva','Campinas'),('Principal','Cushing Manor Bed & Breakfast',4.8,'Rua General Andrade Neves','Porto Alegre'),('Principal','Vip Hotel',4.2,'Rua 1º de Março','Rio de Janeiro'),
-('Litoraneo','Long Island Hotels',4.5,'Rua Tomás Gonzaga','São Paulo'),('Litoraneo','Siouxland Resort',4.7,'Rua Luiz João Batista','Osório'),('Litoraneo','Golden Eagle Resort',4.0,'Rua Olavo de Paula','Niteroi'),
-('Barato','Sunapee Harbor Cottages',3.2,'Rua Profes4sor Walter Carretero','Sorocaba'),('Barato','Rebecca Sharrow',2.8,'Rua Madre Verônica','Gramado'),('Barato','Home Ridge Inn & Suites',3.8,'Rua Monerat','Nova Friburgo')
-go
-
-
-/*------------------------------------------------------*/
-
-
 create table WClienteHoteis(
 id_Cliente int PRIMARY KEY identity,
 firstname VARCHAR (40) NOT NULL,
@@ -67,13 +79,6 @@ address CHAR(40) NOT NULL,
 clicity varchar(50) not null,
 )
 go
-/* regra para a senha e nome */
-
-
-
-/*------------------------------------------------------*/
-
-
 
 CREATE TABLE WQuarto(
 id_quarto int primary key identity,
@@ -82,27 +87,11 @@ numeroQuarto int not null,
 id_Cliente int,
 isOcupado bit not null default(0),
 preco money not null default (10),
-fotoQ image ,
+fotoQ varchar(100) not null,
 constraint fk_hotelId foreign key (hotelid) references WHotel(Hotelid),
 constraint fk_clienteid foreign key(id_cliente) references WClienteHoteis(id_Cliente)
 )
 go
-
-insert into WQuarto (hotelId,numeroQuarto,preco) values (1,7,289.99),(1,14,253.59),(2,3,220.00),(2,8,279.99),(3,21,239.99),(3,15,260.60),
-(4,18,450.0),(4,30,360.00),(5,5,399.99),(5,2,300.00),(6,9,320.30),(6,7,349.99),
-(7,9,198.99),(7,16,139.99),(8,22,164.99),(8,11,184.40),(9,12,127.90),(9,13,150.90)
-
-go
-
-select * from WQuarto
-/*
-update WQuarto set fotoQ=
-(select BulkColumn from Openrowset (Bulk 'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\18.jpg ',Single_Blob) as img) where id_quarto =18
-*/
-/*------------------------------------------------------*/
-
-
-
 create table WCarrinho(
 id_Cliente int primary key,
 id_quarto int ,
@@ -112,17 +101,6 @@ constraint fk_id_quartoid foreign key (id_quarto) references WQuarto(id_quarto)
 )
 go
 
-/*------------------------------------------------------*/
-
-
-create table precoQuartoChange(
-idTrans int primary key identity,
-id_quarto int not null,
-precoAntes money not null,
-precoDepois money not null,
-data datetime not null default(getDATE())
-)
-go
 
 create table descCategoriaChange(
 idTrans int primary key identity,
@@ -132,13 +110,43 @@ descNov varchar(60) not null,
 data datetime not null default (getDATE())
 )
 go
+create table precoQuartoChange(
+idTrans int primary key identity,
+id_quarto int not null,
+precoAntes money not null,
+precoDepois money not null,
+data datetime not null default(getDATE())
+)
+go
 
 
-/*---------------Criando trigger de mudança-----------------*/
+/*INSERTS*/
+
+insert into WCidadeHoteis(City_Name,State_Name) values ('Campinas','SP'),('São Paulo','SP'),('Sorocaba','SP'),
+('Porto Alegre','RS'),('Osório','RS'),('Gramado','RS'),('Rio de Janeiro','RJ'),('Niteroi','RJ'),('Nova Friburgo','RJ')
+
+go
 
 
+insert into WCategoriais values ('Principal','Os quartos de hóteis mais requisitados.'),('Litoraneo','Os quartos de hóteis próximos ao mar'),('Barato','Os quartos de hóteis mais
+baratos')
+go
 
 
+insert into WHotel(Category,HotelName,Rating,Street,City,fotoH) values ('Principal','Mc Camly Plaza Hotel',5.0,'Rua João Felipe Xavier da Silva','Campinas','E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\01.jpg'),('Principal','Cushing Manor Bed & Breakfast',4.8,'Rua General Andrade Neves','Porto Alegre','E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\02.jpg'),('Principal','Vip Hotel',4.2,'Rua 1º de Março','Rio de Janeiro','E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\03.jpeg'),
+('Litoraneo','Long Island Hotels',4.5,'Rua Tomás Gonzaga','São Paulo','E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\04.jpg'),('Litoraneo','Siouxland Resort',4.7,'Rua Luiz João Batista','Osório','E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\05.jpg'),('Litoraneo','Golden Eagle Resort',4.0,'Rua Olavo de Paula','Niteroi','E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\06.jpg'),
+('Barato','Sunapee Harbor Cottages',3.2,'Rua Profes4sor Walter Carretero','Sorocaba','E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\07.jpg'),('Barato','Rebecca Sharrow',2.8,'Rua Madre Verônica','Gramado','E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\08.jpg'),('Barato','Home Ridge Inn & Suites',3.8,'Rua Monerat','Nova Friburgo','E:\github repository\GrupinhoDoSucesso\Fotos\fotos hoteis\09.jpg')
+go
+
+insert into WQuarto (hotelId,numeroQuarto,preco,fotoQ) values (1,7,289.99,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\01.jpg'),(1,14,253.59,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\02.jpg'),(2,3,220.00,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\03.jpg'),(2,8,279.99,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\04.jpg'),(3,21,239.99,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\05.jpg'),(3,15,260.60,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\06.png'),
+(4,18,450.0,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\07.jpg'),(4,30,360.00,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\08.jpg'),(5,5,399.99,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\09.jpg'),(5,2,300.00,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\10.jpg'),(6,9,320.30,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\11.jpg'),(6,7,349.99,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\12.jpg'),
+(7,9,198.99,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\13.jpg'),(7,16,139.99,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\14.jpg'),(8,22,164.99,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\15.jpg'),(8,11,184.40,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\16.jpg'),(9,12,127.90,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\17.jpg'),(9,13,150.90,'E:\github repository\GrupinhoDoSucesso\Fotos\fotos quartos\18.jpg')
+
+go
+
+/*TRIGERS DE ALTERAÇÃO*/
+
+/* ALTERAR OS TRIGGERS PARA TEREM CURSORES [  ] */
 CREATE TRIGGER sp_alterpreco 
 ON WQuarto
 FOR UPDATE
@@ -243,18 +251,12 @@ exec sp_catalogo null,null
 
 exec sp_buscarlog 'categoria',null
 
+/*REGRAS E DEFAULTS*/
+
+create rule r_rating as @rating >=1 and @rating <=5
+exec sp_bindrule r_rating,'WHotel.Rating'
+
+/* SENHAS E NOMES CLIENTES [  ] */
+
 
 /* https://social.msdn.microsoft.com/Forums/pt-BR/1d8584bb-62a4-47fb-b71f-d5ef19965d69/trigger-quotfor-each-rowquot-em-sql-server?forum=transactsqlpt */
-
-
-drop table WCarrinho
-go
-drop table WClienteHoteis
-go
-drop table WQuarto
-go
-drop table WHotel
-go
-drop table WCategoriais
-go
-drop table WCidadeHoteis

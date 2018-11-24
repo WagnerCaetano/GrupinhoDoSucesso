@@ -21,8 +21,11 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import modelos.*;
-import utils.fotoBase64;
+import utils.fotoLoad;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -1287,25 +1290,36 @@ public class TelaGerenciador extends javax.swing.JFrame {
         escolher.showOpenDialog(painel);
         if(escolher.getSelectedFile() != null){
             String path = escolher.getSelectedFile().getPath();
-            fotoHotel = fotoBase64.encoder(path);
+            fotoHotel = path;
         }
         
     }//GEN-LAST:event_btnHotelEscolherFotoActionPerformed
 
     private void btnVisualizarFotoHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarFotoHotelActionPerformed
         // TODO add your handling code here:
-        JPanel foto = new JPanel(){
-        @Override
-        protected void paintComponent(Graphics g) {
-            BufferedImage image = fotoBase64.decoder(fotoHotel); // get your buffered image.
-            Graphics2D graphics2d = (Graphics2D) g;
-            graphics2d.drawImage(image, 0, 0, null);
-            super.paintComponents(g);
-            }
-        };
+        
+        if (fotoHotel.length()>0){
+            JPanel foto = new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                    try {
+                        Graphics2D graphics2d = (Graphics2D) g;
+                        graphics2d.drawImage(criarImagem(), 0, 0, null);
+                        super.paintComponents(g);
+                    } catch (IOException ex) {
+                        Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+        }
+        
     }//GEN-LAST:event_btnVisualizarFotoHotelActionPerformed
 
-    
+    public BufferedImage criarImagem() throws IOException
+    {
+        BufferedImage imgHotel = ImageIO.read(new File(fotoHotel));
+        return imgHotel;
+    }
     
    
     

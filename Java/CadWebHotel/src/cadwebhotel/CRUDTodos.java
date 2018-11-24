@@ -72,7 +72,7 @@ public class CRUDTodos {
     
     public static void InserirHoteis(Hoteis H,Connection C) throws SQLException{
     if (H.isUsed()){
-        String StrSQL = "INSERT INTO WHotel(Category,HotelName,Rating,Street,City,fotoH) VALUES(?,?,?,?,?)";
+        String StrSQL = "INSERT INTO WHotel(Category,HotelName,Rating,Street,City,fotoH) VALUES(?,?,?,?,?,?)";
         
         PreparedStatement ps = C.prepareStatement(StrSQL);
         ps.setString(1, H.getCategoria());
@@ -80,12 +80,13 @@ public class CRUDTodos {
         ps.setDouble(3, H.getRate());
         ps.setString(4, H.getAddress());
         ps.setString(5, H.getCidade());
+        ps.setString(6, H.getFoto());
         
         ps.execute();}
     }
     public static void AlterarHoteis(Hoteis H,int Hid,Connection C) throws SQLException{
         
-        String StrSQL = "UPDATE WHotel set Category=?,HotelName=?,Rating=?,Street=?,City=? where HotelId=?";
+        String StrSQL = "UPDATE WHotel set Category=?,HotelName=?,Rating=?,Street=?,City=?,Fotoh=? where HotelId=?";
         
         PreparedStatement ps = C.prepareStatement(StrSQL);
         ps.setString(1, H.getCategoria());
@@ -93,7 +94,8 @@ public class CRUDTodos {
         ps.setDouble(3, H.getRate());
         ps.setString(4, H.getAddress());
         ps.setString(5, H.getCidade());
-        ps.setInt(6, Hid);
+        ps.setString(6, H.getFoto());
+        ps.setInt(7, Hid);
         
         ps.execute();
 
