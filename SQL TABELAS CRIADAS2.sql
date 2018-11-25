@@ -152,39 +152,61 @@ ON WQuarto
 FOR UPDATE
 AS 
 begin
-declare @precoAnterior money , @precoAtual money , @id int
+	declare @idup int
+	declare cursor_teste cursor for select id_quarto from inserted
 
-SELECT @precoAnterior = deleted.preco ,@id = deleted.id_quarto FROM deleted  
-SELECT @precoAtual = inserted.preco from inserted
-insert into precoQuartoChange (id_quarto,precoAntes,precoDepois,data) values (@id,@precoAnterior,@precoAtual,GETDATE())
+	open cursor_teste;
+	fetch next from cursor_teste;
 
+	while @@FETCH_STATUS = 0
+	begin FETCH NEXT FROM cursor_teste 
+		declare @precoAnterior money , @precoAtual money , @id int
+
+		SELECT @precoAnterior = deleted.preco ,@id = deleted.id_quarto FROM deleted  
+		SELECT @precoAtual = inserted.preco from inserted
+		insert into precoQuartoChange (id_quarto,precoAntes,precoDepois,data) values (@id,@precoAnterior,@precoAtual,GETDATE())
+	end
+	close cursor_teste;
+    deallocate cursor_teste;
 end
-
-
 
 drop trigger sp_alterpreco
 update WQuarto set preco=55.90 where id_quarto=1
 update WQuarto set preco=289.99 where id_quarto=1
 
-
-
+select * from WQuarto
+select * from precoQuartoChange
 
 CREATE TRIGGER sp_altercat
 on WCategoriais
 for update
 as
 begin
-declare @descAnterior varchar(60) ,@descNova varchar(60),@categoria varchar(30)
-select @descAnterior = deleted.descricao , @categoria = deleted.catnome from deleted
-select @descNova = inserted.descricao from inserted
+	declare @cat varchar(30)
+	declare cursor_teste2 cursor for select CatNome from inserted
 
-insert into descCategoriaChange(categoria,descAnterior,descNov,data) VALUES (@categoria,@descAnterior,@descNova,getdate())
+	open cursor_teste2;
+	fetch next from cursor_teste2;
+
+	while @@FETCH_STATUS = 0 
+	begin FETCH NEXT FROM cursor_teste2
+		declare @descAnterior varchar(60) ,@descNova varchar(60),@categoria varchar(30)
+		select @descAnterior = deleted.descricao , @categoria = deleted.catnome from deleted
+		select @descNova = inserted.descricao from inserted
+		
+		insert into descCategoriaChange(categoria,descAnterior,descNov,data) VALUES (@categoria,@descAnterior,@descNova,getdate())
+	end
+	close cursor_teste2;
+    deallocate cursor_teste2;
 end
 
 
 drop trigger sp_altercat
 update WCategoriais set descricao='Os quartos de hóteis maisbaratos' where CatNome='Barato'
 update WCategoriais set descricao='Os quartos de hóteis mais baratos' where CatNome='Barato'
+
+select * from WCategoriais
+select * from descCategoriaChange
 
 
 
@@ -258,5 +280,3 @@ exec sp_bindrule r_rating,'WHotel.Rating'
 
 /* SENHAS E NOMES CLIENTES [  ] */
 
-
-/* https://social.msdn.microsoft.com/Forums/pt-BR/1d8584bb-62a4-47fb-b71f-d5ef19965d69/trigger-quotfor-each-rowquot-em-sql-server?forum=transactsqlpt */
