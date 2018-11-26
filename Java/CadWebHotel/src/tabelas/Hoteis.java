@@ -34,7 +34,7 @@ public class Hoteis {
         this.Hotelid = Hotelid;
     }
     public boolean isUsed(){
-        return (Categoria.length() > 0 && nome_hotel.length() > 0 && address.length() > 0 && Cidade.length() >0);
+        return (Categoria.length() > 0 && nome_hotel.length() > 0 && address.length() > 0 && Cidade.length() >0 && foto.length() >0);
     }
 
     public Hoteis(String Categoria, String nome_hotel, double rate, String address, String Cidade,String FotoH) {

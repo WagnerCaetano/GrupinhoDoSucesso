@@ -7,6 +7,7 @@ package formularios;
 
 import cadwebhotel.BDConexao;
 import cadwebhotel.CRUDTodos;
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +30,8 @@ import tabelas.Hoteis;
  * @author 00
  */
 public class FormularioAlteracaoHotel extends JFrame{
+    String path;
+    
     private JLabel nHotel;
     private JLabel catHotel;
     private JLabel rateHotel;
@@ -42,10 +46,11 @@ public class FormularioAlteracaoHotel extends JFrame{
     
     private JButton btnConfirmar;
     private JButton btnCancelar;
+    private JButton btnLoadImagem;
     
     public FormularioAlteracaoHotel(int IdHotel){
         super("Formulário de Alteração de Hotel");
-        setLayout(new GridLayout(6, 2, 5, 5));
+        setLayout(new GridLayout(7, 2, 5, 5));
         setLocation(500, 480);
         
         nHotel = new JLabel("Nome do Hotel");
@@ -53,6 +58,7 @@ public class FormularioAlteracaoHotel extends JFrame{
         rateHotel = new JLabel("Nota do Hotel");
         ruaHotel = new JLabel("Rua do Hotel");
         cidadeHotel = new JLabel("Cidade do Hotel");
+        
         
         nHotel.setFont(new Font("SANS_SERIF", Font.CENTER_BASELINE, 36));
         catHotel.setFont(new Font("SANS_SERIF", Font.CENTER_BASELINE, 36));
@@ -80,7 +86,7 @@ public class FormularioAlteracaoHotel extends JFrame{
                 try{
                     BDConexao b = new BDConexao();
                     Connection c = b.criaConexao();
-                    CRUDTodos.AlterarHoteis(new Hoteis(catHotelT.getText(),nHotelT.getText(),Double.parseDouble(rateHotelT.getText()),ruaHotelT.getText(),cidadeHotelT.getText()),IdHotel, c);
+                    CRUDTodos.AlterarHoteis(new Hoteis(catHotelT.getText(),nHotelT.getText(),Double.parseDouble(rateHotelT.getText()),ruaHotelT.getText(),cidadeHotelT.getText(),path),IdHotel, c);
                 }
                 catch(SQLException | ClassNotFoundException ex){
                     Logger.getLogger(FormularioAlteracaoHotel.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,9 +101,24 @@ public class FormularioAlteracaoHotel extends JFrame{
                 desabilitar();
             }
         });
+        btnLoadImagem = new JButton("Set Image");
+        btnLoadImagem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {      
+                JPanel painel = new JPanel();
+                JFileChooser escolher = new JFileChooser();
+                painel.add(escolher);
+                escolher.showOpenDialog(painel);
+                if(escolher.getSelectedFile() != null){
+                path = escolher.getSelectedFile().getPath();
+                }
+            }
+        });
         
         btnConfirmar.setFont(new Font("SANS_SERIF", Font.BOLD, 36));
         btnCancelar.setFont(new Font("SANS_SERIF", Font.BOLD, 36));
+        btnLoadImagem.setFont(new Font("SANS_SERIF", Font.BOLD,36));
+        
         
         add(nHotel);
         add(nHotelT);
@@ -114,6 +135,7 @@ public class FormularioAlteracaoHotel extends JFrame{
         add(cidadeHotel);
         add(cidadeHotelT);
         
+        add(btnLoadImagem);
         add(btnConfirmar);
         add(btnCancelar);
         
@@ -127,4 +149,5 @@ public class FormularioAlteracaoHotel extends JFrame{
     {
         this.setVisible(false);
     }
+    
 }

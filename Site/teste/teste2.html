@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mostrando hóteis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="teste2.css" />
+    <script>
+
+    var url = "http://localhost:54000/hoteis";
+    $(document).ready(function(){
+        if (    $("#HotelId").val()) {
+            var HotelId = $("#HotelId").val();
+        }
+        else {
+            var HotelId = '';
+        }
+        $.getJSON(url, function(result){
+            var out="";
+        var arr = result;
+        for(var i = 0; i < arr.length; i++) {
+
+             out+= "<div id='listagem'><br>"+ 
+            "<center><br>"+
+            "<p id='listagemHotelNome'>"+arr[i].HotelName +"</p><br>"+
+            "<p id='listagemCat'> Categoria: "+arr[i].Category+"</p><br>"+
+            "<img id='listagemFoto' src='"+arr[i].fotoH+"' width=300 height=300><br>"+
+            "<p id='listagemNota'> Nota: "+arr[i].Rating +"</p><br>"+
+            "<p id='listagemRua'> Rua: "+arr[i].Street +"</p><br>"+
+            "<p id='listagemCidade' Cidade> Cidade: "+arr[i].City +"</p><br>"+
+            "</center>"+
+            "</div><br>";
+        }
+        document.getElementById("container-content").innerHTML = out;
+        });
+    });
+    
+    </script>
+</head>
+
+
+<body>
+    <div class="container">
+        <h2> Hóteis </h2>
+        <div id="container-content">
+
+
+        </div>
+    </div>
+</body>
+
+
+</html>

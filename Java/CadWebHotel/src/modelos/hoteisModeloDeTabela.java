@@ -17,7 +17,7 @@ public class hoteisModeloDeTabela extends AbstractTableModel{
     private List<Hoteis> hoteis;
     
     public hoteisModeloDeTabela(List<Hoteis> h) {
-       this.hoteis = h;
+        this.hoteis = h;       
     }
     
     @Override

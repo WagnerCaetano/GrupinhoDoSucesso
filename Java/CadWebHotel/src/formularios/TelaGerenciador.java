@@ -26,6 +26,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 
 /**
  *
@@ -841,20 +842,27 @@ public class TelaGerenciador extends javax.swing.JFrame {
      */
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         try {
+            int sizeCatBusca = txtCategoriaBuscaHotel.getText().length();
+            int sizeCidadeBusca = txtCidadeBuscaHotel.getText().length();
+            int sizeRate1 = txtRatingBusca1.getText().length();
+            int sizeRate2 = txtRatingBusca2.getText().length();
+            int sizeNome = txtNomeBuscaH.getText().length();
+            
             // TODO add your handling code here:
             ResultSet Resultado;
             Connection c = myc.criaConexao();
-            if(txtCategoriaBuscaHotel.getText().length() >0){
+            
+            if(sizeCatBusca >0){
                 Resultado = CRUDTodos.PesquisarHoteisCategoria(txtCategoriaBuscaHotel.getText(), c);
             }
-            else if (txtCidadeBuscaHotel.getText().length() > 0){
+            else if (sizeCidadeBusca > 0){
                 Resultado = CRUDTodos.PesquisarHoteisCidade(txtCidadeBuscaHotel.getText(), c);
             }
-            else if(txtRatingBusca1.getText().length()>0 && txtRatingBusca2.getText().length()>0)
+            else if(sizeRate1>0 && sizeRate2>0)
             {
                 Resultado = CRUDTodos.PesquisarHoteisNota(Integer.parseInt(txtRatingBusca1.getText()), Integer.parseInt(txtRatingBusca2.getText()), c);
             }
-            else if(txtNomeBuscaH.getText().length()>0)
+            else if(sizeNome>0)
             {
                 Resultado = CRUDTodos.PesquisarHoteisNome(txtNomeBuscaH.getText(),c);
             }
@@ -887,7 +895,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private void btnAlterarHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarHotelActionPerformed
         // TODO add your handling code here:
         FormularioAlteracaoHotel teste = new FormularioAlteracaoHotel(HotelIdselected);
-        populaTabelaQuartos();
+        populaTabelaHotel();
         
     }//GEN-LAST:event_btnAlterarHotelActionPerformed
 
@@ -1299,25 +1307,33 @@ public class TelaGerenciador extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if (fotoHotel.length()>0){
-            JPanel foto = new JPanel(){
+            JPanel background= new JPanel(){
             @Override
             protected void paintComponent(Graphics g) {
                     try {
+                        Image t = criarImagem();
                         Graphics2D graphics2d = (Graphics2D) g;
-                        graphics2d.drawImage(criarImagem(), 0, 0, null);
+                        graphics2d.drawImage(t, 0, 0,450,450, null);
                         super.paintComponents(g);
                     } catch (IOException ex) {
                         Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             };
+            JFrame foto = new JFrame("IMAGEM DO HOTEL " + new File(fotoHotel).getName().substring(0, 2));
+            foto.add(background);
+            foto.setVisible(true);
+            foto.setSize(450,450);
+            foto.setLayout(new GridLayout(1,1));
+            foto.setDefaultCloseOperation(HIDE_ON_CLOSE);
+            
         }
         
     }//GEN-LAST:event_btnVisualizarFotoHotelActionPerformed
 
-    public BufferedImage criarImagem() throws IOException
+    public Image criarImagem() throws IOException
     {
-        BufferedImage imgHotel = ImageIO.read(new File(fotoHotel));
+        Image imgHotel = ImageIO.read(new File(fotoHotel));
         return imgHotel;
     }
     
