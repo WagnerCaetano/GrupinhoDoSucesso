@@ -125,6 +125,8 @@ public class TelaGerenciador extends javax.swing.JFrame {
         btnInserirQuartos = new javax.swing.JButton();
         btnAlterarQuartos = new javax.swing.JButton();
         btnApagarQuartos = new javax.swing.JButton();
+        btnQuartoEscolherFoto = new javax.swing.JButton();
+        btnVisualizarFotoQuarto = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         txtQuartosHotelBusca = new javax.swing.JTextField();
         btnPesquisarQuartos = new javax.swing.JButton();
@@ -163,7 +165,6 @@ public class TelaGerenciador extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        btnInserirHotel3 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -444,6 +445,20 @@ public class TelaGerenciador extends javax.swing.JFrame {
             }
         });
 
+        btnQuartoEscolherFoto.setText("Escolher Foto");
+        btnQuartoEscolherFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuartoEscolherFotoActionPerformed(evt);
+            }
+        });
+
+        btnVisualizarFotoQuarto.setText("Visualizar Foto");
+        btnVisualizarFotoQuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarFotoQuartoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -454,7 +469,11 @@ public class TelaGerenciador extends javax.swing.JFrame {
                     .addComponent(btnApagarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInserirQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAlterarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVisualizarFotoQuarto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnQuartoEscolherFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -465,6 +484,12 @@ public class TelaGerenciador extends javax.swing.JFrame {
                 .addComponent(btnAlterarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnApagarQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnQuartoEscolherFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
+                .addComponent(btnVisualizarFotoQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         btnPesquisarQuartos.setText("BUSCAR");
@@ -549,27 +574,27 @@ public class TelaGerenciador extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtPrecoMinQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel10))
-                                        .addGap(35, 35, 35)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtHotelIdQuartos)
-                                            .addComponent(txtNumeroQuartos)
-                                            .addComponent(txtClienteIdQuartos)
-                                            .addComponent(txtPrecoQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 963, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel9)
+                                                    .addComponent(jLabel12)
+                                                    .addComponent(jLabel10))
+                                                .addGap(35, 35, 35)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtHotelIdQuartos)
+                                                    .addComponent(txtNumeroQuartos)
+                                                    .addComponent(txtClienteIdQuartos)
+                                                    .addComponent(txtPrecoQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 963, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(19, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -612,7 +637,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBuscaCategoriaQuarto, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtPrecoMaxQuartos, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -787,20 +812,13 @@ public class TelaGerenciador extends javax.swing.JFrame {
                         .addComponent(btnPesquisarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Categorias", jPanel3);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel13.setText("PAINEL ADMINISTRATIVO DO BANCO DE DADOS");
-
-        btnInserirHotel3.setText("Escolher foto");
-        btnInserirHotel3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInserirHotel3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -814,11 +832,6 @@ public class TelaGerenciador extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(459, 459, 459)
-                    .addComponent(btnInserirHotel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(460, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -827,11 +840,6 @@ public class TelaGerenciador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(363, 363, 363)
-                    .addComponent(btnInserirHotel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(363, Short.MAX_VALUE)))
         );
 
         pack();
@@ -1072,6 +1080,35 @@ public class TelaGerenciador extends javax.swing.JFrame {
 
     private void btnInserirQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirQuartosActionPerformed
         // TODO add your handling code here:
+         Quartos e =null;
+        if(txtClienteIdQuartos.getText().length()>0){
+        e= new Quartos(Integer.parseInt(txtHotelIdQuartos.getText()),Integer.parseInt(txtNumeroQuartos.getText()), Float.parseFloat(txtPrecoQuartos.getText()));
+        if (e.isUsed())
+        {
+            try{
+                Connection c = myc.criaConexao();
+                CRUDTodos.InserirQuartos(e, c);
+                populaTabelaQuartos();
+            } 
+            catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        }
+        else{
+        e = new Quartos(Integer.parseInt(txtHotelIdQuartos.getText()),Integer.parseInt(txtNumeroQuartos.getText()),Integer.parseInt(txtClienteIdQuartos.getText()), Float.parseFloat(txtPrecoQuartos.getText()));
+        if (e.isUsed())
+        {
+            try{
+                Connection c = myc.criaConexao();
+                CRUDTodos.InserirQuartosHospedado(e, c);
+                populaTabelaQuartos();
+            } 
+            catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        }
     }//GEN-LAST:event_btnInserirQuartosActionPerformed
 
     private void populaTabelaQuartos(){
@@ -1158,6 +1195,19 @@ public class TelaGerenciador extends javax.swing.JFrame {
     
     private void btnInserirCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirCatActionPerformed
         // TODO add your handling code here:
+        Categoria e =null;
+        e = new Categoria(txtCategoria.getText(), txtDescricao.getText());
+        if (e.isUsed())
+        {
+            try{
+                Connection c = myc.criaConexao();
+                CRUDTodos.InserirCat(e, c);
+                populaTabelaQuartos();
+            } 
+            catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnInserirCatActionPerformed
 
     private void btnAlterarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarCatActionPerformed
@@ -1281,15 +1331,6 @@ public class TelaGerenciador extends javax.swing.JFrame {
        TabelaCat.setModel(eModelCategoria);
     
     }
-     /***
-     * FIM DAS CATEGORIAS
-     */
-    
-    
-    private void btnInserirHotel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirHotel3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInserirHotel3ActionPerformed
-
     private void btnHotelEscolherFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHotelEscolherFotoActionPerformed
         // TODO add your handling code here:
         JPanel painel = new JPanel();
@@ -1311,7 +1352,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                     try {
-                        Image t = criarImagem();
+                        Image t = criarImagem(fotoHotel);
                         Graphics2D graphics2d = (Graphics2D) g;
                         graphics2d.drawImage(t, 0, 0,450,450, null);
                         super.paintComponents(g);
@@ -1331,14 +1372,49 @@ public class TelaGerenciador extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnVisualizarFotoHotelActionPerformed
 
-    public Image criarImagem() throws IOException
+    private void btnQuartoEscolherFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuartoEscolherFotoActionPerformed
+        // TODO add your handling code here:
+        JPanel painel = new JPanel();
+        JFileChooser escolher = new JFileChooser();
+        painel.add(escolher);
+        escolher.showOpenDialog(painel);
+        if(escolher.getSelectedFile() != null){
+            String path = escolher.getSelectedFile().getPath();
+            fotoQuarto = path;
+        }
+    }//GEN-LAST:event_btnQuartoEscolherFotoActionPerformed
+
+    private void btnVisualizarFotoQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarFotoQuartoActionPerformed
+        // TODO add your handling code here:
+        if (fotoQuarto.length()>0){
+            JPanel background= new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                    try {
+                        Image t = criarImagem(fotoQuarto);
+                        Graphics2D graphics2d = (Graphics2D) g;
+                        graphics2d.drawImage(t, 0, 0,450,450, null);
+                        super.paintComponents(g);
+                    } catch (IOException ex) {
+                        Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+            JFrame foto = new JFrame("IMAGEM DO QUARTO " + new File(fotoQuarto).getName().substring(0, 2));
+            foto.add(background);
+            foto.setVisible(true);
+            foto.setSize(450,450);
+            foto.setLayout(new GridLayout(1,1));
+            foto.setDefaultCloseOperation(HIDE_ON_CLOSE);
+            
+        }
+    }//GEN-LAST:event_btnVisualizarFotoQuartoActionPerformed
+
+    public Image criarImagem(String path) throws IOException
     {
-        Image imgHotel = ImageIO.read(new File(fotoHotel));
+        Image imgHotel = ImageIO.read(new File(path));
         return imgHotel;
     }
-    
-   
-    
     
     /**
      * @param args the command line arguments
@@ -1388,11 +1464,12 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private javax.swing.JButton btnHotelEscolherFoto;
     private javax.swing.JButton btnInserirCat;
     private javax.swing.JButton btnInserirHotel;
-    private javax.swing.JButton btnInserirHotel3;
     private javax.swing.JButton btnInserirQuartos;
     private javax.swing.JButton btnPesquisarCat;
     private javax.swing.JButton btnPesquisarQuartos;
+    private javax.swing.JButton btnQuartoEscolherFoto;
     private javax.swing.JButton btnVisualizarFotoHotel;
+    private javax.swing.JButton btnVisualizarFotoQuarto;
     private javax.swing.JButton jButton14;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;

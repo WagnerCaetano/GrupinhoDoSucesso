@@ -55,13 +55,6 @@
               <Component id="jLabel13" min="-2" pref="842" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="459" max="-2" attributes="0"/>
-                  <Component id="btnInserirHotel3" min="-2" pref="104" max="-2" attributes="0"/>
-                  <EmptySpace pref="460" max="32767" attributes="0"/>
-              </Group>
-          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -71,13 +64,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTabbedPane1" min="-2" pref="714" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="363" max="-2" attributes="0"/>
-                  <Component id="btnInserirHotel3" min="-2" pref="49" max="-2" attributes="0"/>
-                  <EmptySpace pref="363" max="32767" attributes="0"/>
-              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -510,32 +496,33 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="txtPrecoMinQuartos" min="-2" pref="168" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="txtHotelIdQuartos" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtNumeroQuartos" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtClienteIdQuartos" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtPrecoQuartos" alignment="0" min="-2" pref="320" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jScrollPane1" alignment="0" pref="965" max="32767" attributes="0"/>
-                                      <Component id="jSeparator2" alignment="0" min="-2" pref="963" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="txtHotelIdQuartos" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="txtNumeroQuartos" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="txtClienteIdQuartos" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="txtPrecoQuartos" alignment="0" min="-2" pref="320" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jPanel2" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="jSeparator2" alignment="0" min="-2" pref="963" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <EmptySpace pref="19" max="32767" attributes="0"/>
@@ -595,7 +582,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel7" alignment="1" pref="46" max="32767" attributes="0"/>
+                          <Component id="jLabel7" alignment="1" pref="45" max="32767" attributes="0"/>
                           <Component id="jLabel8" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtBuscaCategoriaQuarto" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtPrecoMaxQuartos" alignment="1" max="32767" attributes="0"/>
@@ -638,7 +625,12 @@
                               <Component id="btnInserirQuartos" min="-2" pref="120" max="-2" attributes="0"/>
                               <Component id="btnAlterarQuartos" min="-2" pref="120" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="14" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnVisualizarFotoQuarto" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
+                              <Component id="btnQuartoEscolherFoto" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -651,6 +643,13 @@
                           <Component id="btnAlterarQuartos" min="-2" pref="60" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnApagarQuartos" min="-2" pref="60" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnQuartoEscolherFoto" min="-2" pref="49" max="-2" attributes="0"/>
+                          <EmptySpace min="96" pref="96" max="-2" attributes="0"/>
+                          <Component id="btnVisualizarFotoQuarto" min="-2" pref="49" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -678,6 +677,22 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnApagarQuartosActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnQuartoEscolherFoto">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Escolher Foto"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQuartoEscolherFotoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnVisualizarFotoQuarto">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Visualizar Foto"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarFotoQuartoActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1068,14 +1083,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="PAINEL ADMINISTRATIVO DO BANCO DE DADOS"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnInserirHotel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Escolher foto"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInserirHotel3ActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

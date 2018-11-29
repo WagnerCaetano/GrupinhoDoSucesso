@@ -17,8 +17,11 @@ public class Quartos {
     public int getQuartoID() {
         return QuartoID;
     }
-    public boolean isUsed(){
-        return (QuartoID > 0 && hotelId > 0 && numeroQuarto > 0 && id_Cliente >0 && preco > 0 && ocupado > 0 );
+    public boolean isUsedInserted(){
+        return (hotelId > 0 && numeroQuarto > 0 && id_Cliente >0 && preco > 0);
+    }
+     public boolean isUsed(){
+        return (hotelId > 0 && numeroQuarto > 0 && preco > 0);
     }
 
     public void setQuartoID(int QuartoID) {

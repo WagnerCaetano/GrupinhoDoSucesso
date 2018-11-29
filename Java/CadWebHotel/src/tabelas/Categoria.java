@@ -13,6 +13,11 @@ public class Categoria {
     private String NomeC;
     private String Descricao;
     
+    public boolean isUsed()
+    {
+        return (NomeC.length()>0 && Descricao.length()>0);
+    }
+    
     public Categoria(String Nome,String Descricao){ setNomeC(Nome); setDescricao(Descricao);}
     
     public void setDescricao(String Descricao){this.Descricao = Descricao;}
