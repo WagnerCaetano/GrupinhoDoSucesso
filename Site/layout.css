@@ -66,7 +66,6 @@ ul li{
     font-family: TheLightFont;
     font-weight: 700;
 }
-}
 ul li a {
     text-decoration: none;
     color:white;
@@ -85,7 +84,7 @@ ul li ul{
     widows: 100%;
     display:none;
     background-color:#ffe488;
-    margin:0px;
+    margin:0px; 
 }
 ul li:hover ul, ul li:hover ul {display:block;
     margin:0px;}
@@ -210,4 +209,87 @@ input#botoes{
     font-family: TheLightFont;
     font-weight: 700;
     margin-top: 10px;
+}
+#quadroHoteis{
+    width: 60em;
+    height: auto;
+    position: absolute;
+    background-color: rgba(255, 226, 65, 0.6);
+    left:13.5%;
+    padding: 1em;
+    border-radius: 10px 10px 0 0;
+}
+div#quadroHoteis img{
+    width: 15em;
+    position: relative;
+    float: left;
+}
+#nomeHotel{
+    position: relative;
+    float: left;
+    left: 8em;
+    font-style: oblique
+}
+#enderecoHotel{
+    position: relative;
+    float: left;
+    top:3em;
+    left: -8em;
+}
+#descricaoHotel{
+    position: relative;
+    float: left;
+    top:6em;
+    left: -17em;
+    font-style: italic;
+    max-width: 400px;
+}
+#preco{
+    position: relative;
+    float: right;
+    color: #017804;
+    top:200px;
+    margin-right: 1em;
+    font-size: 30px;
+}
+#comprar{
+    position: relative;
+    float: right;;
+    width:20%;
+    height:40px;
+    background-color:black;
+    color:white;
+    opacity:0.8;
+/*    line-height:40px;*/
+    text-align: center;
+    font-size: 20px;
+/*    margin:3px;*/
+/*    display: inline-block;*/
+    font-family: TheLightFont;
+    font-weight: 700;
+    top:230px;
+    right: -100px;
+}
+#quadroQuartos
+{
+    position: absolute;
+    width: 60.4em;
+    height: auto;
+    top: 31em;
+    position: absolute;
+    background-color:rgba(255, 226, 65, 0.6);
+    left:13.5%;
+    padding: 5px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 17px;
+}
+#quartos{
+    position: relative;
+    width: 13em;
+    height: 8em;
+    margin: 0 30px 0 30px;
+    left: 70px;
+    display: inline;
 }
