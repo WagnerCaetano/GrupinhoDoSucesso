@@ -9,15 +9,16 @@
     <link rel="stylesheet" type="text/css" media="screen" href="teste2.css" />
     <script>
 
-    var url = "http://localhost:54000/hoteis";
+    var url = "http://localhost:54000/hoteis/";
     $(document).ready(function(){
-        if (    $("#HotelId").val()) {
+        $("#btnEnviar").click(function(){
+        if (  $("#HotelId").val()) {
             var HotelId = $("#HotelId").val();
         }
         else {
             var HotelId = '';
         }
-        $.getJSON(url, function(result){
+        $.getJSON(url+HotelId, function(result){
             var out="";
         var arr = result;
         for(var i = 0; i < arr.length; i++) {
@@ -34,6 +35,7 @@
             "</div><br>";
         }
         document.getElementById("container-content").innerHTML = out;
+            });
         });
     });
     
@@ -42,8 +44,12 @@
 
 
 <body>
+    <form >
+        Id Hotel:<input type="text" id="HotelId">
+        <input type="button" id="btnEnviar" value="Buscar"><br><br>
+    </form>
+    
     <div class="container">
-        <h2> Hóteis </h2>
         <div id="container-content">
 
 

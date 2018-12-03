@@ -119,7 +119,6 @@ data datetime not null default(getDATE())
 )
 go
 
-
 /*INSERTS*/
 
 insert into WCidadeHoteis(City_Name,State_Name) values ('Campinas','SP'),('São Paulo','SP'),('Sorocaba','SP'),
