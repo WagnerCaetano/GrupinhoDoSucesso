@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="layout.css">
+    <title>Gold Booking</title>
+    <script>  
+        var url = "http://localhost:54000/hoteis/";
+
+        function onLoad()
+        {$(document).ready(function(){
+            var cidade ='Osório';
+                
+            $.getJSON(url+"none/0/"+cidade+"/none", function(result){
+                var out="";
+            var arr = result;
+            for(var i = 0; i < arr.length; i++) {
+    
+                 out+= "<a href='paginaHoteis.html'><div id='listagem'><br>"+ 
+                "<center><br>"+
+                "<p id='listagemHotelNome'>"+arr[i].HotelName +"</p><br>"+
+                "<p id='listagemCat'> Categoria: "+arr[i].Category+"</p><br>"+
+                "<img id='listagemFoto' src='"+arr[i].fotoH+"' width=300 height=300><br>"+
+                "<p id='listagemNota'> Nota: "+arr[i].Rating +"</p><br>"+
+                "<p id='listagemRua'> Rua: "+arr[i].Street +"</p><br>"+
+                "<p id='listagemCidade' Cidade> Cidade: "+arr[i].City +"</p><br>"+
+                "</center>"+
+                "</div></a><br>";
+            }
+            document.getElementById("container-content").innerHTML = out;
+                });
+            });
+        }
+        
+        </script>
+</head>
+<body onload="onLoad()">
+    <nav>
+        <input id="cads" type="button" value="Cadastrar-se" name="btn_cadastrar">
+        <input id="login" type="button" value="Login" name="btn_login">
+    <div id="menu">
+    <ul>
+    <li><a>Hoteis</a>
+        <ul>
+            <li><a href="principal.html">Principais</a></li>
+            <li><a href="litoraneo.html">Litorâneos</a></li>
+            <li><a href="baratos.html">Mais baratos</a></li>
+        </ul>
+    <li><a href="pesquisa.html">Pesquisar</a></li>
+    <li><a>Cidades</a>
+        <ul>
+            <li><a href="/cidades/São Paulo.html">São Paulo</a></li>
+            <li><a href="/cidades/Campinas.html">Campinas</a></li>
+            <li><a href="/cidades/Sorocaba.html">Sorocaba</a></li>
+            <li><a href="/cidades/Porto Alegre.html">Porto Alegre</a></li>
+            <li><a href="/cidades/Osório.html">Osório</a></li>
+            <li><a href="/cidades/Gramado.html">Gramado</a></li>
+            <li><a href="/cidades/Rio de Janeiro.html">Rio de Janeiro</a></li>
+            <li><a href="/cidades/Niterói.html">Niterói</a></li>
+            <li><a href="/cidades/Nova Friburgo.html">Nova Friburgo</a></li>
+            </ul>
+        </li>
+    <li><a>Contato</a></li>
+    </ul>
+    </div>
+    </nav>
+    <section>        
+        <div id="container">
+                <div id="container-content">
+        
+        
+                </div>
+            </div>
+    </section>
+    
+</body>
+</html>

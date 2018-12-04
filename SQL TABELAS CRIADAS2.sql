@@ -91,6 +91,7 @@ fotoQ varchar(100) not null,
 constraint fk_hotelId foreign key (hotelid) references WHotel(Hotelid),
 constraint fk_clienteid foreign key(id_cliente) references WClienteHoteis(id_Cliente)
 )
+
 go
 create table WCarrinho(
 id_Cliente int primary key,
@@ -267,6 +268,24 @@ begin
 			end
 		end
 end
+SET NOCOUNT ON;
+
+create proc sp_preco 
+as begin
+IF NOT EXISTS (SELECT name FROM tempdb.sys.objects WHERE name LIKE N'##MinPreco[_]%')
+			begin
+				SELECT min(preco)'preco' into ##MinPreco FROM WQuarto group by preco
+			end
+			select 'FUNCIONOU'
+end
+
+drop proc sp_preco
+
+exec sp_preco
+go
+select * from Whotel where Hotelname in (select distinct (HotelName) from WHotel,WQuarto where WHotel.HotelId = WQuarto.HotelId and preco in( select top 5 preco from ##MinPreco))
+	
+
 
 exec sp_catalogo null,null
 

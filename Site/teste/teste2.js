@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 // permite acesso do javascript no servidor local do node
 
+// definindo estrategia
 /*
         ESQUEMA DE CONVERSA SERVIDOR -- NODE -- LOCALHOST -- JAVASCRIPT
 
@@ -47,8 +48,14 @@ function execSQL(sql, resposta) {
     .then(resultado => resposta.json(resultado.recordset))
     .catch(erro => resposta.json(erro));
     }
-    
-    
+    rota.get('/cheap/S', (requisicao, resposta) =>{
+        execSQL('exec sp_preco ', resposta);
+        })
+
+    rota.get('/cheap/R',(requisicao,resposta) =>{
+        execSQL('select * from Whotel where Hotelname in (select distinct (HotelName) from WHotel,WQuarto where WHotel.HotelId = WQuarto.HotelId and preco in( select top 5 preco from ##MinPreco))',resposta);
+    })
+
     // DEFINE O QUE VAI SER MOSTRADO NA 'localhost:54000/clientes'
     rota.get('/hoteis/', (requisicao, resposta) =>{
     execSQL('SELECT * FROM WHotel', resposta);
