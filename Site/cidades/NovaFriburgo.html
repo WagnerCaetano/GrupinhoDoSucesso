@@ -6,18 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" media="screen" href="layout.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../layout.css">
     <title>Gold Booking</title>
     <script>  
-        var url = "http://localhost:54000/cheap/";
+        var url = "http://localhost:54000/hoteis/";
 
         function onLoad()
         {$(document).ready(function(){
-            var categoria = 'Litoraneo';
+            var cidade ='Nova Friburgo';
                 
-            $.getJSON(url+'S',function(result){});
-
-            $.getJSON(url+'R', function(result){
+            $.getJSON(url+"none/0/"+cidade+"/none", function(result){
                 var out="";
             var arr = result;
             for(var i = 0; i < arr.length; i++) {
@@ -42,29 +40,29 @@
 </head>
 <body onload="onLoad()">
     <nav>
-        <a href="../index.html"><img src="../Fotos/logo.png" id="logo"></a>
+        <a href="../index.html"><img src="../../Fotos/logo.png" id="logo"></a>
         <a href="../cadastro.html"><input id="cads" type="button" value="Cadastrar-se" name="btn_cadastrar"></a>
         <a href="../login.html"><input id="login" type="button" value="Login" name="btn_login"></a>
     <div id="menu">
     <ul>
     <li><a>Hoteis</a>
         <ul>
-            <li><a href="principal.html">Principais</a></li>
-            <li><a href="litoraneo.html">Litorâneos</a></li>
-            <li><a href="baratos.html">Mais baratos</a></li>
-        </ul>
-    <li><a href="pesquisa.html">Pesquisar</a></li>
+                <li><a href="../principal.html">Principais</a></li>
+                <li><a href="../litoraneo.html">Litorâneos</a></li>
+                <li><a href="../baratos.html">Mais baratos</a></li>
+            </ul>
+        <li><a href="../pesquisa.html">Pesquisar</a></li>
     <li><a>Cidades</a>
         <ul>
-            <li><a href="./cidades/SaoPaulo.html">São Paulo</a></li>
-                <li><a href="./cidades/Campinas.html">Campinas</a></li>
-                <li><a href="./cidades/Sorocaba.html">Sorocaba</a></li>
-                <li><a href="./cidades/PortoAlegre.html">Porto Alegre</a></li>
-                <li><a href="./cidades/Osorio.html">Osório</a></li>
-                <li><a href="./cidades/Gramado.html">Gramado</a></li>
-                <li><a href="./cidades/RiodeJaneiro.html">Rio de Janeiro</a></li>
-                <li><a href="./cidades/Niteroi.html">Niterói</a></li>
-                <li><a href="./cidades/NovaFriburgo.html">Nova Friburgo</a></li>
+            <li><a href="São Paulo.html">São Paulo</a></li>
+            <li><a href="Campinas.html">Campinas</a></li>
+            <li><a href="Sorocaba.html">Sorocaba</a></li>
+            <li><a href="Porto Alegre.html">Porto Alegre</a></li>
+            <li><a href="Osório.html">Osório</a></li>
+            <li><a href="Gramado.html">Gramado</a></li>
+            <li><a href="Rio de Janeiro.html">Rio de Janeiro</a></li>
+            <li><a href="Niterói.html">Niterói</a></li>
+            <li><a href="Nova Friburgo.html">Nova Friburgo</a></li>
             </ul>
         </li>
     <li><a>Contato</a></li>
