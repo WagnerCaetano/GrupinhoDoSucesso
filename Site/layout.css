@@ -3,8 +3,9 @@
 body{
     background: url(../fotos/pontadosganchos-2.png) no-repeat;
     background-size:cover;
+    background-color: rgb(255, 255, 255);
     font-family: Arial;
-    width: 99.38%
+    width: 99.38%;
 }
 /*.tudo{
     width: 100%;
@@ -154,7 +155,7 @@ input#btnBuscar{
     background-color: aqua;
 }*/
 div#listagem{
-    border: ridge 1px rgba(0, 0, 0, 0.6);
+    border: ridge 1px rgba(109, 118, 128, 0.6);
     align-content: center;
     letter-spacing: 0px;
     line-height: 0px;
@@ -165,7 +166,7 @@ div#listagem{
     margin:10px;
     border-radius: 7%;  
     box-shadow: 0px 1px 10px black;
-    background-color:rgb(196, 201, 209,0.6)
+    background-color:rgb(163, 211, 203,0.3)
 }
 a{
     text-decoration: none;
@@ -193,12 +194,26 @@ div#container-content{
     display:flex;
     flex-direction:row;
     flex-wrap: wrap;
+    position: relative;
+    left:35px;
+    top: 0px;
+}
+p#Resultado{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 34px;
+    font-weight: 400;
+    font-style: oblique;
+    color:black;
 }
 div#container{
     position: absolute;
     width:70%;
     left:14%;
     top:35%;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 20px black;
+    border : solid 1px black;
+    border-radius: 2%;
 }
 div#cadastro{
     position:relative;
