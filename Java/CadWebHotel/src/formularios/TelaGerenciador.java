@@ -1146,6 +1146,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private void populaSelecionadoQuartos(ResultSet dados) throws SQLException
     {
         dados.next();
+        fotoQuarto = dados.getString("fotoQ");
         QuartoIdselected = dados.getInt("id_quarto");
         txtHotelIdQuartos.setText(dados.getInt("hotelid")+"");
         txtNumeroQuartos.setText(dados.getInt("numeroQuarto")+"");
