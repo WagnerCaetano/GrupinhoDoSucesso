@@ -71,7 +71,7 @@ public class CRUDTodos {
      */
     
     public static void InserirHoteis(Hoteis H,Connection C) throws SQLException{
-    /*if (H.isUsed()){*/
+    if (H.isUsed()){
         String StrSQL = "INSERT INTO WHotel(Category,HotelName,Rating,Street,City,fotoH) VALUES(?,?,?,?,?,?)";
         
         PreparedStatement ps = C.prepareStatement(StrSQL);
@@ -82,10 +82,10 @@ public class CRUDTodos {
         ps.setString(5, H.getCidade());
         ps.setString(6, H.getFoto());
         
-        ps.execute();/*}*/
+        ps.execute();}
     }
     public static void AlterarHoteis(Hoteis H,int Hid,Connection C) throws SQLException{
-    /*if (H.isUsed()){*/
+    if (H.isUsed()){
         String StrSQL = "UPDATE WHotel set Category=?,HotelName=?,Rating=?,Street=?,City=?,Fotoh=? where HotelId=?";
         
         System.out.println(""+H.getFoto());
@@ -101,7 +101,7 @@ public class CRUDTodos {
         
         ps.execute();}
 
-       /*}*/
+       }
     public static void DeletarHoteis(int Id,Connection C) throws SQLException{
         String StrSQL = "DELETE FROM WHotel WHERE HotelId=?";
         
