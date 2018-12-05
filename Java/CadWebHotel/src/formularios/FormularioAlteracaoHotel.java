@@ -86,7 +86,9 @@ public class FormularioAlteracaoHotel extends JFrame{
                 try{
                     BDConexao b = new BDConexao();
                     Connection c = b.criaConexao();
-                    CRUDTodos.AlterarHoteis(new Hoteis(catHotelT.getText(),nHotelT.getText(),Double.parseDouble(rateHotelT.getText()),ruaHotelT.getText(),cidadeHotelT.getText(),path),IdHotel, c);
+                    System.out.println(path);
+                    Hoteis d = new Hoteis(catHotelT.getText(),nHotelT.getText(),Double.parseDouble(rateHotelT.getText()),ruaHotelT.getText(),cidadeHotelT.getText(),path);
+                    CRUDTodos.AlterarHoteis(d,IdHotel, c);
                 }
                 catch(SQLException | ClassNotFoundException ex){
                     Logger.getLogger(FormularioAlteracaoHotel.class.getName()).log(Level.SEVERE, null, ex);
@@ -111,6 +113,7 @@ public class FormularioAlteracaoHotel extends JFrame{
                 escolher.showOpenDialog(painel);
                 if(escolher.getSelectedFile() != null){
                 path = escolher.getSelectedFile().getPath();
+
                 }
             }
         });

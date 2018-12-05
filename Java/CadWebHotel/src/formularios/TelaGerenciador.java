@@ -922,8 +922,8 @@ public class TelaGerenciador extends javax.swing.JFrame {
     private void btnInserirHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirHotelActionPerformed
         // TODO add your handling code here:
         Hoteis e = new Hoteis(txtCategoriaH.getText(), txtHotelNome.getText(), Integer.parseInt(txtRating.getText()), txtRua.getText(), txtCidade.getText(),fotoHotel);
-        if (e.isUsed())
-        {
+        /*if (e.isUsed())
+        {*/
             try{
                 Connection c = myc.criaConexao();
                 CRUDTodos.InserirHoteis(e, c);
@@ -932,7 +932,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
             catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(TelaGerenciador.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        /*}*/
     }//GEN-LAST:event_btnInserirHotelActionPerformed
 
     private void populaTabelaHotel(){
@@ -1368,6 +1368,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
             foto.setSize(450,450);
             foto.setLayout(new GridLayout(1,1));
             foto.setDefaultCloseOperation(HIDE_ON_CLOSE);
+            System.out.println(""+fotoHotel);
             
         }
         
@@ -1413,6 +1414,7 @@ public class TelaGerenciador extends javax.swing.JFrame {
 
     public Image criarImagem(String path) throws IOException
     {
+        System.out.println(""+path);
         Image imgHotel = ImageIO.read(new File(path));
         return imgHotel;
     }
