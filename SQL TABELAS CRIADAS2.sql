@@ -73,9 +73,9 @@ firstname VARCHAR (40) NOT NULL,
 lastname varchar(40) not null,
 pw VARCHAR(12) not null,
 email varchar(70) not null,
-cpf varchar(9) not null,
+cpf varchar(11) not null,
 cep VARCHAR(5) not null,
-address CHAR(40) NOT NULL,
+endereco varchar(40) NOT NULL,
 clicity varchar(50) not null,
 )
 go

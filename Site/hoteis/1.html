@@ -20,11 +20,11 @@
             var arr = result;
             for(var i = 0; i < arr.length; i++) {
                 out+="<div id='listagemQ'><img id='listagemFotoQ' src='"+arr[i].fotoQ+"' width=200 height=200 ><br>"+
-                "Número do Quarto: <p id='numQ'>"+arr[i].numeroQuarto+"</p>"+
-                "Preço: <p id = 'precoQ'>"+arr[i].preco+"</p>"+
-                "<input type=button id='hospedar' value='Hospedar'></div>";
+                " <p id='numQ'>Numero do Quarto: "+arr[i].numeroQuarto+"</p>"+
+                " <p id = 'precoQ'>Preço:"+arr[i].preco+"</p>"+
+                "<input type=button id='comprar' value='Hospedar'></div>";
             }
-            document.getElementById("container-content").innerHTML = out;
+            document.getElementById("quartos-content").innerHTML = out;
                 });
             });
         }
@@ -69,18 +69,16 @@
         <h2 id="nomeHotel">Mc Camly Plaza Hotel</h2>
         <h4 id="enderecoHotel">Rua João Felipe Xavier da Silva, Campinas</h4>
         <p id="descricaoHotel">Um hotel de luxo para você e sua famlia aproveitarem seu tempo no maior conforto!</p>
-        <h3 id="preco">253.59</h3>
-        <input type="button" id="comprar" value="Comprar!">
-    </div>
-    <div id="quadroQuartos">
-        <h2>Principais quartos:</h2>
+
+        
         <div id="quartos-conteiner">
-            <div id="container-content">
+                <h2>Principais quartos:</h2>
+                <div id="quartos-content">
 
 
-            </div>
+                </div>
         </div>
-    </div>
+    
     
 </body>
 </html>

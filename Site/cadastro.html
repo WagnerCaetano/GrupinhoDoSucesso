@@ -39,25 +39,23 @@
     </nav>
     <section>
             <div id="cadastro">
-                <h2>Casdastro</h2>
-                <form>
+                <h2>Cadastro</h2>
+                <form action="http://localhost:54000/clientes/inserir" method="POST">
                     <table id="cadastro" cellspacing="25px">
-                        <tr><td>Nome:</td><td><input type="text" size="30" maxlength="30"></td></tr>
-                        <tr><td>Sobrenome:</td><td><input type="text" size="30" maxlength="40"></td></tr>
-                        <tr><td>Email:</td><td><input type="email" size="50"></td></tr>
-                        <tr><td>Senha:</td><td><input type="password" size="30" maxlength="40"></td></tr>
-                        <tr><td>CPF:</td><td><input type="text" size="11" maxlength="11"></td></tr>
-                        <tr><td>CEP:</td><td><input type="text" size="8" maxlength="8"></td></tr>
-                        <tr><td>Endereço:</td><td><input type="text" size="50" maxlength="50"></td></tr>
-                        <tr><td>Cidade:</td><td><input type="text" size="20" maxlength="20"></td></tr>
+                        <tr><td>Nome:</td><td><input type="text" name="nome" size="30" maxlength="30"></td></tr>
+                        <tr><td>Sobrenome:</td><td><input type="text" name="sobrenome" size="30" maxlength="40"></td></tr>
+                        <tr><td>Email:</td><td><input type="email" name="email" size="50"></td></tr>
+                        <tr><td>Senha:</td><td><input type="password" name="senha" size="30" maxlength="40"></td></tr>
+                        <tr><td>CPF:</td><td><input type="text" name="cpf" size="11" maxlength="11"></td></tr>
+                        <tr><td>CEP:</td><td><input type="text" name="cep" size="8" maxlength="8"></td></tr>
+                        <tr><td>Endereço:</td><td><input type="text" name="rua" size="50" maxlength="50"></td></tr>
+                        <tr><td>Cidade:</td><td><input type="text" name="cidade" size="20" maxlength="20"></td></tr>
                     </table>
-                    <center>
                     <div class="g-recaptcha" data-sitekey="6LdMT3wUAAAAACGKjJwKTI2cstmbwxjEd_l38f84"></div></center>
-                    <input type="button" value="Cadastrar" id="botoes"> 
+                    <input type="submit" value="Cadastrar" id="botoes"> 
                     <input type="button" value="Cancelar" id="botoes">
           
                 </form>
-                <script src='https://www.google.com/recaptcha/api.js?render=6LdMT3wUAAAAAIlSiB7gzoRXcT_3u9hDCnfTyVtg'></script>
             </div>
     </section>
 </body>

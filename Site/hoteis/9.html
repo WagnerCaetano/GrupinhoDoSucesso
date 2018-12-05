@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../layout.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="../layout.css">
+        <script>
+            var url = "http://localhost:54000/quartos/hotel/";
+    
+            var path = window.location.pathname;
+            var page = path.split("/").pop();
+            var cod = page.substring(0,1);
+    
+            function onLoad()
+            {$(document).ready(function(){
+                $.getJSON(url+cod, function(result){
+                var out="";
+                var arr = result;
+                for(var i = 0; i < arr.length; i++) {
+                    out+="<div id='listagemQ'><img id='listagemFotoQ' src='"+arr[i].fotoQ+"' width=200 height=200 ><br>"+
+                    " <p id='numQ'>Numero do Quarto: "+arr[i].numeroQuarto+"</p>"+
+                    " <p id = 'precoQ'>Preço:"+arr[i].preco+"</p>"+
+                    "<input type=button id='comprar' value='Hospedar'></div>";
+                }
+                document.getElementById("quartos-content").innerHTML = out;
+                    });
+                });
+            }
+    
+            
+        </script>
     <title>Gold Booking</title>
 </head>
-<body>
+<body onload="onLoad()">
     <nav>
         <a href="../index.html"><img src="../../Fotos/logo.png" id="logo"></a>
         <a href="../cadastro.html"><input id="cads" type="button" value="Cadastrar-se" name="btn_cadastrar"></a>
@@ -43,14 +69,14 @@
         <h2 id="nomeHotel">Home Ridge Inn and Suites</h2>
         <h4 id="enderecoHotel">Rua Monerat,Nova Friburgo</h4>
         <p id="descricaoHotel">Venha conhecer o Home Ridge Inn and Suites, aqui você pode descansar ao máximo com tudo em conta! Chega de ficar só em casa fazendo tudo, nosso serviço de quarto faz por você. No nosso hotel, você tem a preferência!</p>
-        <h3 id="preco">127.90</h3>
-        <input type="button" id="comprar" value="Comprar!">
-    </div>
-    <div id="quadroQuartos">
-        <h2>Principais quartos:</h2>
-        <img src="../../Fotos/fotos_quartos/19.jpg" id="quartos">
-        <img src="../../Fotos/fotos_quartos/20.jpg" id="quartos">
-    </div>
     
+    <div id="quartos-conteiner">
+            <h2>Principais quartos:</h2>
+            <div id="quartos-content">
+
+
+            </div>
+    </div>
+    </div>
 </body>
 </html>

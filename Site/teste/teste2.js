@@ -73,6 +73,38 @@ function execSQL(sql, resposta) {
     execSQL('SELECT * from WHotel ' + filtro, resposta);
     })
 
+    /*
+    
+    rota.post('/clientes', (requisicao, resposta) =>{ 
+        const id = parseInt(requisicao.body.id);
+        const nome = requisicao.body.nome.substring(0,150); 
+        const cpf = requisicao.body.cpf.substring(0,11); 
+        execSQL(`INSERT INTO Clientes(ID, Nome, CPF) VALUES(${id},'${nome}','${cpf}')`, resposta); 
+        resposta.end(resposta.json({ mensagem: 'Incluído!'})); })
+    */ 
+
+
+    //inserindo cliente
+    rota.post('/clientes/inserir', (requisicao, resposta) => {
+        const nome = requisicao.body.nome.substring(0,40); 
+        const sobrenome = requisicao.body.sobrenome.substring(0,40);
+        const email = requisicao.body.email.substring(0,70);
+        const senha = requisicao.body.senha.substring(0,12);
+        const cpf = requisicao.body.cpf.substring(0,11);
+        const cep = requisicao.body.cep.substring(0,5);
+        const rua = requisicao.body.rua.substring(0,40);
+        const cidade = requisicao.body.cidade.substring(0,50);
+        execSQL(`insert into WClienteHoteis values ('${nome}','${sobrenome}','${senha}','${email}','${cpf}','${cep}','${rua}','${cidade}')`, resposta);    
+    })
+    .then(resposta.json({ mensagem: 'Registrado'}))
+    .catch(erro => console.log(erro));
+
+    rota.get('/clientes/', (requisicao,respost) => {
+        execSQL('select * from WClienteHoteis',respost);
+    })
+
+
+    //seleciona os quartos de certo hotel
     rota.get('/quartos/hotel/:idhotel?/' ,(requisicao, resposta) => {
         let filtro = '';
         if (requisicao.params.idhotel !='none')
@@ -80,6 +112,7 @@ function execSQL(sql, resposta) {
         execSQL('select WQuarto.* from WHotel,WQuarto where WQuarto.hotelId = WHotel.HotelId ' + filtro, resposta);
         })
     
+    //busca
     rota.get('/hoteis/:nome?/:rate?/:cidade?/:categoria?', (requisicao, resposta) => {
         let filtro = '';
         if (requisicao.params.nome !='none')
@@ -96,7 +129,6 @@ function execSQL(sql, resposta) {
                 filtro+=' and 1=1';
         if (requisicao.params.categoria != 'none')
             filtro+=' and Category='+"'" + requisicao.params.categoria+"'";
-            console.log(filtro);
         execSQL('SELECT * from WHotel ' + filtro, resposta);
         })
 
