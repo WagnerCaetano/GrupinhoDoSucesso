@@ -72,6 +72,13 @@ function execSQL(sql, resposta) {
         filtro = ' where HotelId=' + parseInt(requisicao.params.id);
     execSQL('SELECT * from WHotel ' + filtro, resposta);
     })
+
+    rota.get('/quartos/hotel/:idhotel?/' ,(requisicao, resposta) => {
+        let filtro = '';
+        if (requisicao.params.idhotel !='none')
+            filtro =" and WQuarto.hotelId= "+requisicao.params.idhotel;
+        execSQL('select WQuarto.* from WHotel,WQuarto where WQuarto.hotelId = WHotel.HotelId ' + filtro, resposta);
+        })
     
     rota.get('/hoteis/:nome?/:rate?/:cidade?/:categoria?', (requisicao, resposta) => {
         let filtro = '';

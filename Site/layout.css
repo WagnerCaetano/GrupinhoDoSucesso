@@ -190,6 +190,23 @@ div#listagem{
     box-shadow: 0px 1px 10px black;
     background-color:rgb(163, 211, 203,0.3)
 }
+div#listagemQ{
+    align-content: center;
+    letter-spacing: 0px;
+    line-height: 0px;
+    position: relative;
+    width: 700px;
+    height: 200px;
+    background-color: black;
+    float: left;    
+    margin:10px;
+}
+div#listagemFotoQ{
+    border:solid 1px black;
+    border-radius: 1%;
+    image-rendering: optimizeQuality;
+}
+
 a{
     text-decoration: none;
 }
@@ -213,9 +230,8 @@ p#listagemCat{
     font-weight: bolder;
 }
 div#container-content{
-    display:flex;
-    flex-direction:row;
-    flex-wrap: wrap;
+    display:flow-root;
+    flex-flow: row;
     position: relative;
     left:35px;
     top: 0px;
@@ -236,6 +252,12 @@ div#container{
     box-shadow: 0px 0px 20px black;
     border : solid 1px black;
     border-radius: 2%;
+}
+div#quartos-conteiner{
+    position: absolute;
+    width:80%;
+    left:7%;
+    top:80%;
 }
 div#cadastro{
     position:relative;
@@ -349,8 +371,8 @@ input#botoes{
 #quadroQuartos
 {
     position: absolute;
-    width: 60.4em;
-    height: auto;
+    width:60.4em;
+    height:fit-content;
     top: 31em;
     position: absolute;
     background-color:rgba(255, 226, 65, 0.6);
