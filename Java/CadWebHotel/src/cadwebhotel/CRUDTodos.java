@@ -88,6 +88,8 @@ public class CRUDTodos {
     if (H.isUsed()){
         String StrSQL = "UPDATE WHotel set Category=?,HotelName=?,Rating=?,Street=?,City=?,Fotoh=? where HotelId=?";
         
+        System.out.println(""+H.getFoto());
+        
         PreparedStatement ps = C.prepareStatement(StrSQL);
         ps.setString(1, H.getCategoria());
         ps.setString(2, H.getNome_hotel());
