@@ -196,7 +196,7 @@ public class CRUDTodos {
         PreparedStatement ps = C.prepareStatement(StrSQL);
         ps.setInt(1, Q.getHotelId());
         ps.setInt(2, Q.getNumeroQuarto());
-        ps.setDouble(3, Q.getPreco());
+        ps.setFloat(3, Q.getPreco());
         ps.setInt(4, idquarto);
         
         ps.execute();}
