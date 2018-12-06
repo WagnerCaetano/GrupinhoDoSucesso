@@ -13,19 +13,52 @@
         var page = path.split("/").pop();
         var cod = page.substring(0,1);
 
+        alert (sessionStorage.getItem("logado"));
+
+function sair()
+{
+    sessionStorage.setItem("logado",false);
+    sessionStorage.setItem("id",null);
+    location.reload();
+}
+
+        function comprar(preco1,idquarto,id_Cliente)
+        {
+            var url1 = "http://localhost:5400/carrinho/inserir/";
+            $.post( url1, { cliente: ""+id_Cliente, quarto: ""+idquarto , preco: ""+preco1} );
+        }
+
         function onLoad()
         {$(document).ready(function(){
             $.getJSON(url+cod, function(result){
             var out="";
+            var param="";
             var arr = result;
             for(var i = 0; i < arr.length; i++) {
+                if(sessionStorage.getItem("logado") == true)
+                {
+                    param = arr[i].preco+","+arr[i].id_quarto+","+sessionStorage.getItem("id");
+                }
                 out+="<div id='listagemQ'><img id='listagemFotoQ' src='"+arr[i].fotoQ+"' width=200 height=200 ><br>"+
                 " <p id='numQ'>Numero do Quarto: "+arr[i].numeroQuarto+"</p>"+
                 " <p id = 'precoQ'>Preço:"+arr[i].preco+"</p>"+
-                "<input type=button id='comprar' value='Hospedar'></div>";
+                "<input type=button onclick='comprar("+param+")' id='comprar' value='Hospedar'></div>";
             }
             document.getElementById("quartos-content").innerHTML = out;
                 });
+                if(sessionStorage.getItem("logado") == "true")
+            {
+                document.getElementById('cads').style.display = "none";
+                document.getElementById('login').style.display= "none";
+                document.getElementById('carrinho1').style.display="block";
+                document.getElementById('logout').style.display="block";
+            }  
+            else{
+                document.getElementById('cads').style.display = "block";
+                document.getElementById('login').style.display= "block";
+                document.getElementById('carrinho1').style.display="none";
+                document.getElementById('logout').style.display="none";
+            } 
             });
         }
 
@@ -35,9 +68,11 @@
 </head>
 <body onload="onLoad()">
     <nav>
-        <a href="../index.html"><img src="../../Fotos/logo.png" id="logo"></a>
-        <a href="../cadastro.html"><input id="cads" type="button" value="Cadastrar-se" name="btn_cadastrar"></a>
-        <a href="../login.html"><input id="login" type="button" value="Login" name="btn_login"></a>
+            <a href="../pesquisa.html" ><img src="../Fotos/logo.png" id="logo"></a>
+            <a href="../cadastro.html" id="cads"><input id="cads" type="button" value="Cadastrar-se" name="btn_cadastrar"></a>
+            <a href="../login.html" id="login"><input id="login" type="button" value="Login" name="btn_login"></a>
+            <a href="../carrinho.html" id="carrinho1"><input id="carrinho1" type="button" value="Carrinho" name="btn_carrinho"></a>
+            <input id="logout" type="button" value="Sair" name="btn_logout" onclick="sair()">
     <div id="menu">
     <ul>
     <li><a>Hoteis</a>

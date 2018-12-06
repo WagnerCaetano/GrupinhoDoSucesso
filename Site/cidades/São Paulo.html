@@ -11,6 +11,15 @@
     <script>  
         var url = "http://localhost:54000/hoteis/";
 
+        alert (sessionStorage.getItem("logado"));
+
+function sair()
+{
+    sessionStorage.setItem("logado",false);
+    sessionStorage.setItem("id",null);
+    location.reload();
+}
+
         function onLoad()
         {$(document).ready(function(){
             var cidade ='São Paulo';
@@ -33,6 +42,21 @@
             }
             document.getElementById("container-content").innerHTML = out;
                 });
+
+            if(sessionStorage.getItem("logado") == "true")
+            {
+                document.getElementById('cads').style.display = "none";
+                document.getElementById('login').style.display= "none";
+                document.getElementById('carrinho1').style.display="block";
+                document.getElementById('logout').style.display="block";
+            }  
+            else{
+                document.getElementById('cads').style.display = "block";
+                document.getElementById('login').style.display= "block";
+                document.getElementById('carrinho1').style.display="none";
+                document.getElementById('logout').style.display="none";
+            } 
+
             });
         }
         
@@ -40,8 +64,11 @@
 </head>
 <body onload="onLoad()">
     <nav>
-        <input id="cads" type="button" value="Cadastrar-se" name="btn_cadastrar">
-        <input id="login" type="button" value="Login" name="btn_login">
+            <a href="../pesquisa.html" ><img src="../Fotos/logo.png" id="logo"></a>
+            <a href="../cadastro.html" id="cads"><input id="cads" type="button" value="Cadastrar-se" name="btn_cadastrar"></a>
+            <a href="../login.html" id="login"><input id="login" type="button" value="Login" name="btn_login"></a>
+            <a href="../carrinho.html" id="carrinho1"><input id="carrinho1" type="button" value="Carrinho" name="btn_carrinho"></a>
+            <input id="logout" type="button" value="Sair" name="btn_logout" onclick="sair()">
     <div id="menu">
     <ul>
     <li><a>Hoteis</a>

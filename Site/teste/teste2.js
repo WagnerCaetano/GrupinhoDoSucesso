@@ -96,8 +96,6 @@ function execSQL(sql, resposta) {
         const cidade = requisicao.body.cidade.substring(0,50);
         execSQL(`insert into WClienteHoteis values ('${nome}','${sobrenome}','${senha}','${email}','${cpf}','${cep}','${rua}','${cidade}')`, resposta);    
     })
-    .then(resposta.json({ mensagem: 'Registrado'}))
-    .catch(erro => console.log(erro));
 
     rota.get('/clientes/', (requisicao,respost) => {
         execSQL('select * from WClienteHoteis',respost);
@@ -112,6 +110,21 @@ function execSQL(sql, resposta) {
         execSQL('select WQuarto.* from WHotel,WQuarto where WQuarto.hotelId = WHotel.HotelId ' + filtro, resposta);
         })
     
+
+        rota.get('/carrinho/:id?/' ,(requisicao, resposta) => {
+            let filtro = '';
+            if (requisicao.params.idhotel !='none')
+                filtro =" where id_Cliente = "+requisicao.params.id;
+            execSQL('select * from WCarrinho ' + filtro, resposta);
+            })
+
+        rota.post('/carrinho/inserir/',(requisicao,resposta) => {
+            const id_Cliente = requisicao.cliente;
+            const id_quarto = requisicao.quarto;
+            const preco = requisicao.preco;
+            execSQL(`insert into WCarrinho values (${id_Cliente},${id_quarto},${preco})`, resposta);    
+        }
+
     //busca
     rota.get('/hoteis/:nome?/:rate?/:cidade?/:categoria?', (requisicao, resposta) => {
         let filtro = '';

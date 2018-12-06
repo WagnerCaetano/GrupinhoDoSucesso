@@ -294,7 +294,35 @@ div#cadastro{
     border-radius: 15px;
     padding-bottom: 60px;
 }
-div#login{
+input#carrinho1{
+    top:10px;
+    position: relative;
+/*    left:77%;*/
+    width:10%;
+    left: 80%;
+    color:white;
+    background-color: #5f5f5f;
+    border:none;
+    box-shadow: 0px 1px 3px black;
+    font-family:cursive;
+    font-size: 16px;  
+    cursor: pointer;
+}
+input#logout{
+    top:20px;
+    position: relative;
+/*    left:77%;*/
+    width:10%;
+    left: 80%;
+    color:white;
+    background-color: #5f5f5f;
+    border:none;
+    box-shadow: 0px 1px 3px black;
+    font-family:cursive;
+    font-size: 16px;  
+    cursor: pointer;
+}
+div#login{ 
     position:relative;
     width: 45%;
     height: auto;
